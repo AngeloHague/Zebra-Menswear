@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Comfortaa";
+  src: url('Comfortaa.woff') format("woff");
+}
+
+.promo_slider {
+  width: 100%;
+  height: 30rem;
+  background-color: rgb(59, 151, 144);
+}
+
+.promo_slider .card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 3.2rem;
+  width: 34rem;
+  height: 24rem;
+  margin: auto;
+  background-color: #fff;
+}
+
+.promo_slider .card .image {
+  background-color: rgb(64, 92, 151);
+  height: 19rem;
+  width: 100%;
+}
+
+.promo_slider .card .caption {
+  background-color: #fff;
+  height: 4.6rem;
+  width: 100%;
+}

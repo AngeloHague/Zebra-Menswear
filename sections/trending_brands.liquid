@@ -1,0 +1,23 @@
+<div>
+    <h2>Trending Brands</h2>
+    {% assign trending_vendors = shop.vendors %}
+    <ul>
+      {% for product_vendor in trending_vendors %}
+        <li>{{ product_vendor | link_to_vendor }}</li>
+      {%- endfor -%}
+    </ul>
+</div>
+
+{% schema %}
+    {
+        "name": "Trending Brands",
+        "settings": [
+            {
+                "type" : "checkbox",
+                "id" : "get_automatically",
+                "label" : "Get Trending Brands Automatically (Slower)",
+                "default": false
+            }
+        ]
+    }
+{% endschema %}

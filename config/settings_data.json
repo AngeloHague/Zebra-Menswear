@@ -1,0 +1,9 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "link_color": "#ff0000",
+      "accent_color": "#4F607B"
+    }
+  }
+}

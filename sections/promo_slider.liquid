@@ -1,0 +1,20 @@
+<div class='promo_slider'>
+    <div class='card'>
+        <div class='image'></div>
+        <div class='caption'></div>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Trending Brands",
+        "settings": [
+            {
+                "type" : "checkbox",
+                "id" : "get_automatically",
+                "label" : "Get Trending Brands Automatically (Slower)",
+                "default": false
+            }
+        ]
+    }
+{% endschema %}
