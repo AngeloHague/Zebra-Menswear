@@ -1,0 +1,41 @@
+{% if collection.metafields.banner.small != blank %}
+    {% if collection.metafields.banner.large != blank %}
+        <picture>
+            <source media="{max-width:450px}" srcset="{{ collection.metafields.banner.small | image_url }}">
+            <img src="{{ collection.metafields.banner.large | image_url }}" width='100%' height='100%'>
+        </picture>
+    {% endif %}
+{% endif %}
+
+{% schema %}
+{
+    "name": "Collection Banner",
+    "settings": [
+    ],
+    "max_blocks": 1,
+    "blocks": [
+        {
+            "name": "Preset Images",
+            "type": "image",
+            "settings": [
+                {
+                    "type" : "checkbox",
+                    "id" : "override_images",
+                    "label" : "Select to override ALL collection banners with the following images",
+                    "default": false
+                },
+                {
+                    "type" : "image_picker",
+                    "id" : "image_small",
+                    "label" : "Image Picker (Small)"
+                },
+                {
+                    "type" : "image_picker",
+                    "id" : "image_big",
+                    "label" : "Image Picker (Large)"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
