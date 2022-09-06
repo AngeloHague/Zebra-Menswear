@@ -1,5 +1,45 @@
 {
-  "current": "Default",
+  "current": {
+    "link_color": "#ff0000",
+    "accent_color": "#4F607B",
+    "sections": {
+      "nav_bar": {
+        "type": "nav_bar",
+        "settings": {
+          "something": false
+        }
+      },
+      "promo_slider": {
+        "type": "promo_slider",
+        "blocks": {
+          "b8a46317-2f78-4277-a6f8-822d4712b9d0": {
+            "type": "slide",
+            "settings": {
+              "show_slide": false,
+              "caption": "Explore the Parajumpers collection",
+              "image_small": "shopify:\/\/shop_images\/Parajumpers_small_a4871e50-b218-4d29-96a1-5680019aa6bc.png",
+              "image_big": "shopify:\/\/shop_images\/Parajumpers_HP_Full_Width_Desktop_RIGHT-HAND.jpg",
+              "collection": "barbour"
+            }
+          }
+        },
+        "block_order": [
+          "b8a46317-2f78-4277-a6f8-822d4712b9d0"
+        ],
+        "settings": {
+        }
+      },
+      "trending_brands": {
+        "type": "trending_brands",
+        "settings": {
+          "get_automatically": false
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  },
   "presets": {
     "Default": {
       "link_color": "#ff0000",
