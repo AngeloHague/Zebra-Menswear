@@ -5,7 +5,7 @@
 
 .promo_slider {
   width: 100%;
-  height: 30rem;
+  height: 300px;
   background-color: rgb(124, 149, 163);
 }
 
@@ -48,22 +48,22 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 3.2rem;
-  width: 34rem;
-  height: 24rem;
+  top: 32px;
+  width: 340px;
+  height: 240px;
   margin: auto;
   background-color: #fff;
 }
 
 .promo_slider .card .image {
   background-color: rgb(64, 92, 151);
-  height: 19rem;
+  height: 190px;
   width: 100%;
 }
 
 .promo_slider .card .caption {
   background-color: #fff;
-  height: 4.6rem;
+  height: 460px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -83,4 +83,121 @@
   font-size: 1.4rem;;
   text-align: center;
   padding: 1rem;
+}
+
+.categories-section {
+  width: calc(100% - 32px);
+  height: 140px;
+  margin: 16px;
+  background-color: aqua;
+}
+
+.button {
+  font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: solid 2px #1E1E1E;
+  background-color: #fff;
+  color: #1E1E1E;
+  align-self: center;
+  width: 224px;
+  height: 30px;
+}
+
+.dot-separator {
+  display: flex;
+  justify-content: center;
+  /* padding: 16px; */
+}
+
+.trending-brands {
+  width: calc(100% - 32px);
+  height: 200px;
+  margin: 16px;
+  /* background-color: aqua; */
+}
+
+.trending-brands .brands {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: auto auto auto;
+}
+
+.trending-brands h2 {
+  color: #1E1E1E;
+  font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 16px;
+}
+
+.trending-brands img {
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.trending-brands .view-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newsletter {
+  width: 100%;
+  margin: 16px 0;
+  background-color: #1E1E1E;
+  color: #fff;
+}
+
+.newsletter .email, .newsletter .button {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  color: #B6B6B6;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 32px;
+}
+
+.newsletter div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 16px 24px;
+}
+
+.newsletter .email {
+  border: solid 2px #fff; 
+  background-color: #1E1E1E;
+  width: 65%;
+}
+
+.newsletter .email::placeholder {
+  text-align: center;
+}
+
+.newsletter .button {
+  border: solid 1px #4F607B; 
+  background-color: #4F607B;
+  width: 100px;
+  letter-spacing: 1px;
+}
+
+.newsletter h3, .footer h3 {
+  letter-spacing: 0.05rem;
+  font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.4rem;
+  font-weight: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.footer h3 {
+  color: #1E1E1E;
 }

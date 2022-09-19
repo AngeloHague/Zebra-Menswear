@@ -1,23 +1,39 @@
-<div>
+<div class='trending-brands'>
     <h2>Trending Brands</h2>
-    {% assign trending_vendors = shop.vendors %}
-    <ul>
-      {% for product_vendor in trending_vendors %}
-        <li>{{ product_vendor | link_to_vendor }}</li>
-      {%- endfor -%}
-    </ul>
+    <div class='brands'>
+        {% assign cutoff = section.blocks.size | divided_by: 2 %}
+        {% for block in section.blocks %}
+            <a class='brand' href='{{ block.settings.collection.url }}'><img src="{{ block.settings.collection.image | image_url }}" width='100px' height='50px'></a>
+        {%- endfor -%}
+    </div>
+    <div class='view-all'>
+        <input class="button" type="button" onclick="location.href='./pages/brands';" value="View All Brands" />
+    </div>
 </div>
 
 {% schema %}
-    {
-        "name": "Trending Brands",
-        "settings": [
-            {
-                "type" : "checkbox",
-                "id" : "get_automatically",
-                "label" : "Get Trending Brands Automatically (Slower)",
-                "default": false
-            }
-        ]
-    }
+{
+    "name": "Trending Brands",
+    "settings": [],
+    "max_blocks": 6,
+    "blocks": [
+        {
+            "name": "Brand",
+            "type": "slide",
+            "settings": [
+                {
+                    "type" : "checkbox",
+                    "id" : "show_slide",
+                    "label" : "Show Slide",
+                    "default": false
+                },
+                {
+                    "type" : "collection",
+                    "id" : "collection",
+                    "label" : "Brand (Collection)"
+                }
+            ]
+        }
+    ]
+}
 {% endschema %}

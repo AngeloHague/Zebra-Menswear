@@ -14,8 +14,66 @@
 </head>
 <body>
 
+  {% section 'nav_bar' %}
+
   <main role="main">
     {{ content_for_layout }}
   </main>
+
+  <div class='dot-separator'>
+    <svg height="10" width="54">
+      <circle cx="9" cy="5" r="2" fill="black" />
+      <circle cx="27" cy="5" r="2" fill="black" />
+      <circle cx="45" cy="5" r="2" fill="black" />
+    </svg>
+  </div>
+
+  <div class='newsletter'>
+    <h3>Sign up for Email Updates</h3>
+    <div>
+      <form>
+        <input class="email" type="text" placeholder="Enter your email address" />
+        <input class="button" type="button" onclick="" value="Join" />
+      </form>
+    </div>
+  </div>
+
+  <div class='dot-separator'>
+    <svg height="10" width="54">
+      <circle cx="9" cy="5" r="2" fill="black" />
+      <circle cx="27" cy="5" r="2" fill="black" />
+      <circle cx="45" cy="5" r="2" fill="black" />
+    </svg>
+  </div>
+
+  <div class='footer'>
+    <div class='contact-us'>
+      <h3>Contact Us</h3>
+    </div>
+
+    <div class='dot-separator mobile-only'>
+      <svg height="10" width="54">
+        <circle cx="9" cy="5" r="2" fill="black" />
+        <circle cx="27" cy="5" r="2" fill="black" />
+        <circle cx="45" cy="5" r="2" fill="black" />
+      </svg>
+    </div>
+
+    <div class='information'>
+      <h3>Information</h3>
+    </div>
+
+    <div class='dot-separator mobile-only'>
+      <svg height="10" width="54">
+        <circle cx="9" cy="5" r="2" fill="black" />
+        <circle cx="27" cy="5" r="2" fill="black" />
+        <circle cx="45" cy="5" r="2" fill="black" />
+      </svg>
+    </div>
+
+    <div class='shop-with-us'>
+      <h3>Shop With Us</h3>
+    </div>
+  </div>
 </body>
 </html>

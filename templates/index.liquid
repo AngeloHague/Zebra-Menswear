@@ -1,4 +1,4 @@
-{% section 'nav_bar' %}
+
 
 <div class='page_content'>
   {% section 'promo_slider' %}
@@ -7,43 +7,28 @@
     Chesterfield's Premiere Designer Clothes Store
   </div>
 
-  {% assign variable = '5' %}
-  {{ variable }}
+  <div class='categories-section'>
+    VIEW ALL CATEGORIES
+  </div>
 
-  <br />
-
-  {% assign array_string = 'one,two,three,four,five,six' %}
-  {% assign array = array_string | split: ',' %}
-
-  <ul>
-    {% for num in array %}
-      {% if num.size < 4 %}
-        <li>{{ num }}</li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-
-  <br />
-
-  {% assign tshirts = collections['T-Shirts'] %}
-  {{ tshirts.title }}
-  <ul>
-    {% for product in tshirts.products %}
-      <li><a href='{{ product.url }}'>{{ product.title }} - {{ product.price | money }}</a>> </li>
-    {% endfor %}
-  </ul>
-
-  <br />
-
-  {% assign barbour = collections['Barbour'] %}
-  {{ barbour.title }}
-  <ul>
-    {% for product in barbour.products %}
-      <li><a href='{{ product.url }}'>{{ product.title }} - {{ product.price | money }}</a>> </li>
-    {% endfor %}
-  </ul>
-
-  <br />
+  <div class='dot-separator'>
+    <svg height="10" width="54">
+      <circle cx="9" cy="5" r="2" fill="black" />
+      <circle cx="27" cy="5" r="2" fill="black" />
+      <circle cx="45" cy="5" r="2" fill="black" />
+    </svg>
+  </div>
 
   {% section 'trending_brands' %}
+
+  {% comment %} <div class='dot-separator'>
+    <svg height="10" width="54">
+      <circle cx="9" cy="5" r="2" fill="black" />
+      <circle cx="27" cy="5" r="2" fill="black" />
+      <circle cx="45" cy="5" r="2" fill="black" />
+    </svg>
+  </div>
+
+  {% section 'promotional_images' %} {% endcomment %}
+
 </div>
