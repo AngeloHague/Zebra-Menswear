@@ -13,6 +13,10 @@
     font-smoothing: antialiased;
     font-weight: 400;
 }
+main {
+    width: 100%;
+    overflow-x: hidden;
+}
 
 .logo {
     color: #fff;

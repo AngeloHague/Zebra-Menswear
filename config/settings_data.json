@@ -31,8 +31,59 @@
       },
       "trending_brands": {
         "type": "trending_brands",
+        "blocks": {
+          "72d3cdc2-ef50-4e1f-a191-46eabdb26eb3": {
+            "type": "slide",
+            "settings": {
+              "show_slide": false,
+              "collection": "pantofola-doro"
+            }
+          },
+          "fdca7df8-d4d2-4547-af9f-e9720065cb83": {
+            "type": "slide",
+            "settings": {
+              "show_slide": false,
+              "collection": "pantofola-doro"
+            }
+          },
+          "3aa6f437-0fd3-4d2d-88cf-f83e9ef21249": {
+            "type": "slide",
+            "settings": {
+              "show_slide": false,
+              "collection": "pantofola-doro"
+            }
+          },
+          "d2298fa3-5d8a-4c8f-889f-78c8a329cf77": {
+            "type": "slide",
+            "settings": {
+              "show_slide": false,
+              "collection": "pantofola-doro"
+            }
+          },
+          "98267c87-1f69-49f5-b651-6b28bb327d08": {
+            "type": "slide",
+            "settings": {
+              "show_slide": false,
+              "collection": "pantofola-doro"
+            }
+          },
+          "2a5d08ce-8bd3-4931-9d96-3060d486a8d8": {
+            "type": "slide",
+            "settings": {
+              "show_slide": false,
+              "collection": "pantofola-doro"
+            }
+          }
+        },
+        "block_order": [
+          "72d3cdc2-ef50-4e1f-a191-46eabdb26eb3",
+          "fdca7df8-d4d2-4547-af9f-e9720065cb83",
+          "3aa6f437-0fd3-4d2d-88cf-f83e9ef21249",
+          "d2298fa3-5d8a-4c8f-889f-78c8a329cf77",
+          "98267c87-1f69-49f5-b651-6b28bb327d08",
+          "2a5d08ce-8bd3-4931-9d96-3060d486a8d8"
+        ],
         "settings": {
-          "get_automatically": false
         }
       }
     },
