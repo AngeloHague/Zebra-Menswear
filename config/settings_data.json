@@ -15,16 +15,29 @@
           "b8a46317-2f78-4277-a6f8-822d4712b9d0": {
             "type": "slide",
             "settings": {
-              "show_slide": false,
-              "caption": "Explore the Parajumpers collection",
-              "image_small": "shopify:\/\/shop_images\/Parajumpers_small_a4871e50-b218-4d29-96a1-5680019aa6bc.png",
-              "image_big": "shopify:\/\/shop_images\/Parajumpers_HP_Full_Width_Desktop_RIGHT-HAND.jpg",
+              "caption": "",
+              "collection": "parajumpers"
+            }
+          },
+          "8ac3fd66-6011-44c8-bbce-8c6b4cb89fab": {
+            "type": "slide",
+            "settings": {
+              "caption": "",
               "collection": "barbour"
+            }
+          },
+          "3756fe68-8e12-48a5-9e40-a2fee29ade3c": {
+            "type": "slide",
+            "settings": {
+              "caption": "",
+              "collection": "pantofola-doro"
             }
           }
         },
         "block_order": [
-          "b8a46317-2f78-4277-a6f8-822d4712b9d0"
+          "b8a46317-2f78-4277-a6f8-822d4712b9d0",
+          "8ac3fd66-6011-44c8-bbce-8c6b4cb89fab",
+          "3756fe68-8e12-48a5-9e40-a2fee29ade3c"
         ],
         "settings": {
         }
@@ -43,21 +56,21 @@
             "type": "slide",
             "settings": {
               "show_slide": false,
-              "collection": "pantofola-doro"
+              "collection": "barbour"
             }
           },
           "3aa6f437-0fd3-4d2d-88cf-f83e9ef21249": {
             "type": "slide",
             "settings": {
               "show_slide": false,
-              "collection": "pantofola-doro"
+              "collection": "parajumpers"
             }
           },
           "d2298fa3-5d8a-4c8f-889f-78c8a329cf77": {
             "type": "slide",
             "settings": {
               "show_slide": false,
-              "collection": "pantofola-doro"
+              "collection": "clothing"
             }
           },
           "98267c87-1f69-49f5-b651-6b28bb327d08": {
