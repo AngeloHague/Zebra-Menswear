@@ -85,11 +85,11 @@
 
     <div class='information section'>
       <h3>Information</h3>
-      <div class='links'>
+      <ul class='links'>
         {% for link in linklists.footer.links %}
-          <a href='{{link.url}}'><p>{{link.title}}</p></a>
+          <a href='{{link.url}}'><li>{{link.title}}</li></a>
         {% endfor %}
-      </div>
+      </ul>
     </div>
 
     <div class='dot-separator mobile-only'>
