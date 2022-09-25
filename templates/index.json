@@ -1,0 +1,22 @@
+{
+    "sections": {
+        "slider" : {
+            "type": "promo_slider"
+        },
+        "slogan" : {
+            "type": "slogan"
+        },
+        "categories" : {
+            "type": "categories"
+        },
+        "separator" : {
+            "type": "dot-separator"
+        },
+        "trending_brands" : {
+            "type": "trending_brands"
+        }
+    },
+    "order": [
+        "slider", "slogan", "categories", "separator", "trending_brands"
+    ]
+}

@@ -10,22 +10,20 @@
                                 <img src="{{ block.settings.collection | img_url: '340x' }}" width='100%' height='100%'>
                             </picture>
                         </div>
-                        <a href="{{ block.settings.collection.url }}">
-                            <div class="content">
-                                <div class="card">
-                                    <div class='image'>
-                                        <picture>
-                                            <source media="(min-width:451px)" srcset="{{ block.settings.collection | img_url: '715x' }}">
-                                            <img src="{{ block.settings.collection | img_url: '340x' }}" width='100%' height='100%'>
-                                        </picture>
-                                    </div>
-                                    <div class='caption'>
-                                        {% if block.settings.caption != blank %}
-                                            <p>{{ block.settings.caption }}</p>
-                                        {% else %}
-                                            <p>Explore the {{ block.settings.collection.title }} collection</p>
-                                        {% endif %}
-                                    </div>
+                        <a class="content" href="{{ block.settings.collection.url }}">
+                            <div class="card">
+                                <div class='image'>
+                                    <picture>
+                                        <source media="(min-width:451px)" srcset="{{ block.settings.collection | img_url: '715x' }}">
+                                        <img src="{{ block.settings.collection | img_url: '340x' }}" width='100%' height='100%'>
+                                    </picture>
+                                </div>
+                                <div class='caption'>
+                                    {% if block.settings.caption != blank %}
+                                        <p>{{ block.settings.caption }}</p>
+                                    {% else %}
+                                        <p>Explore the {{ block.settings.collection.title }} collection</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </a>
@@ -44,23 +42,13 @@
         "max_blocks": 3,
         "blocks": [
             {
-                "name": "Slide",
+                "name": "Collection",
                 "type": "slide",
                 "settings": [
                     {
                         "type" : "text",
                         "id" : "caption",
                         "label" : "Custom Caption (Leave blank for default)"
-                    },
-                    {
-                        "type" : "image_picker",
-                        "id" : "image_small",
-                        "label" : "Slide Image Picker (Small)"
-                    },
-                    {
-                        "type" : "image_picker",
-                        "id" : "image_large",
-                        "label" : "Slide Image Picker (Large)"
                     },
                     {
                         "type" : "collection",
@@ -72,3 +60,83 @@
         ]
     }
 {% endschema %}
+
+{%- style -%}
+.promo_slider {
+  width: 100%;
+  height: 300px;
+  background-color: rgb(124, 149, 163);
+}
+
+.promo_slider .slide {
+  position: absolute;
+  left: 0;
+  top: 46;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.promo_slider a {
+  text-decoration: none;
+  color: black;
+}
+
+.promo_slider .slide .bg_blur {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo_slider .slide .bg_blur img {
+  width: 150%;
+  height: 150%;
+  position: relative;
+  top: -25%;
+  left: -25%;
+  filter: blur(25px);
+  -webkit-filter: blur(25px);
+}
+
+.promo_slider .slide .content {
+  position: relative;
+  top: -100%;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.promo_slider .card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 32px;
+  width: 340px;
+  height: 240px;
+  margin: auto;
+  background-color: #fff;
+  z-index: 3;
+}
+
+.promo_slider .card .image {
+  background-color: rgb(64, 92, 151);
+  height: 190px;
+  width: 100%;
+}
+
+.promo_slider .card .caption {
+  background-color: #fff;
+  height: 460px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo_slider .card .caption p {
+  text-align: center;
+  font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.4rem;
+}
+{%- endstyle -%}
