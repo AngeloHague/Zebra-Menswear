@@ -1,5 +1,5 @@
 .nav_bar {
-    height: 4.6rem;
+    height: 46px;
     width: 100%;
     background-color: #1E1E1E;
     display: flex;
@@ -15,31 +15,58 @@
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     color: #fff;
-    padding-top: 4.6rem;
+    padding-top: 46px;
     position: fixed;
     height: 100%;
+    overflow-y: scroll;
     width: 100%;
     max-width: 300px;
     left: -300px;
 }
 
-.nav_bar .menu {
+.nav_bar .left {
     position: fixed;
-    top: 1.3rem;
-    left: 1.3rem;
-    width: 2rem;
-    height: 2rem;
+    top: 10px;
+    left: 13px;
+    height: 20px;
+    width: auto;
+    z-index: 3;
+}
+
+.nav_bar .left .search {
+    // position: fixed;
+    // top: 13px;
+    // right: 13px;
+    margin-top: 1px;
+    width: 20px;
+    height: 20px;
+    float: left;
+    padding: 4px;
+    margin-left: 12px;
+    // background-color: #fff;
+}
+
+.nav_bar .left .search svg {
+    width: 18px;
+    height: 18px;
+}
+
+.nav_bar .menu {
+    width: 20px;
+    height: 20px;
     z-index: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    float: left;
+    padding: 4px;
     // background-color: #fff;
 }
 
 .nav_bar .menu_burger {
     position: relative;
-    width: 1.4rem;
-    height: .2rem;
+    width: 20px;
+    height: 2px;
     background-color: #fff;
     border-radius: 5px;
     transition: all .3s ease-in-out;
@@ -49,34 +76,35 @@
   content: '';
   position: absolute;
   left: 0;
-  width: 1.4rem;
-  height: .2rem;
+  width: 20px;
+  height: 2px;
   background-color: #fff;
   border-radius: 5px;
   transition: all .3s ease-in-out;
 }
 .nav_bar .menu_burger::before {
-    transform: translateY(-.5rem);
+    transform: translateY(-5px);
 }
 .nav_bar .menu .menu_burger::after {
-    transform: translateY(.5rem);
+    transform: translateY(5px);
 }
 
 .menu.open .menu_burger {
-    transform: translateX(-1.5rem);
+    transform: translateX(-15px);
     background-color: transparent;
 }
 
 .menu.open .menu_burger::before {
-    transform: rotate(45deg) translate(1.1rem, -1.1rem);
+    transform: rotate(45deg) translate(11px, -11px);
 }
 
 .menu.open .menu_burger::after {
-    transform: rotate(-45deg) translate(1.1rem, 1.1rem);
+    transform: rotate(-45deg) translate(11px, 11px);
 }
 
 .nav_bar ul.active {
     left: 0;
+    z-index: 2;
 }
 
 .nav_bar ul li {
@@ -85,7 +113,7 @@
     font-size: 2rem;
     text-transform: uppercase;
     text-align: center;
-    padding: 2.5rem;
+    padding: 24px;
 }
 
 .nav_bar ul li:hover {
@@ -94,14 +122,63 @@
     cursor: pointer;
 }
 
-.nav_bar .cart {
+.nav_bar .right {
     position: fixed;
-    top: 1.3rem;
-    right: 1.5rem;
-    width: 2rem;
-    height: 2rem;
+    top: 10px;
+    right: 0;
+    height: 20px;
+    width: auto;
+}
+
+.nav_bar .right .account {
+    // position: fixed;
+    // top: 13px;
+    // right: 13px;
+    width: 20px;
+    height: 20px;
+    float: left;
+    padding: 4px;
+    margin-right: 12px;
     // background-color: #fff;
+}
+
+.nav_bar .right .cart {
+    // position: fixed;
+    // top: 14px;
+    // right: 14px;
+    width: 20px;
+    height: 20px;
+    float: right;
+    padding: 4px;
+    padding-right: 16px;
+    // background-color: #fff;
+}
+
+.nav_bar .right .cart svg {
+    width: 18px;
+    height: 18px;
+}
+
+.nav_bar .right .cart .item-count {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+    background-color: #4F607B;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.nav_bar .right .cart .item-count p {
+    font-size: 10px;
+    color: #fff;
 }
 
 .st0{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .st1{stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.st2{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;}
