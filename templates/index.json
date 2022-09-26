@@ -1,22 +1,166 @@
 {
-    "sections": {
-        "slider" : {
-            "type": "promo_slider"
+  "sections": {
+    "slider": {
+      "type": "promo_slider",
+      "blocks": {
+        "3f782b2b-3b1e-4a93-b8c5-2673f68ab5a8": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "parajumpers"
+          }
         },
-        "slogan" : {
-            "type": "slogan"
+        "08d7755f-3615-4298-b80b-2a3a65308ac2": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "pantofola-doro"
+          }
         },
-        "categories" : {
-            "type": "categories"
-        },
-        "separator" : {
-            "type": "dot-separator"
-        },
-        "trending_brands" : {
-            "type": "trending_brands"
+        "64159e8c-34ac-4573-b6ef-7c54e0a0222c": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "barbour"
+          }
         }
+      },
+      "block_order": [
+        "3f782b2b-3b1e-4a93-b8c5-2673f68ab5a8",
+        "08d7755f-3615-4298-b80b-2a3a65308ac2",
+        "64159e8c-34ac-4573-b6ef-7c54e0a0222c"
+      ],
+      "settings": {
+      }
     },
-    "order": [
-        "slider", "slogan", "categories", "separator", "trending_brands"
-    ]
+    "slogan": {
+      "type": "slogan",
+      "settings": {
+        "slogan": "Chesterfield's Premiere Designer Clothes Store"
+      }
+    },
+    "categories": {
+      "type": "categories",
+      "settings": {
+      }
+    },
+    "trending_brands": {
+      "type": "trending_brands",
+      "blocks": {
+        "daa81d11-8fe0-472d-adb1-779dceb6f651": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "collection": "parajumpers"
+          }
+        },
+        "9f99def3-0e05-4233-b85d-d9b9eda59d07": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "collection": "pantofola-doro"
+          }
+        },
+        "8140872a-2825-4204-96b6-fc4654fd7a79": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "collection": "barbour"
+          }
+        },
+        "3d6e00bc-c432-4ff2-a2c2-616953622a1f": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "collection": "parajumpers"
+          }
+        },
+        "9d4fd667-53ef-42c9-9eb2-335271d3bcc4": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "collection": "parajumpers"
+          }
+        },
+        "50b2fdf7-0d60-41c0-82a5-a2f85723dcfc": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "collection": "parajumpers"
+          }
+        }
+      },
+      "block_order": [
+        "daa81d11-8fe0-472d-adb1-779dceb6f651",
+        "9f99def3-0e05-4233-b85d-d9b9eda59d07",
+        "8140872a-2825-4204-96b6-fc4654fd7a79",
+        "3d6e00bc-c432-4ff2-a2c2-616953622a1f",
+        "9d4fd667-53ef-42c9-9eb2-335271d3bcc4",
+        "50b2fdf7-0d60-41c0-82a5-a2f85723dcfc"
+      ],
+      "settings": {
+      }
+    },
+    "promo_images": {
+      "type": "promo_images",
+      "blocks": {
+        "92a86bd0-e494-46c0-96c2-fc4ee78fc6a2": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "caption": "View the collection",
+            "collection": "barbour"
+          }
+        },
+        "301bb7fd-07bf-47a2-9b82-e3a06b21d736": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "caption": "View the collection",
+            "collection": "pantofola-doro"
+          }
+        },
+        "57db783a-4070-4898-8cf9-a6ee2d2da22d": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "caption": "View the collection",
+            "collection": "parajumpers"
+          }
+        },
+        "adc3f8df-b565-4a54-9ee8-239a49bd4cda": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "caption": "View the collection",
+            "collection": "barbour"
+          }
+        },
+        "989e2100-74e5-4419-8fc8-d4a62dcc0f1a": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "caption": "View the collection",
+            "collection": "gift-vouchers"
+          }
+        }
+      },
+      "block_order": [
+        "92a86bd0-e494-46c0-96c2-fc4ee78fc6a2",
+        "301bb7fd-07bf-47a2-9b82-e3a06b21d736",
+        "57db783a-4070-4898-8cf9-a6ee2d2da22d",
+        "adc3f8df-b565-4a54-9ee8-239a49bd4cda",
+        "989e2100-74e5-4419-8fc8-d4a62dcc0f1a"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "slider",
+    "slogan",
+    "categories",
+    "trending_brands",
+    "promo_images"
+  ]
 }

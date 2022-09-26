@@ -3,12 +3,6 @@
     "link_color": "#ff0000",
     "accent_color": "#4F607B",
     "sections": {
-      "nav_bar": {
-        "type": "nav_bar",
-        "settings": {
-          "something": false
-        }
-      },
       "promo_slider": {
         "type": "promo_slider",
         "blocks": {

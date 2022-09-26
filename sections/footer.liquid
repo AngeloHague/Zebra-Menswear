@@ -1,10 +1,6 @@
-<div class='dot-separator'>
-    <svg height="10" width="54">
-      <circle cx="9" cy="5" r="2" fill="black" />
-      <circle cx="27" cy="5" r="2" fill="black" />
-      <circle cx="45" cy="5" r="2" fill="black" />
-    </svg>
-  </div>
+
+
+    {% render 'dot-separator' %}
 
   <div class='newsletter'>
     <h3>Sign up for Email Updates</h3>
@@ -16,13 +12,7 @@
     </div>
   </div>
 
-  <div class='dot-separator'>
-    <svg height="10" width="54">
-      <circle cx="9" cy="5" r="2" fill="black" />
-      <circle cx="27" cy="5" r="2" fill="black" />
-      <circle cx="45" cy="5" r="2" fill="black" />
-    </svg>
-  </div>
+  {% render 'dot-separator' %}
 
   <div class='footer'>
     <div class='contact-us section'>
@@ -97,9 +87,9 @@
   </div>
 
   {%- style -%}
-  .newsletter {
+.newsletter {
   width: 100%;
-  margin: 16px 0;
+  /* margin: 16px 0; */
   background-color: #1E1E1E;
   color: #fff;
 }
@@ -168,7 +158,7 @@
 }
 
 .footer .section {
-  padding: 16px 0;
+  /* padding: 16px 0; */
 }
 
 .footer p {
