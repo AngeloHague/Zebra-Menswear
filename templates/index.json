@@ -41,7 +41,93 @@
     },
     "categories": {
       "type": "categories",
+      "blocks": {
+        "c876f529-0f59-4032-8f98-02c6fbe17284": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "blazers"
+          }
+        },
+        "3f3ecae9-bc51-49a9-b5ac-3c1715995987": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "coats"
+          }
+        },
+        "e6d5bbde-dbce-40fc-9419-9b8f551deab2": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "jeans"
+          }
+        },
+        "98d0093e-154a-490b-8c35-e4fd94bb6fdf": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "jumpers-sweatshirts"
+          }
+        },
+        "b1c32c9a-77ca-4ecd-bd23-32bf4b0fe577": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "knitwear"
+          }
+        },
+        "86ea6262-e41e-427d-98ea-277aaea2b100": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "polo-shirts"
+          }
+        },
+        "ac68d34f-88b1-48ee-8d24-b2febe85d278": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "shorts"
+          }
+        },
+        "5a019104-f48a-4cc5-af44-33c57afd1f2b": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "shirts"
+          }
+        },
+        "876b53e9-c3bc-46b5-b52b-d41fa26d308f": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "suits"
+          }
+        },
+        "4b6483ec-46bb-4066-9d13-175d7b314266": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "t-shirts"
+          }
+        }
+      },
+      "block_order": [
+        "c876f529-0f59-4032-8f98-02c6fbe17284",
+        "3f3ecae9-bc51-49a9-b5ac-3c1715995987",
+        "e6d5bbde-dbce-40fc-9419-9b8f551deab2",
+        "98d0093e-154a-490b-8c35-e4fd94bb6fdf",
+        "b1c32c9a-77ca-4ecd-bd23-32bf4b0fe577",
+        "86ea6262-e41e-427d-98ea-277aaea2b100",
+        "ac68d34f-88b1-48ee-8d24-b2febe85d278",
+        "5a019104-f48a-4cc5-af44-33c57afd1f2b",
+        "876b53e9-c3bc-46b5-b52b-d41fa26d308f",
+        "4b6483ec-46bb-4066-9d13-175d7b314266"
+      ],
       "settings": {
+        "button-text": "",
+        "button-collection": ""
       }
     },
     "trending_brands": {

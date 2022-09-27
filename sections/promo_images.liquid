@@ -9,7 +9,7 @@
                         <div class='image'>
                             <picture>
                                 <source media="{max-width:390px}" srcset="{{ block.settings.image_small | image_url }}">
-                                <img src="{{ block.settings.collection | img_url: '390x' }}" width='100%' height='100%'>
+                                <img src="{{ block.settings.collection | img_url: '390x' }}" width='100%' height='100%' loading='lazy'>
                             </picture>
                         </div>
                         {% assign placement = forloop.index | modulo: 2 %}

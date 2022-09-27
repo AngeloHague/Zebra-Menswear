@@ -1,22 +1,122 @@
 <div class='categories-section'>
-    VIEW ALL CATEGORIES
+  <ul>
+    {% for block in section.blocks %}
+      <li>
+        <a href='{{block.settings.collection.url}}'>
+          <div class='image'>
+            <img src="{{ block.settings.collection.image | img_url: '80x' }}" width='100%' height='100%' loading='lazy'>
+          </div>
+          {% if block.settings.caption != blank %}
+            <p>{{block.settings.caption}}</p>
+          {% else %}
+            <p>{{block.settings.collection.title}}</p>
+          {% endif %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <div class='view-all'>
+    {% if section.settings.button-text != blank %}
+      <input class="button" type="button" onclick="location.href='./collections/Clothing';" value="{{section.settings.button-text}}" />
+    {% else %}
+      <input class="button" type="button" onclick="location.href='./collections/Clothing';" value="View All Categories" />
+    {% endif %}
+  </div>
+    
 </div>
 
 {% schema %}
 {
     "name": "Categories",
-    "settings": []
+    "settings": [
+      {
+        "label": "Button Text",
+        "id": "button-text",
+        "info": "Leave blank for default - 'View All Categories'",
+        "type": "text"
+      },
+      {
+        "label": "Button Link",
+        "id": "button-collection",
+        "info": "Input the name of the collection the button should link to",
+        "type": "collection"
+      }
+    ],
+    "blocks": [
+        {
+            "name": "Collection",
+            "type": "slide",
+            "settings": [
+                {
+                    "type" : "text",
+                    "id" : "caption",
+                    "label" : "Custom Caption (Leave blank for default)"
+                },
+                {
+                    "type" : "collection",
+                    "id" : "collection",
+                    "label" : "Collection Link"
+                }
+            ]
+        }
+    ]
 }
 {% endschema %}
 
 {% style %}
+  .categories-section {
+    width: calc(100% - 32px);
+    margin: 0 16px;
+    /* background-color: aqua; */
+  }
 
+  .categories-section .view-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.categories-section {
-  width: calc(100% - 32px);
-  height: 140px;
-  margin: 0 16px;
-  background-color: aqua;
+  .categories-section ul {
+    width: 100%;
+    list-style: none;
+    overflow-x: scroll;
+    height: auto;
+    white-space: nowrap;
+  }
+
+  .categories-section ul li {
+    position: relative;
+    top: 0;
+    display: inline-block;
+    vertical-align: top;
+    width: 80px;
+    margin-right: 12px;
+  }
+
+  .categories-section img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 40px;
+  }
+
+  .categories-section ul p {
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding-bottom: 8px;
+    font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    color: black;
+  }
+
+.categories-section .button {
+  width: 100%;
+  background-color: #1E1E1E;
+  color: #fff;
 }
 {% endstyle %}
 
