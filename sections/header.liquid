@@ -1,6 +1,6 @@
 <div class='nav_bar'>
     <div class='left'>
-        <a onclick="toggleNav(this)" class="menu">
+        <a href='/menu' onload="removeLink(this)" onclick="toggleNav(this)" class="menu" id='menu'>
         <div class="menu_burger"></div>
         </a>
         <a href="/search" id="search" class="search">
@@ -262,4 +262,5 @@
 {%- endstyle -%}
 
 {% javascript %}
+    document.getElementById("menu").removeAttribute("href");
 {% endjavascript %}

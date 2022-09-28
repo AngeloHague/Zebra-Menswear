@@ -1,35 +1,64 @@
 <section id="shopify-section-[id]" class="shopify-section">
-    <div class='promo_slider'>
-        {% for block in section.blocks %}
-            {% case block.type %}
-                {% when 'slide' %}
-                    <div class='slide'>
-                        <div class="bg_blur">
-                            <picture>
-                                <source media="(min-width:451px)" srcset="{{ block.settings.collection | img_url: '715x' }}">
-                                <img src="{{ block.settings.collection | img_url: '340x' }}" width='100%' height='100%'>
-                            </picture>
-                        </div>
-                        <a class="content" href="{{ block.settings.collection.url }}">
-                            <div class="card">
-                                <div class='image'>
-                                    <picture>
-                                        <source media="(min-width:451px)" srcset="{{ block.settings.collection | img_url: '715x' }}">
-                                        <img src="{{ block.settings.collection | img_url: '340x' }}" width='100%' height='100%'>
-                                    </picture>
-                                </div>
-                                <div class='caption'>
-                                    {% if block.settings.caption != blank %}
-                                        <p>{{ block.settings.caption }}</p>
-                                    {% else %}
-                                        <p>Explore the {{ block.settings.collection.title }} collection</p>
-                                    {% endif %}
+    <div class='promo_slider' id='slider'>
+        <ul onload='testLoaded()' class='slides'>
+            {% for block in section.blocks %}
+                {% case block.type %}
+                    {% when 'slide' %}
+                        {% assign prev = 0 %}
+                        {% assign next = 0 %}
+                        {% if forloop.index == 1 %}
+                            {% assign prev = forloop.length %}
+                            {% assign next = forloop.index | plus: 1 %}
+                            <input type='radio' name='radio-buttons' = id='slide-{{forloop.index}}' checked />
+                        {% elsif forloop.index == section.blocks.size %}
+                            {% assign prev = forloop.index | minus: 1 %}
+                            {% assign next = 1 %}
+                            <input type='radio' name='radio-buttons' = id='slide-{{forloop.index}}' />
+                        {% else %}
+                            {% assign prev = forloop.index | minus: 1 %}
+                            {% assign next = forloop.index | plus: 1 %}
+                            <input type='radio' name='radio-buttons' = id='slide-{{forloop.index}}' />
+                        {% endif %}
+                        <li class='slide'>
+                            <div class="bg_blur">
+                                <picture>
+                                    <source media="(min-width:451px)" srcset="{{ block.settings.collection | img_url: '715x' }}">
+                                    <img src="{{ block.settings.collection | img_url: '340x' }}" width='100%' height='100%'>
+                                </picture>
+                            </div>
+                            <div class="content" href="{{ block.settings.collection.url }}">
+                                <div class="card">
+                                    <a href='{{block.settings.collection.url}}' class='image'>
+                                        <picture>
+                                            <source media="(min-width:451px)" srcset="{{ block.settings.collection | img_url: '715x' }}">
+                                            <img src="{{ block.settings.collection | img_url: '340x' }}" width='100%' height='100%'>
+                                        </picture>
+                                    </a>
+                                    <div class='caption'>
+                                        <label for='slide-{{prev}}' class='previous'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        </label>
+                                        {% if block.settings.caption != blank %}
+                                            <a href='{{block.settings.collection.url}}'><p>{{ block.settings.caption }}</p></a>
+                                        {% else %}
+                                            <a href='{{block.settings.collection.url}}'><p>Explore the {{ block.settings.collection.title }} collection</p></a>
+                                        {% endif %}
+                                        <label for='slide-{{next}}' class='next'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-            {% endcase %}
-        {% endfor %}
+                        </li>
+                {% endcase %}
+            {% endfor %}
+            
+      <div class="slider-dots">
+        <label for="slide-1" class="dot" id="slide-dot-1"></label>
+        <label for="slide-2" class="dot" id="slide-dot-2"></label>
+        <label for="slide-3" class="dot" id="slide-dot-3"></label>
+      </div>
+        </ul>
     </div>
 </section>
     
@@ -71,8 +100,23 @@
     background-color: rgb(124, 149, 163);
 }
 
+.promo_slider ul {
+    width: 100%;
+    list-style: none;
+    /* overflow: hidden; */
+    height: 100%;
+    white-space: nowrap;
+}
+
+.promo_slider li {
+    padding: 0;
+    margin: 0;
+}
+
 .promo_slider .slide {
-  position: absolute;
+    display: inline-block;
+    white-space: nowrap;
+    position: absolute;
   left: 0;
   top: 0;
   width: 100%;
@@ -110,6 +154,8 @@
   width: 100%;
   height: 100%;
   z-index: 2;
+    padding: 0;
+    margin: 0;
 }
 
 .promo_slider .card {
@@ -136,13 +182,132 @@
   height: 460px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
+.promo_slider .card .caption .previous, .promo_slider .card .caption .next {
+  width: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.promo_slider .card .caption a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .promo_slider .card .caption p {
-  text-align: center;
   font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.4rem;
+  line-height: 1.6rem;
+  text-align: center;
+}
+
+.promo_slider .slide {
+    opacity: 0;
+}
+
+.promo_slider .previous, .promo_slider .next {
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul.slides input {
+    display: none; 
+}
+
+input:checked + .slide {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1s ease-in-out;
+    z-index: 3;
+}
+
+input:not(:checked) + .slide {
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1s ease-in-out;
+    z-index: 2;
+}
+
+input.active {
+    color: green;
+}
+
+
+.slider-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    text-align: center;
+}
+
+.slider-dots .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.5;
+    margin: 6px 8px;
+}
+
+input:checked + .slide {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1s ease-in-out;
+}
+
+input#slide-1:checked ~ .slider-dots label#slide-dot-1,
+input#slide-2:checked ~ .slider-dots label#slide-dot-2,
+input#slide-3:checked ~ .slider-dots label#slide-dot-3 {
+	opacity: 1;
 }
 {%- endstyle -%}
+
+{% javascript %}
+    var slideIdx = 0;
+    var paused = false;
+    var timer = 0;
+
+    let slide_btns = document.getElementsByName('radio-buttons');
+    window.setInterval(function() {
+        if (!paused) {
+            timer++;
+            if (timer >= 2) {
+                timer = 0;
+                slideIdx++
+                if(slideIdx > slide_btns.length-1)
+                {
+                    slideIdx = 0
+                    slide_btns[slideIdx].click()
+                } else slide_btns[slideIdx].click()
+            }
+        }
+    }, 1000);
+    
+    const slide_dots = document.querySelectorAll(`[id^="slide-dot-"]`);
+    for (var i = 0; i < slide_dots.length; i++) {
+        slide_dots[i].addEventListener('click', function(e) {;
+            const idx = i;
+            slideIdx = idx;
+            timer = 0;
+        });
+    }
+
+    document.getElementById('slider').addEventListener('mouseenter', function(e) {
+        paused = true;
+    });
+
+    document.getElementById('slider').addEventListener('mouseleave', function(e) {
+        paused = false;
+    });
+{% endjavascript %}
