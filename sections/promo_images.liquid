@@ -8,8 +8,11 @@
                         <a href='{{block.settings.collection.url}}'>
                         <div class='image'>
                             <picture>
-                                <source media="{max-width:390px}" srcset="{{ block.settings.image_small | image_url }}">
-                                <img src="{{ block.settings.collection | img_url: '390x' }}" width='100%' height='100%' loading='lazy'>
+                                <source media="{max-width:390px}" srcset="{{ block.settings.collection | image_url: '390x' }}, {{ block.settings.collection | image_url: '780x' }} 2x ">
+                                <source media="{max-width:768px}" srcset="{{ block.settings.collection | image_url: '768x' }}, {{ block.settings.collection | image_url: '1536x' }} 2x ">
+                                <source media="{max-width:1024px}" srcset="{{ block.settings.collection | image_url: '1024x' }}, {{ block.settings.collection | image_url: '2048x' }} 2x ">
+                                <source srcset="{{ block.settings.collection | img_url: '414x' }}, {{ block.settings.collection | img_url: '828x' }} 2x">
+                                <img src="{{ block.settings.collection | img_url: '414x' }}" width='100%' height='100%'>
                             </picture>
                         </div>
                         {% assign placement = forloop.index | modulo: 2 %}
@@ -82,7 +85,7 @@
     position: relative;
     top: 0;
     left: 0;
-    width: 390px;
+    width: 100%;
     height: 250px;
 }
 
@@ -96,6 +99,7 @@
 
 .promo_images .card img {
     object-fit: cover;
+    object-position: top;
 }
 
 .promo_images .caption {

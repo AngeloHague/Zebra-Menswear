@@ -6,7 +6,7 @@
     <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
   </a>
 {% endfor %}
-<h1>{{ product.title }}</h1>
+<h1>{% render 'filtered-product-title' with product.title %}</h1>
 <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
   <select name="id" id="productSelect">
     {% for variant in product.variants %}
