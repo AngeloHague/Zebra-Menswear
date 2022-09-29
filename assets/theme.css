@@ -22,6 +22,10 @@
   border-radius: 0px;
 }
 
+.button:hover {
+  cursor: pointer;
+}
+
 main {
   overflow-y: hidden;
 }
