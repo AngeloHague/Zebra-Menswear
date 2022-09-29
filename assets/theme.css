@@ -7,12 +7,21 @@
   display: block;
 }
 
+.page-title p {
+  background-color: #1E1E1E;
+  font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #fff;
+  font-size: 1.4rem;;
+  text-align: center;
+  padding: 1rem;
+}
+
 .button {
   font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.3rem;
   font-weight: 500;
   text-transform: uppercase;
-  border: solid 2px #1E1E1E;
+  border: solid 2px #1E1E1E; 
   background-color: #fff;
   color: #1E1E1E;
   align-self: center;
@@ -22,8 +31,68 @@
   border-radius: 0px;
 }
 
-.button:hover {
-  cursor: pointer;
+.slide {
+  display: inline-block;
+  white-space: nowrap;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.slide .bg_blur {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.slide .bg_blur img {
+  width: 150%;
+  height: 150%;
+  position: relative;
+  top: -25%;
+  left: -25%;
+  filter: blur(25px);
+  -webkit-filter: blur(25px);
+}
+
+.slide .content {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+    padding: 0;
+    margin: 0;
+}
+
+.slide .card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: auto;
+  background-color: #fff;
+  z-index: 3;
+  z-index: 2;
+}
+
+.slide .card .caption {
+  background-color: #fff;
+  height: 460px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slide .card .image img {
+    object-fit: cover;
+    object-position: top;
 }
 
 main {

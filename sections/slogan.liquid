@@ -1,4 +1,4 @@
-<div class='slogan'>
+<div class='page-title slogan'>
     {% if block.settings.caption != blank %}
         {{ section.settings.slogan }}
     {% else %}
@@ -21,15 +21,9 @@
 {% endschema %}
 
 {%- style -%}
-    .slogan {
-      background-color: #1E1E1E;
-      font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      color: #fff;
-      font-size: 1.4rem;;
-      text-align: center;
-      padding: 1rem;
-      margin-bottom: 20px;
-    }
+.page-title.slogan {
+  margin-bottom: 16px;
+}
 {%- endstyle -%}
 
 {% javascript %}
