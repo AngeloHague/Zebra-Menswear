@@ -1,14 +1,19 @@
 {
-    "sections": {
-        "main" : {
-            "type": "collection"
-        },
-        "collection_banner" : {
-            "type" : "collection_banner"
-        }
+  "sections": {
+    "collection_banner": {
+      "type": "collection_banner",
+      "settings": {
+        "fallback_image": "shopify:\/\/shop_images\/Zebra-Menswear_263d12bc-a61a-41f8-a632-7737933a072b.jpg"
+      }
     },
-    "order": [
-        "collection_banner",
-        "main"
-    ]
+    "main": {
+      "type": "collection",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "collection_banner",
+    "main"
+  ]
 }
