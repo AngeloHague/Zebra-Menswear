@@ -99,3 +99,19 @@
 main {
   overflow-y: hidden;
 }
+
+/* ::-webkit-scrollbar {
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #CBCBCB;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B5B5B5;
+  border-radius: 8px;
+} */
