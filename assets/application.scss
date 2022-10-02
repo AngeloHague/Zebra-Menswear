@@ -13,6 +13,10 @@
     font-smoothing: antialiased;
     font-weight: 400;
 }
+
+html {
+    scroll-padding-top: 50px;
+}
 main {
     width: 100%;
     overflow-x: hidden;
@@ -31,7 +35,7 @@ main {
 }
 
 .page_content {
-    padding-top: 4.6rem;
+    padding-top: 46px;
     z-index: 1;
     background-color: #fff;
 }
