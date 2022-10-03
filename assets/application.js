@@ -1,3 +1,4 @@
+document.documentElement.className = "js"
 let navOpen = false;
 
 function toggleNav(element) {

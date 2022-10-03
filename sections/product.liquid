@@ -1,3 +1,4 @@
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 <div class='slider'>
@@ -65,17 +66,38 @@
 
 <div class='product-info'>
   <div class='info-01'>
-    {% if product.price < product.compare_at_price %}
+    {% if current_variant.price < product.compare_at_price %}
+      {% comment %} <noscript>
+        <h1 class='price'>
+          <span class='original'>{{ product.compare_at_price| money }}</span>
+          <span class='difference'>SALE</span>
+        </h1>
+      </noscript> {% endcomment %}
       <h1 class='price'>
-        <span class='original'>{{ product.compare_at_price| money }}</span>
-        {{ product.price| money }}
-        {% assign og_price = product.compare_at_price | money_without_currency %}
-        {% assign percentage = product.price | money_without_currency | divided_by: og_price %}
-        {% assign diff = 1 | minus: percentage | times: 100 %}
-        <span class='difference'>(-{{ diff | round: 0 }}%)</span>
+        <span class='original' id='compare-at'>{{ product.compare_at_price| money }}</span>
+        <span class='current js-inline' id='price'>{{ current_variant.price| money }}</span>
+        {% if product.compare_at_price != blank %}
+          {% assign og_price = product.compare_at_price | money_without_currency %}
+          {% assign percentage = current_variant.price | money_without_currency | divided_by: og_price %}
+          {% assign diff = 1 | minus: percentage | times: 100 %}
+        {% else %}
+          {% assign diff = 0 %}
+        {% endif %}
+        <span class='difference js-inline' id='difference'>{% if product.compare_at_price != blank and product.price < product.compare_at_price %}(-{{ diff | round: 0 }}%){% endif %} <span class='no-js'>SALE</span></span>  
       </h1>
     {% else %}
-      <h1 class='price'>{{ product.price| money }}</h1>
+    <h1 class='price no-sale'>
+      <span class='original' id='compare-at'>{{ product.compare_at_price| money }}</span>
+      <span class='current js-inline' id='price'>{{ current_variant.price| money }}</span>
+      {% if product.compare_at_price != blank %}
+        {% assign og_price = product.compare_at_price | money_without_currency %}
+        {% assign percentage = current_variant.price | money_without_currency | divided_by: og_price %}
+        {% assign diff = 1 | minus: percentage | times: 100 %}
+      {% else %}
+        {% assign diff = 0 %}
+      {% endif %}
+      <span class='difference js-inline' id='difference'>{% if product.compare_at_price != blank and product.price < product.compare_at_price %}(-{{ diff | round: 0 }}%){% endif %} <span class='no-js'>SALE</span></span>  
+    </h1>
     {% endif %}
     {% assign vendor = collections[product.vendor] %}
     <h1 class='vendor'>{{ product.vendor | link_to: vendor.url}}</h1>
@@ -83,26 +105,100 @@
   <br>
   <h1 class='title'>{% render 'filtered-product-title' with product.title %}</h1>
   <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-    <select name="id" id="productSelect">
-      {% for variant in product.variants %}
-        {% if variant.available %}
-          <option value="{{ variant.id }}">
-            {{ variant.title }} - {{ variant.price | money_with_currency }}
-          </option>
-        {% else %}
-          <option disabled="disabled">
-            {{ variant.title }} - sold out
-          </option>
-        {% endif %}
-      {% endfor %}
-    </select>
-    {{ current_variant.price | money }}
-    <label for="Quantity">quantity</label>
-    <input type="number" id="Quantity" name="quantity" value="1" min="1">
-    <button type="submit" name="add" id="AddToCart">Add to cart</button>
+      <div class='variants'>
+        <select id="product-select" name="id">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}"
+              {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+            >
+              {{ variant.title }} - {{ variant.price | money }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    <button class='button' type="submit" name="add" id="AddToCart">Add to cart</button>
   </form>
-  <div>{{ product.description }}</div>
+  <div class='description'>{{ product.description }}</div>
 </div>
+
+<script>
+  const formatter = new Intl.NumberFormat('en-GB', {
+    style: 'currency',
+    currency: 'GBP',
+    minimumFractionDigits: 2
+  })
+
+  function onVariantChange(variant) {
+    let price = document.getElementById('price');
+    let compare_at = document.getElementById('compare-at');
+    let difference = document.getElementById('difference');
+    
+    if (price) price.innerHTML = formatter.format(variant.price/100);
+    if (compare_at) compare_at.innerHTML = formatter.format(variant.compare_at_price/100);
+    if (difference) difference.innerHTML = '(-' + Math.round((1 - (variant.price / variant.compare_at_price)) * 100) + '%)';
+    if ((variant.compare_at_price || variant.compare_at_price == 0)&&(this.price < this.compare_at_price)) price.removeClass('no-sale')
+    else price.addClass('no-sale');
+  };
+
+  var selectCallback = function(variant, selector) {
+    if (!variant) return;
+    if (variant.available) {
+      // Construct URLSearchParams object instance from current URL querystring.
+      var queryParams = new URLSearchParams(window.location.search);
+      
+      // Set new or modify existing parameter value. 
+      queryParams.set("variant", variant.id);
+      
+      // Replace current querystring with the new one.
+      history.replaceState(null, null, "?"+queryParams.toString());
+      onVariantChange(variant)
+    }
+  };
+  new Shopify.OptionSelectors('product-select', {
+    product: {{ product | json }},
+    onVariantSelected: selectCallback,
+    enableHistoryState: true
+  });
+</script>
+
+{% comment %} <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var selectCallback = function(variant, selector) {
+      if (!variant) return;
+      
+    };
+    new Shopify.OptionSelectors('product-select', {
+      product: {{ product | json }},
+      onVariantSelected: selectCallback,
+      enableHistoryState: true
+    });
+    this._updateMasterSelect(variant);
+      this._updateImages(variant);
+      this._updatePrice(variant);
+      this._updateSKU(variant);
+      this.currentVariant = variant;
+
+      if (this.enableHistoryState) {
+        this._updateHistoryState(variant);
+      };
+
+    function updateMasterSelect(variant) {
+      //
+    };
+
+    function _updateImages(variant) {
+      //
+    };
+
+    function _updatePrice(variant) {
+      //
+    };
+
+    function _updateSKU(variant) {
+      //
+    };
+  });
+</script> {% endcomment %}
 
 {% schema %}
     {
@@ -153,19 +249,20 @@ ul.image-nav input {
   vertical-align: top;
   width: calc(100% - 64px);
   margin: auto;
-  overflow-x: auto;
+  overflow-x: scroll;
   white-space: nowrap;
+  margin-bottom: 8px;
 }
-.product-image {
+.image-nav .product-image {
   width: calc(25% - 10px);
   aspect-ratio: 1 / 1;
   display: inline-block;
   margin-right: 8px;
 }
-.product-image:last-child {
-  margin-right: 0;
+.image-nav .product-image:last-of-type {
+  margin: 0px;
 }
-.product-image.more {
+.image-nav .product-image.more {
   display: none;
 }
 .image-nav .more-images {
@@ -174,6 +271,7 @@ ul.image-nav input {
   height: 100%;
 }
 .image-nav .show-more {
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: inline-block;
   height: 100%;
   width: calc(25% - 8px);
@@ -187,6 +285,8 @@ ul.image-nav input {
   justify-content: center;
   align-items: center;
   background-color: #CBCBCB;
+  color: #4F607B;
+  font-weight: 600;
 }
 
 #show-more:checked ~ .product-image.more {
@@ -222,29 +322,103 @@ ul.image-nav input {
   font-size: 1.6rem;
   font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+.product-info .button {
+  width: 100%;
+  background-color: rgb(30,30,30);
+  color: white;
+  text-transform: capitalize;
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 8px 0;
+}
 .price {
   float: left;
-  font-weight: 500;
+  font-weight: 600;
+}
+.price, .price span {
+  font-weight: 600;
 }
 .price .original {
   text-decoration: line-through;
   font-weight: normal;
+  font-size: 1.2rem;
 }
 .price .difference {
-  font-size: 1.2rem;
-  font-weight: normal;
+  /* font-weight: 500; */
   color: #4F607B;
+  font-size: 1.2rem;
+}
+.price.no-sale .original,
+.price.no-sale .difference {
+  display: none;
 }
 .vendor, .vendor a {
   float: right;
-  /* font-weight: 500; */
+  font-weight: 600;
   color: #4F607B;
   text-decoration: none;
 }
 
 .title {
   font-size: 1.4rem;
-  padding: 4px 0 16px;
+  padding: 4px 0 8px;
+} 
+
+.description strong {
+  font-weight: 500;
+}
+
+.description ul li {
+  font-size: 1.4rem;
+  list-style: none;
+  padding-left: 8px;
+}
+.js .price .difference {
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #4F607B;
+}
+
+.variants {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* display: grid;
+  grid-templat-columns: 1fr 1fr; */
+}
+
+#product-select {
+  width: 100%;
+}
+
+.variants label {
+  font-weight: 600;
+  font-size: 1.3rem;
+  padding-bottom: 8px;
+}
+
+.variants select {
+  height: 32px;
+  font-size: 1.2rem;
+  border: solid 1px black;
+  border-radius: 0;
+  color: black;
+  background-color: white;
+  padding-left: 8px;
+}
+
+.selector-wrapper {
+  display: inline-block;
+  width: calc(50% - 8px);
+}
+
+.selector-wrapper label {
+  display: block;
+}
+
+.selector-wrapper label, .selector-wrapper select {
+  width: 100%;
 }
   
 {% endstyle %}

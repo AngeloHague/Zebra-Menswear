@@ -17,6 +17,11 @@
 html {
     scroll-padding-top: 50px;
 }
+
+html.no-js .no-js-hidden {
+  display: none !important;
+}
+
 main {
     width: 100%;
     overflow-x: hidden;
@@ -40,3 +45,22 @@ main {
     background-color: #fff;
 }
 
+.js-enabled {
+    display: none;
+}
+
+.js-inline {
+    display: none;
+}
+
+.js .js-enabled {
+    display: block;
+}
+
+.js .js-inline {
+    display: inline-block;
+}
+
+.js .no-js {
+    display: none;
+}
