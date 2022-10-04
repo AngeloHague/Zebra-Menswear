@@ -8,6 +8,23 @@
     padding: 0;
     font-size: 1.6rem;
     z-index: 1;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-weight: 400;
+}
+
+html {
+    scroll-padding-top: 50px;
+}
+
+html.no-js .no-js-hidden {
+  display: none !important;
+}
+
+main {
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .logo {
@@ -19,11 +36,31 @@
     height: auto;
     padding: 0;
     text-align: center;
+    text-decoration: none;
 }
 
 .page_content {
-    padding-top: 4.6rem;
+    padding-top: 46px;
     z-index: 1;
     background-color: #fff;
 }
 
+.js-enabled {
+    display: none;
+}
+
+.js-inline {
+    display: none;
+}
+
+.js .js-enabled {
+    display: block;
+}
+
+.js .js-inline {
+    display: inline-block;
+}
+
+.js .no-js {
+    display: none;
+}

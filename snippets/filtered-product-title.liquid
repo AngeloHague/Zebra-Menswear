@@ -1,0 +1,8 @@
+{% assign title = filtered-product-title | split: '' %}
+  {% for char in title %}
+    {% if char == '-' or char == ' '%}
+      {% assign title = title | slice: forloop.index, title.size %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  {{ title }}

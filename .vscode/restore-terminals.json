@@ -1,0 +1,15 @@
+{
+    "artificialDelayMilliseconds": 300,
+    "keepExistingTerminalsOpen": false,
+    "runOnStartup": true,
+    "terminals": [
+      {
+        "splitTerminals": [
+          {
+            "name": "client",
+            "commands": ["shopify theme serve"]
+          }
+        ]
+      }
+    ]
+  }

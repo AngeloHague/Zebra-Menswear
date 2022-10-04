@@ -3,31 +3,56 @@
   src: url('Comfortaa.woff') format("woff");
 }
 
-.promo_slider {
-  width: 100%;
-  height: 30rem;
-  background-color: rgb(124, 149, 163);
+.mobile-only {
+  display: block;
 }
 
-.promo_slider .slide {
+.page-title p {
+  background-color: #1E1E1E;
+  font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #fff;
+  font-size: 1.4rem;;
+  text-align: center;
+  padding: 1rem;
+}
+
+.button {
+  font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: solid 2px #1E1E1E; 
+  background-color: #fff;
+  color: #1E1E1E;
+  align-self: center;
+  width: 224px;
+  height: 30px;
+  -webkit-appearance: none;
+  border-radius: 0px;
+}
+
+.slide {
+  display: inline-block;
+  white-space: nowrap;
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  z-index: 0;
 }
 
-.promo_slider a {
-  text-decoration: none;
-  color: black;
-}
-
-.promo_slider .slide .bg_blur {
+.slide .bg_blur {
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
+  z-index: 1;
+  opacity: 0.75;
 }
 
-.promo_slider .slide .bg_blur img {
+.slide .bg_blur img {
   width: 150%;
   height: 150%;
   position: relative;
@@ -37,41 +62,56 @@
   -webkit-filter: blur(25px);
 }
 
-.promo_slider .slide .content {
-  position: relative;
-  top: -100%;
+.slide .content {
+  position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
+  z-index: 2;
+    padding: 0;
+    margin: 0;
 }
 
-.promo_slider .card {
+.slide .card {
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 3.2rem;
-  width: 34rem;
-  height: 24rem;
   margin: auto;
   background-color: #fff;
+  z-index: 3;
+  z-index: 2;
 }
 
-.promo_slider .card .image {
-  background-color: rgb(64, 92, 151);
-  height: 19rem;
-  width: 100%;
-}
-
-.promo_slider .card .caption {
+.slide .card .caption {
   background-color: #fff;
-  height: 4.6rem;
+  height: 460px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.promo_slider .card .caption p {
-  text-align: center;
-  font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 1.4rem;
+.slide .card .image img {
+    object-fit: cover;
+    object-position: top;
 }
+
+main {
+  overflow-y: hidden;
+}
+
+/* ::-webkit-scrollbar {
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #CBCBCB;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B5B5B5;
+  border-radius: 8px;
+} */

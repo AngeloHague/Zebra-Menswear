@@ -1,0 +1,30 @@
+<div class='page-title slogan'>
+    {% if block.settings.caption != blank %}
+        {{ section.settings.slogan }}
+    {% else %}
+        <p>Chesterfield's Premiere Designer Clothes Store</p>
+    {% endif %}
+</div>
+
+{% schema %}
+    {
+        "name": "Slogan",
+        "settings": [
+            {
+                "type" : "text",
+                "id" : "slogan",
+                "label" : "Custom Slogan (Leave blank for default)",
+                "default" : "Chesterfield's Premiere Designer Clothes Store"
+            }
+        ]
+    }
+{% endschema %}
+
+{%- style -%}
+.page-title.slogan {
+  margin-bottom: 16px;
+}
+{%- endstyle -%}
+
+{% javascript %}
+{% endjavascript %}

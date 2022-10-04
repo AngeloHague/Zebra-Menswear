@@ -9,13 +9,19 @@
   {{ content_for_header }} <!-- Header hook for plugins -->
   {{ 'application.scss.css' | asset_url | stylesheet_tag }}
   {{ 'application.js' | asset_url | script_tag }}
-  <link rel="stylesheet" href="{{ 'nav.scss' | asset_url }}" type="text/css">
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css">
 </head>
 <body>
 
-  <main role="main">
-    {{ content_for_layout }}
-  </main>
+  {% section 'header' %}
+  
+  <div class='page_content'>
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+  </div>
+
+  {% section 'footer' %}
+
 </body>
 </html>
