@@ -20,9 +20,9 @@
   </ul>
   <div class='view-all'>
     {% if section.settings.button-text != blank %}
-      <input class="button" type="button" onclick="location.href='./collections/Clothing';" value="{{section.settings.button-text}}" />
+      <a class="button black" type="button" href='./collections/Clothing';> {{section.settings.button-text}} </a>
     {% else %}
-      <input class="button" type="button" onclick="location.href='./collections/Clothing';" value="View All Categories" />
+      <a class="button black" type="button" href='./collections/Clothing';> View All Categories </a>
     {% endif %}
   </div>
     
@@ -134,12 +134,6 @@
     background: #B5B5B5;
     border-radius: 8px;
   }
-
-.categories-section .button {
-  width: 100%;
-  background-color: #1E1E1E;
-  color: #fff;
-}
 
 {% endstyle %}
 
