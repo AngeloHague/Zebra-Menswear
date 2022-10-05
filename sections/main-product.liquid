@@ -108,7 +108,7 @@
       <div class='variants'>
         <select id="product-select" name="id">
           {% for variant in product.variants %}
-            <option value="{{ variant.id }}"
+            <option value="{{ variant.id }}" data-variant-quantity="{{ variant.inventory_quantity }}"
               {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
             >
               {{ variant.title }} - {{ variant.price | money }}
@@ -116,12 +116,20 @@
           {% endfor %}
         </select>
       </div>
-    <button class='button' type="submit" name="add" id="AddToCart">Add to cart</button>
+    {% if product.available %}
+      <button class='button black' type="submit" name="add" id="AddToCart">Add to cart</button>
+    {% else %}
+      <button class='button black' type="submit" name="add" id="SoldOut" disabled>SOLD OUT</button>
+    {% endif %}
+    <p class='js-enabled' id='remaining'></p>
   </form>
   <div class='description'>{{ product.description }}</div>
 </div>
 
 <script>
+  {% for variant in product.variants %}
+    variantStock[{{- variant.id -}}] = {{ variant.inventory_quantity }};
+  {% endfor %}
   const formatter = new Intl.NumberFormat('en-GB', {
     style: 'currency',
     currency: 'GBP',
@@ -132,12 +140,22 @@
     let price = document.getElementById('price');
     let compare_at = document.getElementById('compare-at');
     let difference = document.getElementById('difference');
+    let remaining = document.getElementById('remaining');
     
     if (price) price.innerHTML = formatter.format(variant.price/100);
     if (compare_at) compare_at.innerHTML = formatter.format(variant.compare_at_price/100);
     if (difference) difference.innerHTML = '(-' + Math.round((1 - (variant.price / variant.compare_at_price)) * 100) + '%)';
-    if ((variant.compare_at_price || variant.compare_at_price == 0)&&(this.price < this.compare_at_price)) price.removeClass('no-sale')
-    else price.addClass('no-sale');
+    if ((variant.compare_at_price || variant.compare_at_price == 0)&&(this.price < this.compare_at_price)) price.classList.remove('no-sale')
+    else price.classList.add('no-sale');
+    {% if section.settings.stock-warning %}
+      if (variantStock[variant.id] < {{ section.settings.stock-warning }} && variantStock[variant.id] > 0 && variant.inventory_management == 'shopify') {
+        if (variantStock[variant.id] == 1) {
+          remaining.innerHTML = 'Last 1 in stock!';
+        } else {
+          remaining.innerHTML = 'Low in stock!';
+        }
+      };
+    {% endif %}
   };
 
   var selectCallback = function(variant, selector) {
@@ -161,49 +179,17 @@
   });
 </script>
 
-{% comment %} <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var selectCallback = function(variant, selector) {
-      if (!variant) return;
-      
-    };
-    new Shopify.OptionSelectors('product-select', {
-      product: {{ product | json }},
-      onVariantSelected: selectCallback,
-      enableHistoryState: true
-    });
-    this._updateMasterSelect(variant);
-      this._updateImages(variant);
-      this._updatePrice(variant);
-      this._updateSKU(variant);
-      this.currentVariant = variant;
-
-      if (this.enableHistoryState) {
-        this._updateHistoryState(variant);
-      };
-
-    function updateMasterSelect(variant) {
-      //
-    };
-
-    function _updateImages(variant) {
-      //
-    };
-
-    function _updatePrice(variant) {
-      //
-    };
-
-    function _updateSKU(variant) {
-      //
-    };
-  });
-</script> {% endcomment %}
-
 {% schema %}
     {
         "name": "Product",
-        "settings": []
+        "settings": [
+          {
+            "type" : "number",
+            "id" : "stock-warning",
+            "label" : "Displays a stock warning when there is less than X amount left",
+            "default" : 4
+          }
+      ]
     }
 {% endschema %}
 
@@ -215,7 +201,7 @@
   white-space: nowrap;
   scroll-behavior: smooth;
   margin: auto;
-  /* padding-top: 8px; */
+  /* margin-top: 16px; */
 }
 .slider .product-image {
   vertical-align: bottom;
@@ -324,8 +310,6 @@ ul.image-nav input {
 }
 .product-info .button {
   width: 100%;
-  background-color: rgb(30,30,30);
-  color: white;
   text-transform: capitalize;
   font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.2rem;
@@ -406,6 +390,16 @@ ul.image-nav input {
   color: black;
   background-color: white;
   padding-left: 8px;
+}
+
+p#remaining {
+  font-size: inherit;
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  /* text-align: center; */
+  color: #4F607B;
+  padding-bottom: 8px;
 }
 
 .selector-wrapper {

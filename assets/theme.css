@@ -40,6 +40,12 @@
   color: #fff;
 }
 
+.button:disabled,
+.button[disabled] {
+  background-color: #7e7e7e;
+  border-color: #7e7e7e;
+}
+
 .slide {
   display: inline-block;
   white-space: nowrap;

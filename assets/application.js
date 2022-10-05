@@ -1,4 +1,5 @@
 document.documentElement.className = "js"
+var variantStock = {};
 // let navOpen = false;
 
 // function toggleNav(element) {
