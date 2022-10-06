@@ -1,0 +1,241 @@
+<div class='sort-and-filter'>
+    <input class='show-control' type='checkbox' name='show-sort-options' id='show-sort-options' />
+    <label class='control' for='show-sort-options' id='sort'>SORT</label>
+    <label class='control' for='show-filter-options' id='filter'>FILTER</label>
+    <input class='show-control' type='checkbox' name='show-filter-options' id='show-filter-options' />
+    <form class="filter-form">
+        <div class='header'>
+            <h1>Filters</h1>
+            <label class='close-filters' for='show-filter-options'>
+                {% render 'x-icon' %}
+            </label>
+        </div>
+        {%- for filter in collection.filters -%}
+          <details class="filter-group">
+            <summary class="filter-group-summary">
+              <div>
+                <span>{{ filter.label }}</span>
+      
+                {%- if filter.active_values.size > 0 -%}
+                  <span>({{ filter.active_values.size }})</span>
+                {%- endif -%}
+              </div>
+            </summary>
+      
+            <div class="filter-group-display">
+              <div class="filter-group-display__header">
+                <span class="filter-group-display__header-selected">{{ filter.active_values.size }} selected</span>
+      
+                {%- if filter.active_values.size > 0 -%}
+                  <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset</a>
+                {%- endif -%}
+              </div>
+      
+              {%- case filter.type -%}
+                {%- when 'boolean' or 'list' -%}
+                  <ul class="filter-group-display__list">
+                    {%- for filter_value in filter.values -%}
+                      <li class="filter-group-display__list-item">
+                        <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                        <input type="checkbox"
+                          name="{{ filter_value.param_name }}"
+                          value="{{ filter_value.value }}"
+                          id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                          {% if filter_value.active -%}checked{%- endif %}
+                          {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}
+                        >{{ filter_value.label }}</label>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+      
+                  <div class="filter-group-display__submit">
+                    <input class='button black' type="submit" value="Apply">
+                  </div>
+                {%- when 'price_range' -%}
+                  <div class="filter-group-display__price-range">
+                    <div class="filter-group-display__price-range-from">
+                      <span>{{ cart.currency.symbol }}</span>
+      
+                      <input name="{{ filter.min_value.param_name }}"
+                        id="Filter-{{ filter.min_value.param_name }}"
+                        {% if filter.min_value.value -%}
+                          value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                        {%- endif %}
+                        type="number"
+                        placeholder="0"
+                        min="0"
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      >
+      
+                      <label for="Filter-{{ filter.min_value.param_name }}">From</label>
+                    </div>
+                    <div class="filter-group-display__price-range-to">
+                      <span>{{ cart.currency.symbol }}</span>
+      
+                      <input name="{{ filter.max_value.param_name }}"
+                        id="Filter-{{ filter.max_value.param_name }}"
+                        {% if filter.max_value.value -%}
+                          value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                        {%- endif %}
+                        type="number"
+                        placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                        min="0"
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      >
+      
+                      <label for="Filter-{{ filter.max_value.param_name }}">To</label>
+                    </div>
+                  </div>
+      
+                  <div class="filter-group-display__submit">
+                    <input class='button black' type="submit" value="Apply">
+                  </div>
+              {%- endcase -%}
+            </div>
+          </details>
+        {%- endfor -%}
+      
+        <div class="active-filters">
+          <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear">Clear all &#10799;</a>
+      
+          {%- for filter in collection.filters -%}
+            {%- if filter.type == "price_range" -%}
+              {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
+                  {%- assign min_value = filter.min_value.value | default: 0 -%}
+                  {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                  {{ min_value | money }} - {{ max_value | money }} &#10799;
+                </a>
+              {%- endif -%}
+            {%- else -%}
+              {%- for filter_value in filter.active_values -%}
+                <a class="active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
+                  {{ filter.label }}: {{ filter_value.label }} &#10799;
+                </a>
+              {%- endfor -%}
+            {%- endif- %}
+          {%- endfor -%}
+        </div>
+      </form>
+  </div>
+
+{% style %}
+
+.sort-and-filter {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 32px;
+}
+
+.sort-and-filter .control {
+  width: 128px;
+  height: 32px;
+  padding: 0 32px;
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 32px;
+  text-align: center;
+}
+
+.sort-and-filter .show-control {
+    display: none;
+}
+
+input#show-filter-options:checked + .filter-form {
+    transition: 0.4s;
+    right: 0;
+}
+.filter-form {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    height: 100%;
+    width: 300px;
+    background-color: white;
+    z-index: 5;
+    margin-top: 46px;
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* padding: 16px; */
+    text-transform: uppercase;
+    border-left: solid 1px #ccc;
+    overflow-y: auto;
+}
+
+.filter-form summary {
+    list-style: none;
+    padding: 8px 16px;
+    border-top: solid 1px #ccc;
+}
+
+.filter-form span, .filter-group-display label, .active-filters a,  .filter-group-display__header-reset {
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.3rem;
+}
+
+.filter-form .filter-group-display {
+    padding:0 0 16px 24px;
+}
+
+.filter-form .filter-group-display input[type=checkbox] {
+    margin-right:8px;
+}
+
+.filter-form .filter-group-display ul {
+    list-style: none;
+}
+
+.filter-form .filter-group-display input {
+    font-size: 1.4rem;
+}
+
+.filter-form .filter-group-display .button {
+    font-size: 1.2rem;
+    margin-top: 8px;
+    width: 128px;
+}
+
+.filter-form .filter-group-display .filter-group-display__header-reset {
+    padding-left: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #7181b0
+}
+
+.filter-form .active-filters {
+    margin-bottom: 16px;
+}
+
+.filter-form .active-filters a {
+    display: inline-block;
+    width: auto;
+    margin: 16px 0 0 16px;
+    background-color: #1e1e1e;
+    color: #fff;
+    text-decoration: none;
+    width: auto;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.filter-form .active-filters svg {
+    display: inline-block;
+    width: 1.6rem;
+    vertical-align: -25%;
+}
+.filter-form .header {
+    padding: 8px 16px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.filter-form h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+.filter-form .close-filters svg {
+    width: 28px;
+    height: 28px;
+}
+{% endstyle %}
