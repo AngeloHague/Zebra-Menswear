@@ -20,9 +20,9 @@
   </ul>
   <div class='view-all'>
     {% if section.settings.button-text != blank %}
-      <a class="button black" type="button" href='./collections/Clothing';> {{section.settings.button-text}} </a>
+      <a class="button" type="button" href='./collections/Clothing';> {{section.settings.button-text}} </a>
     {% else %}
-      <a class="button black" type="button" href='./collections/Clothing';> View All Categories </a>
+      <a class="button" type="button" href='./collections/Clothing';> View All Categories </a>
     {% endif %}
   </div>
     
@@ -77,6 +77,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .categories-section .button {
+    font-weight: 400;
+    /* width: 100%; */
   }
 
   .categories-section ul {
