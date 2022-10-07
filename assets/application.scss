@@ -45,6 +45,10 @@ main {
     background-color: #fff;
 }
 
+details > summary::-webkit-details-marker {
+    display: none;
+  }
+
 .js-enabled {
     display: none;
 }

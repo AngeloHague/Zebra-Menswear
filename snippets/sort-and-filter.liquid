@@ -1,33 +1,78 @@
-<div class='sort-and-filter'>
+<form class='sort-and-filter'>
+    <label class='control' for='show-sort-options' id='sort'>
+        SORT{% if collection.sort_by != blank %} {% render 'icon-check' %} {% endif %}
+    </label>
     <input class='show-control' type='checkbox' name='show-sort-options' id='show-sort-options' />
-    <label class='control' for='show-sort-options' id='sort'>SORT</label>
-    <label class='control' for='show-filter-options' id='filter'>FILTER</label>
+    <div class='saf-form sort'>
+        <div class='header'>
+            <h1>Sort By</h1>
+            <label class='close-sort' for='show-sort-options'>
+                {% render 'icon-x' %}
+            </label>
+        </div>
+        
+        <div class='sort-group'>
+          <select name='sort_by' name='sort_by'>
+            <option value='best-selling' {% if collection.sort_by == 'best-selling' or collection.sort_by == blank %} selected {% endif %}>Best Selling</option>
+            <option value='created-ascending' {% if collection.sort_by == 'created-descending' %} selected {% endif %}>What's New</option>
+            <option value='price-ascending' {% if collection.sort_by == 'price-ascending' %} selected {% endif %}>Price Low-to-High</option>
+            <option value='price-descending' {% if collection.sort_by == 'price-descending' %} selected {% endif %}>Price High-to-Low</option>
+          </select>
+          <div class="filter-group-display__submit">
+            <input class='button black' type="submit" value="Apply">
+          </div>
+        </div>
+    </div>
+    <label class='control' for='show-filter-options' id='filter'>
+        FILTERS
+        {% assign has_filters = false %}
+        {%- for filter in collection.filters -%}
+            {%- if has_filters -%}
+                {% break %}
+            {%- endif -%}
+            {%- if filter.active_values.size > 0 -%}
+                {% assign has_filters = true %}
+                {% break %}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- if has_filters -%}
+            {% render 'icon-check' %}
+        {%- endif -%}
+    </label>
     <input class='show-control' type='checkbox' name='show-filter-options' id='show-filter-options' />
-    <form class="filter-form">
+    <div class="saf-form filter">
         <div class='header'>
             <h1>Filters</h1>
             <label class='close-filters' for='show-filter-options'>
-                {% render 'x-icon' %}
+                {% render 'icon-x' %}
             </label>
         </div>
         {%- for filter in collection.filters -%}
           <details class="filter-group">
             <summary class="filter-group-summary">
               <div>
-                <span>{{ filter.label }}</span>
-      
-                {%- if filter.active_values.size > 0 -%}
-                  <span>({{ filter.active_values.size }})</span>
-                {%- endif -%}
+                <div class='header'>
+                    <span>
+                        {{ filter.label }}
+                        {%- if filter.active_values.size > 0 -%}
+                            <span>({{ filter.active_values.size }})</span>
+                        {%- endif -%}
+                    </span>
+                    {% render 'icon-chevron-down' %}
+                </div>
               </div>
             </summary>
       
             <div class="filter-group-display">
               <div class="filter-group-display__header">
-                <span class="filter-group-display__header-selected">{{ filter.active_values.size }} selected</span>
-      
+                {% comment %} {% if filter.active_values.size == 0 %}
+                    <p class="filter-group-display__header-selected">None selected</p>
+                {% elsif filter.active_values.size %}
+                    <p class="filter-group-display__header-selected">{{ filter.active_values.size }} selected</p>
+                {% endif %}
+       {% endcomment %}
                 {%- if filter.active_values.size > 0 -%}
-                  <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset</a>
+                  <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset Filter</a>
                 {%- endif -%}
               </div>
       
@@ -96,7 +141,9 @@
         {%- endfor -%}
       
         <div class="active-filters">
-          <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear">Clear all &#10799;</a>
+            {%- if has_filters -%}
+                <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear">Clear all &nbsp; X</a>
+            {%- endif -%}
       
           {%- for filter in collection.filters -%}
             {%- if filter.type == "price_range" -%}
@@ -104,20 +151,20 @@
                 <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
                   {%- assign min_value = filter.min_value.value | default: 0 -%}
                   {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
-                  {{ min_value | money }} - {{ max_value | money }} &#10799;
+                  {{ min_value | money }} - {{ max_value | money }} &nbsp; X
                 </a>
               {%- endif -%}
             {%- else -%}
               {%- for filter_value in filter.active_values -%}
                 <a class="active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
-                  {{ filter.label }}: {{ filter_value.label }} &#10799;
+                  {{ filter.label }}: {{ filter_value.label }} &nbsp; X
                 </a>
               {%- endfor -%}
             {%- endif- %}
           {%- endfor -%}
         </div>
-      </form>
-  </div>
+    </div>
+</form>
 
 {% style %}
 
@@ -143,11 +190,15 @@
     display: none;
 }
 
-input#show-filter-options:checked + .filter-form {
+input#show-sort-options:checked + .saf-form.sort {
     transition: 0.4s;
     right: 0;
 }
-.filter-form {
+input#show-filter-options:checked + .saf-form.filter {
+    transition: 0.4s;
+    right: 0;
+}
+.saf-form {
     display: block;
     position: fixed;
     top: 0;
@@ -164,51 +215,70 @@ input#show-filter-options:checked + .filter-form {
     overflow-y: auto;
 }
 
-.filter-form summary {
+.saf-form summary {
     list-style: none;
-    padding: 8px 16px;
+    -webkit-list-style: none;
+    padding: 16px;
+}
+
+.saf-form .filter-group, .saf-form .sort-group {
     border-top: solid 1px #ccc;
 }
 
-.filter-form span, .filter-group-display label, .active-filters a,  .filter-group-display__header-reset {
-    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.saf-form .filter-group:last-of-type, .saf-form .sort-group:last-of-type {
+    border-bottom: solid 1px #ccc;
+}
+
+.saf-form .sort-group {
+  padding:16px 0 16px 24px;
+}
+
+.saf-form select {
+  display: inline-block;
+  height: 3.5rem;
+  width: 20rem;
+  padding-left: 4px;
+}
+
+.saf-form .button {
     font-size: 1.3rem;
-}
-
-.filter-form .filter-group-display {
-    padding:0 0 16px 24px;
-}
-
-.filter-form .filter-group-display input[type=checkbox] {
-    margin-right:8px;
-}
-
-.filter-form .filter-group-display ul {
-    list-style: none;
-}
-
-.filter-form .filter-group-display input {
-    font-size: 1.4rem;
-}
-
-.filter-form .filter-group-display .button {
-    font-size: 1.2rem;
     margin-top: 8px;
     width: 128px;
 }
 
-.filter-form .filter-group-display .filter-group-display__header-reset {
+.saf-form span, .saf-group-display label, .active-filters a,  .filter-group-display__header-reset, .saf-form p, .saf-form input, .saf-form select {
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.3rem;
+}
+
+.saf-form .filter-group-display {
+    padding:0 0 16px 24px;
+}
+
+.saf-form .filter-group-display input[type=checkbox] {
+    margin-right:8px;
+}
+
+.saf-form .filter-group-display ul {
+    list-style: none;
+}
+
+.saf-form .filter-group-display input {
+    font-size: 1.4rem;
+}
+
+.saf-form .filter-group-display .filter-group-display__header-reset {
     padding-left: 4px;
     font-weight: 500;
     text-decoration: none;
     color: #7181b0
 }
 
-.filter-form .active-filters {
+.saf-form .active-filters {
     margin-bottom: 16px;
 }
 
-.filter-form .active-filters a {
+.saf-form .active-filters a {
     display: inline-block;
     width: auto;
     margin: 16px 0 0 16px;
@@ -220,22 +290,42 @@ input#show-filter-options:checked + .filter-form {
     cursor: pointer;
 }
 
-.filter-form .active-filters svg {
-    display: inline-block;
-    width: 1.6rem;
-    vertical-align: -25%;
+.saf-form .active-filters span {
+    padding-left: 8px;
+    font-size: 1rem;
+    /* font-weight: 700; */
 }
-.filter-form .header {
-    padding: 8px 16px 0;
+
+.sort-and-filter .control svg {
+    display: inline-block;
+    width: 1.4rem;
+    vertical-align: -25%;
+    margin-left: 4px;
+}
+.saf-form .header {
+    padding: 16px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
-.filter-form h1 {
+.saf-form .header .close-filters {
+    height: 24px;
+    width: 24px;
+}
+.saf-form .filter-group .header {
+    padding: 0;
+}
+.saf-form .filter-group .header svg {
+    stroke-width: 1;
+}
+.saf-form .filter-group[open] .header svg {
+    transform: rotate(180deg);
+}
+.saf-form h1 {
     font-size: 1.8rem;
     font-weight: 500;
 }
-.filter-form .close-filters svg {
-    width: 28px;
-    height: 28px;
-}
+/* .filter-group-display__header-selected {
+    padding-bottom: 8px;
+} */
 {% endstyle %}
