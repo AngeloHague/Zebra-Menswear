@@ -54,9 +54,7 @@
     color: #000;
 }
 
-.account-form div {
-    padding: 8px 0;
-}
+.account-form div { padding: 8px 0; }
 
 .account-form label {
     display: block;
@@ -76,9 +74,7 @@
     padding: 8px 0 8px 8px;
 }
 
-.account-form button {
-    padding: 8px 0 ;
-}
+.account-form button { padding: 8px 0 ; }
 .account-form .alternative {
     display: block;
     padding: 8px 0;
@@ -133,17 +129,22 @@
     margin-top: 8px;
 }
 
-.account .order h3 {
-    margin-top: 8px;
-}
-
-.account .order h3, .account .order a div {
+.account .order h3, .account .order-item h3 { margin-top: 8px; }
+.account .order h3, .account .order-item h3, .account .order-item p, .account .return, .account .order-details .order-no, .account .order a div {
     font-size: 1.2rem;
     font-weight: 500;
     text-transform: uppercase;
 }
+.account .order-item p { font-weight: 400; }
+.account .order-details .order-no { font-size: 1.5rem; }
 
-.account .order p {
+.account .order p, .account .order-details .date {
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    margin-bottom: 8px;
+}
+
+.account .order-item p {
     font-size: 1.4rem;
     text-transform: capitalize;
 }

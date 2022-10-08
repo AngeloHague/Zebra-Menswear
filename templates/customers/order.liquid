@@ -1,1 +1,136 @@
-<!-- /templates/customers/order.liquid -->
+{{ 'accounts.css' | asset_url | stylesheet_tag }}
+<div class='account'>
+    <div class='header'>
+        <h1 class='header-cell'>My Account</h1>
+        <a href='/account/logout/'><h1 class='header-cell log-out'>Log Out {% render 'icon-log-out' %}</h1></a>
+    </div>
+    <a href="/account"><div class='return'>Return to orders page</div></a>
+    <div class='order-details'>
+        <div>
+            <h3 class='order-no'>Order #{{order.order_number}}</h3>
+            <p class='date'>{{order.created_at | date: '%B %d, %Y at %H:%M'}}</p>
+        </div>
+        <div class='order-items'>
+            {% for line_item in order.line_items %}
+                <div class='order-item' id='order-{{order.id}}'>
+                    <div class='title'>
+                        <h3>Product</h3>
+                        <p>{{line_item.title}}</p>
+                    </div>
+                    <div>
+                        <h3>SKU</h3>
+                        <p>{{line_item.SKU}}</p>
+                    </div>
+                    <div>
+                        <h3>Price</h3>
+                        <p>{{line_item.final_price | money}}</p>
+                    </div>
+                    <div>
+                        <h3>Quanity</h3>
+                        <p>{{line_item.quantity}}</p>
+                    </div>
+                    <div>
+                        <h3>Total</h3>
+                        <p>{{line_item.final_line_price | money}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class='totals'>
+            <p>Subtotal <span>{{ order.subtotal_price | money }}</span> </p>
+            {% for shipping_method in order.shipping_methods %}
+                <p>Shipping ({{shipping_method.title}}) <span>{{ shipping_method.price | money }}</span> </p>
+            {% endfor %}
+            {% for tax_line in order.tax_lines %}
+                <p>Taxes ({{tax_line.title}}) ({{ tax_line.rate | times: 100 }}%) <span>{{ tax_line.price | money }}</span> </p>
+            {% endfor %}
+            {% if order.total_duties %}
+                <p>Duties <span>{{ order.total_duties | money }}</span> </p>
+            {% endif %}
+            <h2>Total <span>{{ order.total_price | money_with_currency }}</span> </h2>
+        </div>
+        <div class='address'>
+            <h2>Billing Address</h2>
+            <p>
+                <span>Payment Status:</span> {{order.financial_status}}<br>
+                {{order.billing_address.name}}<br>
+                {{order.billing_address.address1}}<br>
+                {% if order.billing_address.address2 != blank %}{{order.billing_address.address2}}<br>{% endif %}
+                {{order.billing_address.city}} {{order.billing_address.zip}}<br>
+                {{order.billing_address.country}}
+            </p>
+        </div>
+        <div class='address'>
+            <h2>Shipping Address</h2>
+            <p>
+                <span>Payment Status:</span> {{order.fulfillment_status}}<br>
+                {{order.shipping_address.name}}<br>
+                {{order.shipping_address.address1}}<br>
+                {% if order.shipping_address.address2 != blank %}{{order.shipping_address.address2}}<br>{% endif %}
+                {{order.shipping_address.city}} {{order.shipping_address.zip}}<br>
+                {{order.shipping_address.country}}
+            </p>
+        </div>
+    </div>
+</div>
+
+{% style %}
+
+.account .return {
+    display: block;
+    clear: left;
+    padding: 0 16px;
+    color: #000;
+}
+.order-details {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    /* margin: 0 16px; */
+    padding-top: 16px;
+}
+
+.order-details > div, .order-items > div {
+    margin: 0 16px;
+    border-bottom: solid 1px #ccc;
+}
+.order-details > div:last-of-type, .order-items > div:last-of-type { border-bottom: none; }
+
+.order-items { padding: 0 8px ; }
+.order-item {
+    padding-top: 8px;
+    padding-bottom: 16px;
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto auto; 
+    gap: 8px 0px; 
+    grid-template-areas: 
+        "title title"
+        ". ."; 
+}
+.order-item .title { grid-area: title; }
+
+.totals {
+    padding: 16px 0;
+    text-transform: uppercase;
+}
+.totals p, .totals p span { font-size: 1.2rem; }
+.totals p { padding-bottom: 8px; }
+.totals h2, .totals h2 span { font-size: 1.6rem; font-weight: 500; }
+.totals span { float: right; }
+
+.address { padding: 16px 0; }
+div.address:last-of-type { padding-bottom: 0; }
+.address h2 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 0;
+    border: none;
+    text-transform: uppercase;
+}
+.address p, .address span {
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    line-height: calc(100% + 8px);
+}
+{% endstyle %}
