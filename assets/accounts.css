@@ -1,0 +1,149 @@
+.account-form, .account-form input, .account {
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.account-form {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 32px 32px 0 32px;
+}
+
+.account-form h1, .account h1 {
+    font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    /* text-align: center; */
+}
+.account h1 {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    border-bottom: none;
+}
+.tabs {
+    display: flex;
+    width: 100%;
+    background-color: #1e1e1e;
+    text-align: center;
+    border-top: solid 4px #1e1e1e;
+}
+.tabs a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    border-top: solid 2px #ccc;
+}
+.tabs p, .tabs a {
+    text-transform: uppercase;
+    padding: 16px 0;
+    margin: 0 4px;
+    font-size: 1.2rem;
+    font-weight:500;
+}
+.tabs .tab {
+    width: 50%;
+    box-sizing: border-box;
+}
+.tabs .tab.current {
+    background-color: #fff;
+    color: #000;
+}
+
+.account-form div {
+    padding: 8px 0;
+}
+
+.account-form label {
+    display: block;
+    width: 100%;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    /* padding-left: 4px; */
+    margin-bottom: 2px;
+}
+
+.account-form input {
+    font-size: 1.3rem;
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 1px black;
+    padding: 8px 0 8px 8px;
+}
+
+.account-form button {
+    padding: 8px 0 ;
+}
+.account-form .alternative {
+    display: block;
+    padding: 8px 0;
+    margin-top: 8px;
+    margin-bottom: -8px;
+    border-top: solid 1px #ccc;
+    /* border-bottom: solid 1px #ccc; */
+    font-size: 1.3rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.account .header-cell {
+    padding: 16px 0 16px 16px;
+    text-align: left;
+    float: left;
+    box-sizing: border-box;
+    color: black;
+}
+.account .header-cell.log-out {
+    display: flex;
+    align-items: center;
+    /* border-left: solid 1px #ccc; */
+    padding: 16px;
+    text-align: right;
+    float: right;
+    box-sizing: border-box;
+    color: black;
+    font-size: 1.2rem;
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.account .header-cell.log-out svg {
+    padding-left: 4px;
+    width: 1.8rem;
+}
+
+.order {
+    border-bottom: solid 1px #ccc;
+    margin: 0 16px;
+    padding: 8px 0 16px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.order:first-of-type {
+    border-top: solid 1px #ccc;
+    margin-top: 16px;
+}
+
+.account .order .button {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.account .order h3 {
+    margin-top: 8px;
+}
+
+.account .order h3, .account .order a div {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.account .order p {
+    font-size: 1.4rem;
+    text-transform: capitalize;
+}
