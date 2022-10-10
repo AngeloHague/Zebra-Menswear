@@ -2,9 +2,17 @@
     "sections": {
         "main" : {
             "type": "main-product"
+        },
+        "recommend" : {
+            "type": "product-recommendations"
+        },
+        "recents" : {
+            "type": "recently-viewed"
         }
     },
     "order": [
-        "main"
+        "main",
+        "recommend",
+        "recents"
     ]
 }

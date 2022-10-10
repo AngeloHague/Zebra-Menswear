@@ -68,12 +68,18 @@
 
 {% style %}
   .categories-section {
-    width: calc(100% - 32px);
-    margin: 0 16px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     /* background-color: aqua; */
   }
 
   .categories-section .view-all {
+    box-sizing: border-box;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,11 +91,13 @@
   }
 
   .categories-section ul {
+    margin: 0 10%;
     width: 100%;
     list-style: none;
-    overflow-x: scroll;
+    overflow-x: auto;
     height: auto;
     white-space: nowrap;
+    margin: auto;
     margin-bottom: 4px;
   }
 
@@ -138,6 +146,12 @@
   .categories-section ::-webkit-scrollbar-thumb:hover {
     background: #B5B5B5;
     border-radius: 8px;
+  }
+
+  @media (min-width: 896px) {
+    .categories-section ul {
+      max-width: 896px;
+    }
   }
 
 {% endstyle %}

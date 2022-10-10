@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "Comfortaa";
-  src: url('Comfortaa.woff') format("woff");
-}
-
 .mobile-only {
   display: block;
 }
@@ -17,15 +12,17 @@
 }
 
 input[type=submit], button, .button {
-  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.3rem;
-  line-height: calc(1.3rem + 16px);
+  /* line-height: calc(1.3rem + 16px); */
   font-weight: 500;
   text-transform: uppercase;
   text-decoration: none;
   border: solid 2px #1E1E1E; 
+  box-sizing: border-box;
   width: 90%;
-  padding: 4px 0;
+  max-width: 448px;
+  padding: 12px 0;
   -webkit-appearance: none;
   border-radius: 0px;
   margin: auto;
@@ -129,3 +126,9 @@ main {
   background: #B5B5B5;
   border-radius: 8px;
 } */
+
+@media (min-width: 800px) {
+    input[type=submit], button, .button {
+      padding: 8px 0;
+    }
+}

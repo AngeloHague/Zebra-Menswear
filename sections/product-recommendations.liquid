@@ -1,0 +1,79 @@
+<div class="product-recommendations js-enabled" data-product-id="{{ product.id }}" data-limit="4">
+    <div class='recommendations'>
+      {%- if recommendations.products_count > 0 -%}
+        {% render 'dot-separator' %}
+        {{ 'products.css' | asset_url | stylesheet_tag }}
+      <h3>You may also like</h3>
+      <ul class='recommendations'>
+        {%- for product in recommendations.products -%}
+        <li class="product">
+          <a href="{{ product.url }}">
+            <div class='product image'>
+              <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.featured_image.alt }}" />
+            </div>
+            <p class="title">{% render 'filtered-product-title' with product.title %}</p>
+            {% if product.price < product.compare_at_price %}
+              <p class='price'><span class='original'>{{ product.compare_at_price | money }}</span> {{ product.price | money }}</p> 
+              <div class='badge sale'>
+                {% assign og_price = product.compare_at_price | money_without_currency %}
+                {% assign percentage = product.price | money_without_currency | divided_by: og_price %}
+                {% assign diff = 1 | minus: percentage | times: 100 %}
+                -{{ diff | round: 0 }}%
+              </div>
+              {%else%}<p>{{ product.price | money }}</p>
+            {% endif %}
+            {% unless product.available %}
+              <div class='badge out-of-stock'>
+                OUT OF STOCK
+              </div>
+            {% endunless %}
+          </a>
+        </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+    </div>
+  </div>
+
+  {% javascript %}
+    var loadProductRecommendationsIntoSection = function() {
+    // Look for an element with class 'product-recommendations'
+    var productRecommendationsSection = document.querySelector(".product-recommendations");
+    if (productRecommendationsSection === null) { return; }
+    // Read product id from data attribute
+    var productId = productRecommendationsSection.dataset.productId;
+    // Read limit from data attribute
+    var limit = productRecommendationsSection.dataset.limit;
+    // Build request URL
+    var requestUrl = "/recommendations/products?section_id=product-recommendations&limit="+limit+"&product_id="+productId;
+    // Create request and submit it using Ajax
+    var request = new XMLHttpRequest();
+    request.open("GET", requestUrl);
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 300) {
+        var container = document.createElement("div");
+        container.innerHTML = request.response;
+        productRecommendationsSection.parentElement.innerHTML = container.querySelector(".product-recommendations").innerHTML;
+        }
+    };
+    request.send();
+    };
+    // If your section has theme settings, the theme editor
+    // reloads the section as you edit those settings. When that happens, the
+    // recommendations need to be fetched again.
+    // See https://help.shopify.com/en/themes/development/sections/integration-with-theme-editor
+    document.addEventListener("shopify:section:load", function(event) {
+    if (event.detail.sectionId === "product-recommendations") {
+        loadProductRecommendationsIntoSection();
+    }
+    });
+    // Fetching the recommendations on page load
+    loadProductRecommendationsIntoSection();
+{% endjavascript %}
+
+{% schema %}
+  {
+    "name": "Recommended Products",
+    "settings": [ ]
+  }
+{% endschema %}

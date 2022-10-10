@@ -1,80 +1,99 @@
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-<div class='slider'>
-  <ul class='images'>
-    {% for image in product.images %}
-      {% assign prev = 0 %}
-      {% assign next = 0 %}
-      {% if forloop.index == 1 %}
-          {% assign prev = forloop.length %}
-          {% assign next = forloop.index | plus: 1 %}
-      {% elsif forloop.index == forloop.length %}
-          {% assign prev = forloop.index | minus: 1 %}
-          {% assign next = 1 %}
-      {% else %}
-          {% assign prev = forloop.index | minus: 1 %}
-          {% assign next = forloop.index | plus: 1 %}
-      {% endif %}
-    <li class='product-image' id='image-{{forloop.index}}' >
-      <picture>
-        <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
-        <img src="{{ image | img_url: '300x' }}" width='100%' height='100%' >
-      </picture>
-      <a class='control left' href='#image-{{prev}}'>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </a>
-      <a class='control right' href='#image-{{next}}'>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </a>
-    </li>
-  {% endfor %}
-</ul>
-</div>
-<ul class='image-nav'>
-  {% assign more-images = 0 %}
-  <input type='radio' name='radio-button' id='show-more' />
+<div class='main-product'>
+  <div class='product-images'>
+    <div class='slider'>
+      <ul class='images'>
+        {% for image in product.images %}
+          {% assign prev = 0 %}
+          {% assign next = 0 %}
+          {% if forloop.index == 1 %}
+              {% assign prev = forloop.length %}
+              {% assign next = forloop.index | plus: 1 %}
+          {% elsif forloop.index == forloop.length %}
+              {% assign prev = forloop.index | minus: 1 %}
+              {% assign next = 1 %}
+          {% else %}
+              {% assign prev = forloop.index | minus: 1 %}
+              {% assign next = forloop.index | plus: 1 %}
+          {% endif %}
+        <li class='product-image' id='image-{{forloop.index}}' >
+          <picture>
+            <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
+            <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
+            <img src="{{ image | img_url: '300x' }}" width='100%' height='100%' >
+          </picture>
+          <a class='control left' href='#image-{{prev}}'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </a>
+          <a class='control right' href='#image-{{next}}'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    </div>
+    <ul class='image-nav'>
+      {% assign more-images = 0 %}
+      <input type='radio' name='radio-button' id='show-more' />
+      
+      {% for image in product.images %}
+        {% if forloop.index < 4 %}
+          <li class='product-image'>
+            <a href='#image-{{forloop.index}}'>
+              <picture>
+                <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
+                <img src="{{ image | img_url: '300x' }}" width='100%' height='100%'>
+              </picture>
+            </a>
+          </li>
+        {% else %}
+        {% assign more-images = more-images | plus: 1 %}
+          <li class='product-image more'>
+            <a href='#image-{{forloop.index}}'>
+              <picture>
+                <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
+                <img src="{{ image | img_url: '300x' }}" width='100%' height='100%'>
+              </picture>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      <li class='show-more'>
+        <label for='show-more'>
+          + {{ more-images }}
+        </label>
+      </li>
+    </ul>
+  </div>
   
-  {% for image in product.images %}
-    {% if forloop.index < 4 %}
-      <li class='product-image'>
-        <a href='#image-{{forloop.index}}'>
-          <picture>
-            <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
-            <img src="{{ image | img_url: '300x' }}" width='100%' height='100%'>
-          </picture>
-        </a>
-      </li>
-    {% else %}
-    {% assign more-images = more-images | plus: 1 %}
-      <li class='product-image more'>
-        <a href='#image-{{forloop.index}}'>
-          <picture>
-            <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
-            <img src="{{ image | img_url: '300x' }}" width='100%' height='100%'>
-          </picture>
-        </a>
-      </li>
-    {% endif %}
-  {% endfor %}
-  <li class='show-more'>
-    <label for='show-more'>
-      + {{ more-images }}
-    </label>
-  </li>
-</ul>
-
-<div class='product-info'>
-  <h1 class='title'>{% render 'filtered-product-title' with product.title %}</h1>
-  <div>
-    {% if current_variant.price < product.compare_at_price %}
-      {% comment %} <noscript>
+  <div class='product-info'>
+    {% assign vendor = collections[product.vendor] %}
+    <h1 class='vendor'>{{ product.vendor | link_to: vendor.url}}</h1>
+    <h1 class='title'>{% render 'filtered-product-title' with product.title %}</h1>
+    <div>
+      {% if current_variant.price < product.compare_at_price %}
+        {% comment %} <noscript>
+          <h1 class='price'>
+            <span class='original'>{{ product.compare_at_price| money }}</span>
+            <span class='difference'>SALE</span>
+          </h1>
+        </noscript> {% endcomment %}
         <h1 class='price'>
-          <span class='original'>{{ product.compare_at_price| money }}</span>
-          <span class='difference'>SALE</span>
+          <span class='current js-inline' id='price'>{{ current_variant.price| money }}</span>
+          <span class='original' id='compare-at'>{{ product.compare_at_price| money }}</span>
+          {% if product.compare_at_price != blank %}
+            {% assign og_price = product.compare_at_price | money_without_currency %}
+            {% assign percentage = current_variant.price | money_without_currency | divided_by: og_price %}
+            {% assign diff = 1 | minus: percentage | times: 100 %}
+          {% else %}
+            {% assign diff = 0 %}
+          {% endif %}
+          <span class='difference js-inline' id='difference'>{% if product.compare_at_price != blank and product.price < product.compare_at_price %}(-{{ diff | round: 0 }}%){% endif %} <span class='no-js'>SALE</span></span>  
         </h1>
-      </noscript> {% endcomment %}
-      <h1 class='price'>
+      {% else %}
+      <h1 class='price no-sale'>
         <span class='original' id='compare-at'>{{ product.compare_at_price| money }}</span>
         <span class='current js-inline' id='price'>{{ current_variant.price| money }}</span>
         {% if product.compare_at_price != blank %}
@@ -86,43 +105,30 @@
         {% endif %}
         <span class='difference js-inline' id='difference'>{% if product.compare_at_price != blank and product.price < product.compare_at_price %}(-{{ diff | round: 0 }}%){% endif %} <span class='no-js'>SALE</span></span>  
       </h1>
-    {% else %}
-    <h1 class='price no-sale'>
-      <span class='original' id='compare-at'>{{ product.compare_at_price| money }}</span>
-      <span class='current js-inline' id='price'>{{ current_variant.price| money }}</span>
-      {% if product.compare_at_price != blank %}
-        {% assign og_price = product.compare_at_price | money_without_currency %}
-        {% assign percentage = current_variant.price | money_without_currency | divided_by: og_price %}
-        {% assign diff = 1 | minus: percentage | times: 100 %}
-      {% else %}
-        {% assign diff = 0 %}
       {% endif %}
-      <span class='difference js-inline' id='difference'>{% if product.compare_at_price != blank and product.price < product.compare_at_price %}(-{{ diff | round: 0 }}%){% endif %} <span class='no-js'>SALE</span></span>  
-    </h1>
-    {% endif %}
-    {% assign vendor = collections[product.vendor] %}
-    <h1 class='vendor'>{{ product.vendor | link_to: vendor.url}}</h1>
+      
+      <div class='js-enabled' id='remaining'></div>
+    </div>
+    <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+        <div class='variants'>
+          <select id="product-select" name="id">
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}" data-variant-quantity="{{ variant.inventory_quantity }}"
+                {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+              >
+                {{ variant.title }} - {{ variant.price | money }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      {% if product.available %}
+        <button class='button' type="submit" name="add" id="AddToCart">Add to cart</button>
+      {% else %}
+        <button class='button' type="submit" name="add" id="SoldOut" disabled>SOLD OUT</button>
+      {% endif %}
+    </form>
+    <div class='description'>{{ product.description }}</div>
   </div>
-  <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-      <div class='variants'>
-        <select id="product-select" name="id">
-          {% for variant in product.variants %}
-            <option value="{{ variant.id }}" data-variant-quantity="{{ variant.inventory_quantity }}"
-              {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
-            >
-              {{ variant.title }} - {{ variant.price | money }}
-            </option>
-          {% endfor %}
-        </select>
-      </div>
-    {% if product.available %}
-      <button class='button' type="submit" name="add" id="AddToCart">Add to cart</button>
-    {% else %}
-      <button class='button' type="submit" name="add" id="SoldOut" disabled>SOLD OUT</button>
-    {% endif %}
-    <div class='js-enabled' id='remaining'></div>
-  </form>
-  <div class='description'>{{ product.description }}</div>
 </div>
 
 <script>
@@ -193,6 +199,10 @@
 {% endschema %}
 
 {% style %}
+.product-images {
+  max-width: 500px;
+  margin: auto;
+}
 .slider {
   position: relative;
   width: 100%;
@@ -206,8 +216,9 @@
   vertical-align: bottom;
   position: relative;
   display: inline-block;
-  width: calc(100% - 64px);
-  height: 375px;
+  box-sizing: border-box;
+  width: 100%;
+  /* height: 375px; */
   padding: 16px 32px 8px;
 }
 .slider .control {
@@ -256,7 +267,7 @@ ul.image-nav input {
   height: 100%;
 }
 .image-nav .show-more {
-  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: inline-block;
   height: 100%;
   width: calc(25% - 8px);
@@ -305,22 +316,23 @@ ul.image-nav input {
   width: calc(100% - 64px);
   margin: auto;
   font-size: 1.6rem;
-  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .product-info .button {
   width: 100%;
+  max-width: 100%;
   text-transform: capitalize;
-  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
   /* margin: 8px 0; */
 }
 .price {
   float: left;
-  font-weight: 600;
+  font-weight: 500;
 }
 .price, .price span {
-  font-weight: 600;
+  font-weight: 500;
 }
 .price .original {
   text-decoration: line-through;
@@ -328,7 +340,8 @@ ul.image-nav input {
   font-size: 1.2rem;
 }
 .price .difference {
-  /* font-weight: 500; */
+  /* float: right; */
+  font-weight:500;
   color: #4F607B;
   font-size: 1.2rem;
 }
@@ -337,8 +350,9 @@ ul.image-nav input {
   display: none;
 }
 .vendor, .vendor a {
-  float: right;
-  font-weight: 600;
+  /* float: right; */
+  font-weight: 500;
+  font-size: 1.4rem;
   color: #4F607B;
   text-decoration: none;
 }
@@ -347,6 +361,10 @@ ul.image-nav input {
   font-size: 1.6rem;
   font-weight: 400;
   padding: 4px 0;
+}
+
+.description {
+  padding-top: 8px;
 }
 
 .description strong {
@@ -358,11 +376,10 @@ ul.image-nav input {
   list-style: none;
   padding-left: 8px;
 }
-.js .price .difference {
-  font-size: 1.2rem;
+/* .js .price .difference {
   font-weight: normal;
   color: #4F607B;
-}
+} */
 
 .variants {
   padding: 16px 0;
@@ -378,7 +395,8 @@ ul.image-nav input {
 }
 
 .variants label {
-  font-weight: 600;
+  text-transform: uppercase;
+  font-weight: 500;
   font-size: 1.3rem;
   padding-bottom: 8px;
 }
@@ -394,13 +412,14 @@ ul.image-nav input {
 }
 
 #remaining {
+  float: right;
   font-size: inherit;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.4rem;
   text-transform: uppercase;
   /* text-align: center; */
   color: #4F607B;
-  padding: 8px 0;
+  /* padding: 8px 0; */
 }
 
 .selector-wrapper {
@@ -414,6 +433,65 @@ ul.image-nav input {
 
 .selector-wrapper label, .selector-wrapper select {
   width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .main-product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .slider {
+    margin: 0;
+  }
+  .slider .product-image {
+    padding-top: 32px;
+  }
+  .product-images {
+    display: flex;
+    flex-direction: row-reverse;
+    /* height: 100%; */
+  }
+  .product-images ul.image-nav {
+    /* flex-direction: column; */
+    /* display: flex;
+    flex-direction: column; */
+    width: 116px;
+    /* min-height: 100%; */
+    height: auto;
+    overflow-x: none;
+    overflow-y: auto;
+    white-space: normal;
+    margin: 0;
+    margin-top: 32px;
+    padding: 0;
+  }
+  .product-images .image-nav .product-image {
+    width: 100%;
+    padding: 0 0 8px 0;
+    margin: 0;
+  }
+  .product-images .image-nav .show-more, .product-images .image-nav .show-more label {
+    display: flex;
+    width: 100%;
+  }
+  .product-images .image-nav .show-more {
+    width: 116px;
+    height: 116px;
+    /* display: flex; */
+    width: 100%;
+    position: relative;
+    
+  }
+  /* .product-images, .product-info {
+    display: inline-block;
+    width: 50%;
+  } */
+  .product-info {
+    margin: auto;
+    margin-top: 32px;
+    min-height: 400px;
+    max-width: 320px;
+  }
 }
   
 {% endstyle %}

@@ -25,19 +25,20 @@
                                     <source media="{max-width:390px}" srcset="{{ block.settings.collection | image_url: '390x' }}, {{ block.settings.collection | image_url: '780x' }} 2x ">
                                     <source media="{max-width:768px}" srcset="{{ block.settings.collection | image_url: '768x' }}, {{ block.settings.collection | image_url: '1536x' }} 2x ">
                                     <source media="{max-width:1024px}" srcset="{{ block.settings.collection | image_url: '1024x' }}, {{ block.settings.collection | image_url: '2048x' }} 2x ">
-                                    <source srcset="{{ block.settings.collection | img_url: '414x' }}, {{ block.settings.collection | img_url: '828x' }} 2x">
-                                    <img src="{{ block.settings.collection | img_url: '414x' }}" width='100%' height='100%'>
+                                    <img src="{{ block.settings.collection | img_url: 'master' }}" width='100%' height='100%'>
                                 </picture>
                             </div>
                             <div class="content">
+                                <label for='slide-{{prev}}' class='previous desktop-only'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </label>
                                 <div class="card">
                                     <a href='{{block.settings.collection.url}}' class='image'>
                                         <picture>
                                             <source media="{max-width:390px}" srcset="{{ block.settings.collection | image_url: '390x' }}, {{ block.settings.collection | image_url: '780x' }} 2x ">
                                             <source media="{max-width:768px}" srcset="{{ block.settings.collection | image_url: '768x' }}, {{ block.settings.collection | image_url: '1536x' }} 2x ">
-                                            <source media="{max-width:1024px}" srcset="{{ block.settings.collection | image_url: '1024x' }}, {{ block.settings.collection | image_url: '2048x' }} 2x ">
-                                            <source srcset="{{ block.settings.collection | img_url: '414x' }}, {{ block.settings.collection | img_url: '828x' }} 2x">
-                                            <img src="{{ block.settings.collection | img_url: '414x' }}" width='100%' height='100%'>
+                                            <source srcset="{{ block.settings.collection | img_url: '1024x' }}, {{ block.settings.collection | img_url: '2048x' }} 2x">
+                                            <img src="{{ block.settings.collection | img_url: '1024x' }}" width='100%' height='100%'>
                                         </picture>
                                     </a>
                                     <div class='caption'>
@@ -54,6 +55,9 @@
                                         </label>
                                     </div>
                                 </div>
+                                <label for='slide-{{next}}' class='next desktop-only'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </label>
                             </div>
                         </li>
                 {% endcase %}
@@ -182,6 +186,7 @@
     justify-content: center;
     align-items: center;
 }
+.promo_slider .desktop-only { display: none; }
 
 ul.slides input {
     display: none; 
@@ -231,6 +236,51 @@ input#slide-2:checked ~ .slider-dots label#slide-dot-2,
 input#slide-3:checked ~ .slider-dots label#slide-dot-3 {
 	opacity: 1;
 }
+
+@media(min-width: 800px) {
+    .promo_slider {
+        height: 368px;
+    }
+    .promo_slider .card {
+        top: 0;
+        width: 768px;
+        height: 100%;
+    }
+    .promo_slider .card .image {
+        height: 100%;
+    }
+    .promo_slider .card .caption {
+        display: block;
+        position: absolute;
+        width: 60%;
+        margin: 0 20%;
+        bottom: 7.5%;
+        background-color: rgba(255,255,255,0.8);
+        text-transform: uppercase;
+        /* left: 25%; */
+    }
+    .promo_slider .card .caption p {
+        font-size: 1.3rem;
+    }
+    .promo_slider .card .caption .mobile-only { display: none; }
+    .promo_slider .content {
+        display: flex;
+        justify-content: space-around;
+    }
+    .promo_slider .desktop-only {
+        display: flex;
+    }
+    .promo_slider .content label {
+        height: 100%;
+        width: 15%; 
+    }
+    /* .promo_slider .previous {
+        position: absolute;
+        left: 0;
+        top: 0;
+    } */
+}
+
 {%- endstyle -%}
 
 {% javascript %}
