@@ -1,5 +1,10 @@
 document.documentElement.className = "js"
 var variantStock = {};
+
+
+function enableSearchBtn() {
+    searchBtn.disabled = false;
+}
 // let navOpen = false;
 
 // function toggleNav(element) {

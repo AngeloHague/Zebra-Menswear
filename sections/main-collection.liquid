@@ -9,7 +9,7 @@
 
   {% render 'dot-separator' %}
 
-    {% render 'sort-and-filter' %}
+    {% render 'sort-and-filter' with collection %}
     {% paginate collection.products by 6 %}
       <div class='products'>
       {% for product in collection.products %}

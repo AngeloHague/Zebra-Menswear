@@ -1,12 +1,12 @@
-<form class='sort-and-filter'>
+<div class='sort-and-filter'>
     <label class='control' for='show-sort-options' id='sort'>
-        SORT{% if collection.sort_by != blank %} {% render 'icon-check' %} {% endif %}
+        SORT{% if search.sort_by != blank %} {% render 'icon-check' %} {% endif %}
     </label>
     <input class='show-control' type='checkbox' name='show-sort-options' id='show-sort-options' />
     <label class='control' for='show-filter-options' id='filter'>
         FILTERS
         {% assign has_filters = false %}
-        {%- for filter in collection.filters -%}
+        {%- for filter in search.filters -%}
             {%- if has_filters -%}
                 {% break %}
             {%- endif -%}
@@ -35,7 +35,7 @@
                 {% render 'icon-x' %}
             </label>
         </div>
-        <details {% if collection.sort_by != blank or collection.sort_by == collection.default_sort_by %} class='sort-group active' {% else %} class='sort-group' {% endif %} >
+        <details {% if search.sort_by != blank and search.sort_by != 'relevance' %} class='sort-group active' {% else %} class='sort-group' {% endif %} >
           <summary class="filter-group-summary">
             <div>
               <div class='header'>
@@ -48,17 +48,16 @@
           </summary>
           <div class='filter-group-display'>
             <select name='sort_by' name='sort_by'>
-            <option value='best-selling' {% if collection.sort_by == 'best-selling' or collection.sort_by == blank %} selected {% endif %}>Best Selling</option>
-            <option value='created-ascending' {% if collection.sort_by == 'created-descending' %} selected {% endif %}>What's New</option>
-            <option value='price-ascending' {% if collection.sort_by == 'price-ascending' %} selected {% endif %}>Price Low-to-High</option>
-            <option value='price-descending' {% if collection.sort_by == 'price-descending' %} selected {% endif %}>Price High-to-Low</option>
-          </select>
+                <option value='relevance' {% if search.sort_by == 'relevance' or search.sort_by == blank %} selected {% endif %}>Relevance</option>
+                <option value='price-ascending' {% if search.sort_by == 'price-ascending' %} selected {% endif %}>Price Low-to-High</option>
+                <option value='price-descending' {% if search.sort_by == 'price-descending' %} selected {% endif %}>Price High-to-Low</option>
+            </select>
           <div class="filter-group-display__submit">
             <input class='button black' type="submit" value="Apply">
           </div>
           </div>
         </details>
-        {%- for filter in collection.filters -%}
+        {%- for filter in search.filters -%}
           <details class=
               {%- if filter.active_values.size > 0 -%}
                 "filter-group active"
@@ -159,10 +158,10 @@
         <br />
         <div class="active-filters">
             {%- if has_filters -%}
-                <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear">Clear all &nbsp; X</a>
+                <a href="{{ search.url }}?sort_by={{ search.sort_by }}&q={{ search.terms }}" class="active-filters__clear">Clear all &nbsp; X</a>
             {%- endif -%}
       
-          {%- for filter in collection.filters -%}
+          {%- for filter in search.filters -%}
             {%- if filter.type == "price_range" -%}
               {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
                 <a class="active-filters__remove-filter" href="{{ filter.url_to_remove }}">
@@ -181,7 +180,7 @@
           {%- endfor -%}
         </div>
     </div>
-</form>
+</div>
 
 {% style %}
 

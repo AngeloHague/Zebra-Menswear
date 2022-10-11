@@ -4,9 +4,17 @@
         <label href='/menu' class="menu" id='menu' for='open-menu'>
             <div class="menu_burger"></div>
         </label>
-        <a href="/search" id="search" class="search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle class='st1' cx="11" cy="11" r="8"></circle><line class='st0' x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </a>
+        <div class='search-container'>
+            <form action="/search" method="get" role="search">
+                <input class='search' id='search-bar' onfocus="document.getElementById('search-button').disabled = false;" type="search" name="q" value="{{ search.terms | escape }}">
+                <button class='search-button js-enabled' id='search-button' type='submit' disabled>
+                    {% render 'icon-arrow-left' %}
+                </button>
+                <label class='search-icon' for="search-bar">
+                    {% render 'icon-search' %}
+                </label>
+            </form>
+        </div>
     </div>
     <a href='/' class='logo'>zebra</a>
     <ul id='nav'>
@@ -125,22 +133,81 @@
     z-index: 4;
 }
 
-.nav_bar .left .search {
-    // position: fixed;
-    // top: 13px;
-    // right: 13px;
+.nav_bar .left .search-container {
+    position: absolute;
+    top: 0;
+    left: 37px;
     margin-top: 1px;
-    width: 20px;
-    height: 20px;
+    width: 45px;
+    height: 45px;
+    /* overflow-x: hidden; */
     float: left;
-    padding: 8px;
+    /* padding: 8px; */
     /* margin-left: 12px; */
     // background-color: #fff;
 }
 
-.nav_bar .left .search svg {
+.nav_bar .left  .search-container svg {
+    /* position: absolute; left: 0; */
     width: 18px;
     height: 18px;
+	outline: none;
+	border: none;
+}
+
+.nav_bar .search {
+    position: absolute;
+    left: 38px;
+	/* padding: 8px 0; */
+	width: 0;
+	/* height: 100%; */
+	padding: 4px 0;
+	z-index: 10;
+	outline: none;
+	border: none;
+	transition-duration: 0.4s;
+    background-color: #1e1e1e;
+    color: white;
+    border-bottom: solid 2px #fff;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+}
+.nav_bar .search-button {
+    /* display: none; */
+    position: absolute;
+    width: 31px;
+    height: 31px;
+	left: clamp(100px, 50vw, 200px);
+    z-index: 4;
+    border: none;
+    border-bottom: solid 2px #fff;
+    border-radius: 0;
+    opacity: 0;
+}
+
+.nav_bar .search:focus {
+	width: 168px;
+	width: clamp(100px, 50vw, 200px);
+	padding-right: 32px;
+    z-index: 3;
+    /* top: 4px; */
+}
+
+.nav_bar .search:focus + .search-button {
+    /* display: inline-block; */
+    opacity: 1;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+}
+
+.nav_bar .search-icon {
+    display: block;
+    padding: 8px;
+    width: 20px;
+    height: 20px;
+    /* position: absolute; left: 0; */
 }
 
 .nav_bar .menu {
