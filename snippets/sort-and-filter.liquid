@@ -3,7 +3,26 @@
         SORT{% if collection.sort_by != blank %} {% render 'icon-check' %} {% endif %}
     </label>
     <input class='show-control' type='checkbox' name='show-sort-options' id='show-sort-options' />
-    <div class='saf-form sort'>
+    <label class='control' for='show-filter-options' id='filter'>
+        FILTERS
+        {% assign has_filters = false %}
+        {%- for filter in collection.filters -%}
+            {%- if has_filters -%}
+                {% break %}
+            {%- endif -%}
+            {%- if filter.active_values.size > 0 -%}
+                {% assign has_filters = true %}
+                {% break %}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- if has_filters -%}
+            {% render 'icon-check' %}
+        {%- endif -%}
+    </label>
+    <input class='show-control' type='checkbox' name='show-filter-options' id='show-filter-options' />
+    <label for='show-sort-options' class='closeDrawer sort'>&nbsp;</label>
+    <label for='show-filter-options' class='closeDrawer filter'>&nbsp;</label>
+    <div class='saf-form sort' id='sort-form'>
         <div class='header'>
             <h1>Sort By</h1>
             <label class='close-sort' for='show-sort-options'>
@@ -23,24 +42,7 @@
           </div>
         </div>
     </div>
-    <label class='control' for='show-filter-options' id='filter'>
-        FILTERS
-        {% assign has_filters = false %}
-        {%- for filter in collection.filters -%}
-            {%- if has_filters -%}
-                {% break %}
-            {%- endif -%}
-            {%- if filter.active_values.size > 0 -%}
-                {% assign has_filters = true %}
-                {% break %}
-            {%- endif -%}
-        {%- endfor -%}
-        {%- if has_filters -%}
-            {% render 'icon-check' %}
-        {%- endif -%}
-    </label>
-    <input class='show-control' type='checkbox' name='show-filter-options' id='show-filter-options' />
-    <div class="saf-form filter">
+    <div class="saf-form filter" id='filter-form'>
         <div class='header'>
             <h1>Filters</h1>
             <label class='close-filters' for='show-filter-options'>
@@ -190,13 +192,30 @@
     display: none;
 }
 
-input#show-sort-options:checked + .saf-form.sort {
+.closeDrawer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(82, 82, 82, 0.5);
+  z-index: 2;
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+input#show-sort-options:checked ~ .saf-form.sort {
     transition: 0.4s;
     right: 0;
 }
-input#show-filter-options:checked + .saf-form.filter {
+input#show-filter-options:checked ~ .saf-form.filter {
     transition: 0.4s;
     right: 0;
+}
+input#show-sort-options:checked ~ .closeDrawer.sort, input#show-filter-options:checked ~ .closeDrawer.filter {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
 }
 .saf-form {
     display: block;
