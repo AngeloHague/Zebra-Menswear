@@ -22,16 +22,32 @@
     <input class='show-control' type='checkbox' name='show-filter-options' id='show-filter-options' />
     <label for='show-sort-options' class='closeDrawer sort'>&nbsp;</label>
     <label for='show-filter-options' class='closeDrawer filter'>&nbsp;</label>
-    <div class='saf-form sort' id='sort-form'>
-        <div class='header'>
+    <div class="saf-form filter" id='filter-form'>
+        <div class='header filter'>
+            <h1>Filters</h1>
+            <label class='close-filters' for='show-filter-options'>
+                {% render 'icon-x' %}
+            </label>
+        </div>
+        <div class='header sort'>
             <h1>Sort By</h1>
             <label class='close-sort' for='show-sort-options'>
                 {% render 'icon-x' %}
             </label>
         </div>
-        
-        <div class='sort-group'>
-          <select name='sort_by' name='sort_by'>
+        <details {% if collection.sort_by %} class='sort-group active' {% else %} class='sort-group' {% endif %} >
+          <summary class="filter-group-summary">
+            <div>
+              <div class='header'>
+                  <span>
+                      SORT
+                  </span>
+                  {% render 'icon-chevron-down' %}
+              </div>
+            </div>
+          </summary>
+          <div class='filter-group-display'>
+            <select name='sort_by' name='sort_by'>
             <option value='best-selling' {% if collection.sort_by == 'best-selling' or collection.sort_by == blank %} selected {% endif %}>Best Selling</option>
             <option value='created-ascending' {% if collection.sort_by == 'created-descending' %} selected {% endif %}>What's New</option>
             <option value='price-ascending' {% if collection.sort_by == 'price-ascending' %} selected {% endif %}>Price Low-to-High</option>
@@ -40,24 +56,23 @@
           <div class="filter-group-display__submit">
             <input class='button black' type="submit" value="Apply">
           </div>
-        </div>
-    </div>
-    <div class="saf-form filter" id='filter-form'>
-        <div class='header'>
-            <h1>Filters</h1>
-            <label class='close-filters' for='show-filter-options'>
-                {% render 'icon-x' %}
-            </label>
-        </div>
+          </div>
+        </details>
         {%- for filter in collection.filters -%}
-          <details class="filter-group">
+          <details class=
+              {%- if filter.active_values.size > 0 -%}
+                "filter-group active"
+              {%- else -%}
+                "filter-group"
+              {%- endif -%}
+            >
             <summary class="filter-group-summary">
               <div>
                 <div class='header'>
                     <span>
                         {{ filter.label }}
                         {%- if filter.active_values.size > 0 -%}
-                            <span>({{ filter.active_values.size }})</span>
+                            <span class='amount'>({{ filter.active_values.size }})</span>
                         {%- endif -%}
                     </span>
                     {% render 'icon-chevron-down' %}
@@ -141,7 +156,7 @@
             </div>
           </details>
         {%- endfor -%}
-      
+        <br />
         <div class="active-filters">
             {%- if has_filters -%}
                 <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="active-filters__clear">Clear all &nbsp; X</a>
@@ -204,11 +219,7 @@
   pointer-events: none;
 }
 
-input#show-sort-options:checked ~ .saf-form.sort {
-    transition: 0.4s;
-    right: 0;
-}
-input#show-filter-options:checked ~ .saf-form.filter {
+input#show-sort-options:checked ~ .saf-form.filter, input#show-filter-options:checked ~ .saf-form.filter {
     transition: 0.4s;
     right: 0;
 }
@@ -217,6 +228,12 @@ input#show-sort-options:checked ~ .closeDrawer.sort, input#show-filter-options:c
   opacity: 1;
   pointer-events: auto;
 }
+.saf-form > .header { display: none; }
+input#show-sort-options:checked ~ .saf-form.filter .header.filter {display: none;}
+input#show-filter-options:checked ~ .saf-form.filter .header.sort {display: none;}
+input#show-sort-options:checked ~ .saf-form.filter .filter-group {display: none;}
+input#show-filter-options:checked ~ .saf-form.filter .sort-group {display: none;}
+
 .saf-form {
     display: block;
     position: fixed;
@@ -228,7 +245,6 @@ input#show-sort-options:checked ~ .closeDrawer.sort, input#show-filter-options:c
     z-index: 5;
     margin-top: 46px;
   font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* padding: 16px; */
     text-transform: uppercase;
     border-left: solid 1px #ccc;
     overflow-y: auto;
@@ -246,10 +262,6 @@ input#show-sort-options:checked ~ .closeDrawer.sort, input#show-filter-options:c
 
 .saf-form .filter-group:last-of-type, .saf-form .sort-group:last-of-type {
     border-bottom: solid 1px #ccc;
-}
-
-.saf-form .sort-group {
-  padding:16px 0 16px 24px;
 }
 
 .saf-form select {
@@ -331,12 +343,10 @@ input#show-sort-options:checked ~ .closeDrawer.sort, input#show-filter-options:c
     height: 24px;
     width: 24px;
 }
-.saf-form .filter-group .header {
+.saf-form summary .header {
     padding: 0;
 }
-.saf-form .filter-group .header svg {
-    stroke-width: 1;
-}
+.saf-form .header svg { stroke-width: 1; }
 .saf-form .filter-group[open] .header svg {
     transform: rotate(180deg);
 }
@@ -347,4 +357,75 @@ input#show-sort-options:checked ~ .closeDrawer.sort, input#show-filter-options:c
 /* .filter-group-display__header-selected {
     padding-bottom: 8px;
 } */
+@media(min-width: 800px) {
+  .sort-and-filter .control {display: none;}
+  .saf-form {
+    display: inline-block; 
+    position: static;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+  }
+  .saf-form.filter {
+    width: auto;
+    padding: 0 16px;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+    z-index: 2;
+    /* justify-content: center; */
+  }
+
+  .saf-form, .saf-form .sort-group:last-of-type, .saf-form .filter-group:last-of-type { border: none; }
+  .saf-form .header { position: relative; align-items: center; }
+  .saf-form .header span { width: 100%;text-align: center;}
+  /* .saf-form .header svg {position: absolute; right: 0} */
+  .saf-form > .header {display: none;}
+  .saf-form.filter details { display: inline-block; }
+  .saf-form details[open]>summary+* { position: absolute; z-index: 5; display: block; }
+  .saf-form .filter-group-summary .header {padding: 0 8px;}
+  .saf-form .filter-group-summary .header span { font-weight: 500; }
+  .saf-form .filter-group-summary {
+    /* padding: 0; */
+    box-sizing: border-box;
+    width: 14rem;
+    height: auto;
+  }
+  .saf-form .filter-group-display {
+    position: absolute;
+    box-sizing: border-box;
+    min-width:15rem;
+    max-height: 50rem;
+    background-color: #fff;
+    border: solid 2px #ccc;
+    box-shadow: 2px 4px 8px #888;
+    padding: 16px;
+    margin-top: -8px;
+    margin-left: 32px;
+  }
+  .saf-form .filter-group, .saf-form .sort-group {
+    float: left;
+    width: auto;
+    border: none;
+    padding: 0;
+    z-index: 2;
+  }
+  .saf-form select {width:20rem;}
+  /* .saf-form .header svg {
+    width: 3rem;
+  } */
+  .saf-form summary {
+    position: relative;
+    padding: 8px 0;
+    margin: 0 0 16px 32px;
+    border: solid 2px #1e1e1e;
+    z-index: 2;
+  }
+  .saf-form .header svg { stroke-width: 2; }
+  .active-filters { display: inline-block; width: 100%; padding: 0 16px; box-sizing: border-box; }
+  .active .filter-group-summary {
+    background-color: #1e1e1e;
+    color: #fff;
+  }
+  .saf-form .amount {display:none;}
+}
 {% endstyle %}
