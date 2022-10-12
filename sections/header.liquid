@@ -303,13 +303,6 @@
 #open-menu:checked ~ .left .menu_burger::after {
     transform: rotate(-45deg) translate(11px, 11px);
 }
-[id^=open-submenu]:checked ~ ul.dropdown-menu {
-    display: block;
-}
-[id^=open-submenu]:checked + label svg {
-    /* transform: rotate(-540deg); */
-    transform: rotate(180deg);
-}
 
 #nav a:hover,
 #nav label:hover {
@@ -369,6 +362,16 @@
 .st0{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .st1{stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .st2{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;}
+
+@media(max-width: 999px) {
+    [id^=open-submenu]:checked ~ ul.dropdown-menu {
+    display: block;
+    }
+    [id^=open-submenu]:checked + label svg {
+        /* transform: rotate(-540deg); */
+        transform: rotate(180deg);
+    }
+}
 
 @media(min-width: 1000px) {
     .nav_bar .menu, .nav_bar .logo.mobile { display: none; }
@@ -448,7 +451,9 @@
     .menu-link label:hover ~ ul.dropdown-menu, ul.dropdown-menu:hover  {
         background-color: #363636;
         display: flex;
-    }[id^=open-submenu]:checked + label svg {
+    }
+    .nav_bar .logo.desktop:hover {background-color: #1e1e1e;}
+    [id^=open-submenu]:checked + label svg {
         transform: none;
     }
 }
