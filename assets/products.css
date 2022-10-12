@@ -85,9 +85,11 @@
 .recommendations img, .recents img {
   box-sizing: border-box;
   width: 100%;
+  object-fit: contain;
 }
 .recently-viewed-grid a,  .recently-viewed-grid img {
     width: 100%;
+    object-fit: contain;
 }
 
 .recommendations .product, .recently-viewed-grid .product {
