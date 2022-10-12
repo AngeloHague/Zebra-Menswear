@@ -3,8 +3,10 @@
 }
 .account-form {
     width: 100%;
+    max-width: 448px;
     box-sizing: border-box;
     padding: 32px 32px 0 32px;
+    margin: auto;
 }
 
 .account-form h1, .account h1 {

@@ -13,6 +13,9 @@
             <div class='details'>
               <a href="{{ item.url }}"><div class='price'>
                 {{ item.price | money }}
+                {% if item.price < item.variant.compare_at_price %}
+                  <span>{{ item.variant.compare_at_price | money }}</span>
+                {% endif %}
                 
               </div>
               <div class='product-title'>
@@ -126,12 +129,18 @@ div.cart-item:first-of-type {
   font-size: 1.3rem;
 }
 
-.cart .product-title {
+.cart .cart-item .details .product-title {
   font-size: 1.5rem;
+  padding: 4px 0;
 }
-
+.cart .cart-item .details .price { font-size: 1.5rem; }
 .cart .price, .cart .variant {
   font-weight: 500;
+}
+.cart .price span {
+  font-size: 1.3rem;
+  padding-left: 8px;
+  text-decoration: line-through;
 }
 
 .cart a {
