@@ -41,7 +41,7 @@
         </a>
         </div>
         {% else %}
-          <p>no matches</p>
+          <p class='no-matches'>No matches found.</p>
         {% endfor %}
       </div>
       {% render 'pages' with paginate %}
@@ -67,6 +67,9 @@
 
   .collection .description strong {
     font-weight: bold;
+  }
+  .collection .no-matches {
+    text-align: center;
   }
 @media (min-width: 800px) {
   .products {

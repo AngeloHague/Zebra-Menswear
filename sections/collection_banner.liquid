@@ -5,9 +5,8 @@
             <picture>
                 <source media="{max-width:390px}" srcset="{{ collection | image_url: '390x' }}, {{ collection | image_url: '780x' }} 2x ">
                 <source media="{max-width:768px}" srcset="{{ collection | image_url: '768x' }}, {{ collection | image_url: '1536x' }} 2x ">
-                <source media="{max-width:1024px}" srcset="{{ collection | image_url: '1024x' }}, {{ collection | image_url: '2048x' }} 2x ">
-                <source srcset="{{ collection | img_url: '414x' }}, {{ collection | img_url: '828x' }} 2x">
-                <img src="{{ collection | img_url: '414x' }}" width='100%' height='100%'>
+                <source srcset="{{ collection | img_url: '1024x' }}, {{ collection | img_url: '2048x' }} 2x">
+                <img src="{{ collection | img_url: '1024x' }}" width='100%' height='100%'>
             </picture>
         </div>
         <div class="content">
@@ -16,9 +15,8 @@
                     <picture>
                         <source media="{max-width:390px}" srcset="{{ collection | image_url: '390x' }}, {{ collection | image_url: '780x' }} 2x ">
                         <source media="{max-width:768px}" srcset="{{ collection | image_url: '768x' }}, {{ collection | image_url: '1536x' }} 2x ">
-                        <source media="{max-width:1024px}" srcset="{{ collection | image_url: '1024x' }}, {{ collection | image_url: '2048x' }} 2x ">
-                        <source srcset="{{ collection | img_url: '414x' }}, {{ collection | img_url: '828x' }} 2x">
-                        <img src="{{ collection | img_url: '414x' }}" width='100%' height='100%'>
+                        <source srcset="{{ collection | img_url: '1024x' }}, {{ collection | img_url: '2048x' }} 2x">
+                        <img src="{{ collection | img_url: '1024x' }}" width='100%' height='100%'>
                     </picture>
                 </div>
                 <div class='caption'>
@@ -34,8 +32,8 @@
                 <source media="{max-width:390px}" srcset="{{ section.settings.fallback_image | image_url: '390x' }}, {{ section.settings.fallback_image | image_url: '780x' }} 2x ">
                 <source media="{max-width:768px}" srcset="{{ section.settings.fallback_image | image_url: '768x' }}, {{ section.settings.fallback_image | image_url: '1536x' }} 2x ">
                 <source media="{max-width:1024px}" srcset="{{ section.settings.fallback_image | image_url: '1024x' }}, {{ section.settings.fallback_image | image_url: '2048x' }} 2x ">
-                <source srcset="{{ section.settings.fallback_image | img_url: '414x' }}, {{ section.settings.fallback_image | img_url: '828x' }} 2x">
-                <img src="{{ section.settings.fallback_image | img_url: '414x' }}" width='100%' height='100%'>
+                <source srcset="{{ section.settings.fallback_image | img_url: '1024x' }}, {{ section.settings.fallback_image | img_url: '2048x' }} 2x">
+                <img src="{{ section.settings.fallback_image | img_url: '1024x' }}" width='100%' height='100%'>
             </picture>
         </div>
         <div class="content">
@@ -45,8 +43,8 @@
                         <source media="{max-width:390px}" srcset="{{ section.settings.fallback_image | image_url: '390x' }}, {{ section.settings.fallback_image | image_url: '780x' }} 2x ">
                         <source media="{max-width:768px}" srcset="{{ section.settings.fallback_image | image_url: '768x' }}, {{ section.settings.fallback_image | image_url: '1536x' }} 2x ">
                         <source media="{max-width:1024px}" srcset="{{ section.settings.fallback_image | image_url: '1024x' }}, {{ section.settings.fallback_image | image_url: '2048x' }} 2x ">
-                        <source srcset="{{ section.settings.fallback_image | img_url: '414x' }}, {{ section.settings.fallback_image | img_url: '828x' }} 2x">
-                        <img src="{{ section.settings.fallback_image | img_url: '414x' }}" width='100%' height='100%'>
+                        <source srcset="{{ section.settings.fallback_image | img_url: '1024x' }}, {{ section.settings.fallback_image | img_url: '2048x' }} 2x">
+                        <img src="{{ section.settings.fallback_image | img_url: '1024x' }}" width='100%' height='100%'>
                     </picture>
                 </div>
                 <div class='caption'>
@@ -101,4 +99,15 @@
 .collection-banner .content .caption {
     display:none;
 }
+@media(min-width: 800px) {
+    .collection-banner {
+        height: 368px;
+    }
+    .collection-banner .card {
+        top: 10%;
+        width: 75%;
+        height: 80%;
+    }
+}
+
 {% endstyle %}
