@@ -16,11 +16,14 @@
             </form>
         </div>
     </div>
-    <a href='/' class='logo'>zebra</a>
+    <a href='/' class='logo mobile'>zebra</a>
     <ul id='nav'>
         {% for link in linklists.main-menu.links %}
+            {% assign midpoint = forloop.length | divided_by: 2 %}
+            {% if forloop.index0 == midpoint %}
+                <a href='/' class='logo desktop'>zebra</a>
+            {% endif %}
         <li class="menu-link">
-
             {% if link.links.size > 0 %}
             <input type='checkbox' name='open-submenu-{{forloop.index}}' class='open-menu' id='open-submenu-{{forloop.index}}' />
             <label href='/menu' class="menu-label" for='open-submenu-{{forloop.index}}'>{{ link.title }}
@@ -91,10 +94,9 @@
     right: 0;
     z-index: 3;
 }
-
+.nav_bar .logo.desktop { display: none; }
 .nav_bar ul#nav {
     list-style: none;
-    transition: .4s;
     background-color: #363636e6;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -106,6 +108,10 @@
     width: 100%;
     max-width: 300px;
     left: -300px;
+	transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
 }
 
 .nav_bar ul {
@@ -140,15 +146,10 @@
     margin-top: 1px;
     width: 45px;
     height: 45px;
-    /* overflow-x: hidden; */
     float: left;
-    /* padding: 8px; */
-    /* margin-left: 12px; */
-    // background-color: #fff;
 }
 
 .nav_bar .left  .search-container svg {
-    /* position: absolute; left: 0; */
     width: 18px;
     height: 18px;
 	outline: none;
@@ -158,23 +159,20 @@
 .nav_bar .search {
     position: absolute;
     left: 38px;
-	/* padding: 8px 0; */
 	width: 0;
-	/* height: 100%; */
 	padding: 4px 0;
 	z-index: 10;
 	outline: none;
 	border: none;
-	transition-duration: 0.4s;
     background-color: #1e1e1e;
     color: white;
     border-bottom: solid 2px #fff;
+	transition-duration: 0.4s;
 	-moz-transition-duration: 0.4s;
 	-webkit-transition-duration: 0.4s;
 	-o-transition-duration: 0.4s;
 }
 .nav_bar .search-button {
-    /* display: none; */
     position: absolute;
     width: 31px;
     height: 31px;
@@ -191,11 +189,10 @@
 	width: clamp(100px, 50vw, 200px);
 	padding-right: 32px;
     z-index: 3;
-    /* top: 4px; */
 }
 
 .nav_bar .search:focus + .search-button {
-    /* display: inline-block; */
+    cursor: pointer;
     opacity: 1;
 	-moz-transition-duration: 0.4s;
 	-webkit-transition-duration: 0.4s;
@@ -207,7 +204,7 @@
     padding: 8px;
     width: 20px;
     height: 20px;
-    /* position: absolute; left: 0; */
+    cursor: pointer;
 }
 
 .nav_bar .menu {
@@ -260,6 +257,9 @@
     background-color: #fff;
     border-radius: 5px;
     transition: all .3s ease-in-out;
+-moz-transition-duration: all .3s ease-in-out;
+-webkit-transition-duration: all .3s ease-in-out;
+-o-transition-duration: all .3s ease-in-out;
     margin: auto;
 }
 .nav_bar .menu_burger::before, .nav_bar .menu_burger::after {
@@ -271,6 +271,9 @@
   background-color: #fff;
   border-radius: 5px;
   transition: all .3s ease-in-out;
+-moz-transition-duration: all .3s ease-in-out;
+-webkit-transition-duration: all .3s ease-in-out;
+-o-transition-duration: all .3s ease-in-out;
 }
 .nav_bar .menu_burger::before {
     transform: translateY(-5px);
@@ -366,6 +369,89 @@
 .st0{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .st1{stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .st2{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;}
+
+@media(min-width: 1000px) {
+    .nav_bar .menu, .nav_bar .logo.mobile { display: none; }
+    .nav_bar .logo.desktop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .nav_bar .left .search-container {
+        left: 0;
+    }
+    .nav_bar ul#nav {
+        padding: 0;
+        position: relative;
+        top: 0; left: 0;
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+        background-color: #1e1e1e;
+	transition-duration: 0s;
+	-moz-transition-duration: 0s;
+	-webkit-transition-duration: 0s;
+	-o-transition-duration: 0s;
+    }
+    .nav_bar ul#nav > li, .nav_bar ul#nav > li a, .nav_bar ul#nav > li label {
+        height: 100%;
+    }
+    .nav_bar ul {
+        background-color: #1e1e1e;
+    }
+    .nav_bar ul li, .nav_bar ul a, .menu-link label {
+        display: inline-block;
+        width: auto;
+    }
+    .nav_bar ul li, .nav_bar ul a, .menu-link label, .nav_bar .dropdown-menu .menu-link a {
+        font-size: 1.2rem;
+    }
+    .nav_bar ul li a, .menu-link label {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 clamp(8px, 1.25vw, 16px);
+    }
+     .menu-link label svg {
+        position: static;
+     }
+    .nav_bar .dropdown-menu {
+        position: absolute;
+        display: flex;
+        flex=direction: column;
+        width: 15rem;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .nav_bar .dropdown-menu li, .nav_bar .dropdown-menu li a {
+        z-index: 10;
+        position: relative;
+        left: 0;
+        /* padding: 8px; */
+        box-sizing: border-box;
+        width: 100%;
+        text-align: left;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .nav_bar .dropdown-menu li a {
+        padding: 12px 16px;
+    }
+    .menu-link label:hover ~ ul.dropdown-menu, ul.dropdown-menu:hover  {
+        background-color: #363636;
+        display: flex;
+    }[id^=open-submenu]:checked + label svg {
+        transform: none;
+    }
+}
 {%- endstyle -%}
 
 {% javascript %}
