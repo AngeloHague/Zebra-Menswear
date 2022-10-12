@@ -78,10 +78,10 @@
           {%- endfor -%}
         </ul>
       {%- endunless -%}
-    </div>
-    <div class='closing'>
-      <p>Copyright &copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: '/' }}</p>
-      <p> {{ powered_by_link }} </p>
+      <div class='closing'>
+        <p>Copyright &copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: '/' }}</p>
+        <p> {{ powered_by_link }} </p>
+      </div>
     </div>
   </div>
 </div>
@@ -155,10 +155,7 @@
 
 .footer {
   width: 100%;
-}
-
-.footer .section {
-  /* padding: 16px 0; */
+  padding-bottom: 16px;
 }
 
 .footer p {
@@ -249,5 +246,17 @@
   text-align: center;
   font-size: 1rem;
   margin: 0;
+}
+@media(min-width: 1000px) {
+  .footer .mobile-only { display: none; }
+  .footer {
+    display: grid;
+    padding-bottom: 48px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 'info contact shop';
+  }
+  .information { grid-area: info; }
+  .contact-us { grid-area: contact; }
+  .shop-with-us { grid-area: shop; }
 }
   {%- endstyle -%}
