@@ -1,6 +1,8 @@
-<h1>{{ page.title }}</h1>
+{{ 'page-forms.css' | asset_url | stylesheet_tag }}
+<div class='page-form'>
+  <h2>{{ page.title }}</h2>
 {% form 'contact' %}
-  {% if form.posted_successfully? %} Thank you for your contact {% endif %}
+  {% if form.posted_successfully? %} <p class='success'>Thank you contacting us!<p> {% endif %}
   {{ form.errors | default_errors }}
   <label for="ContactFormName">name</label>
   <input type="text" id="ContactFormName" name="contact[name]">
@@ -12,3 +14,4 @@
   <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
   <input type="submit" value="send">
 {% endform %}
+</div>
