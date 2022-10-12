@@ -1,0 +1,4 @@
+Always Consult The Care Label<br/>
+{% if product.metafields.care-info.info %}
+    {{product.metafields.care-info.info | newline_to_br}}
+{% endif %}

@@ -127,7 +127,30 @@
         <button class='button' type="submit" name="add" id="SoldOut" disabled>SOLD OUT</button>
       {% endif %}
     </form>
-    <div class='description'>{{ product.description }}</div>
+    <div class='product-details'>
+      <details open>
+        <summary>
+          <div>
+            {% render 'icon-align-justify' %}
+            <p>Description</p>
+          </div>
+          <div class='indicator'>{% render 'icon-chevron-down' %}</div>
+        </summary>
+        <div class='description'>{{ product.description }}</div>
+      </details>
+      <details>
+        <summary>
+          <div>
+            {% render 'icon-heart' %}
+            <p>Care Information</p>
+          </div>
+          <div class='indicator'>{% render 'icon-chevron-down' %}</div>
+        </summary>
+        <div class='care-info'>
+          {% render 'care-information' %}
+        </div>
+      </details>
+    </div>
   </div>
 </div>
 
@@ -363,8 +386,46 @@ ul.image-nav input {
   padding: 4px 0;
 }
 
-.description {
-  padding-top: 8px;
+.product-details {
+  margin-top: 16px;
+}
+.product-details details {
+  border-top: solid 1px #ccc;
+  border-bottom: solid 1px #ccc;
+}
+.product-details details[open] .indicator {
+  transform: rotate(180deg);
+}
+.product-details summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.product-details summary div {
+  display: flex;
+  align-content: center;
+}
+.product-details summary div p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 100%;
+  align-self: center;
+  text-transform: uppercase;
+}
+.product-details summary div svg {
+  height: 2rem;
+  margin-right: 16px;
+}
+.product-details details .indicator svg {margin: 0;}
+.product-details summary {
+  padding: 16px;
+}
+
+.description, .care-info {
+  padding: 8px 0;
+  padding-left: 32px;
+  font-size: 1.4rem;
 }
 
 .description strong {
@@ -439,6 +500,7 @@ ul.image-nav input {
   .main-product {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: start;
   }
   .slider {
     margin: 0;
@@ -449,7 +511,7 @@ ul.image-nav input {
   .product-images {
     display: flex;
     flex-direction: row-reverse;
-    /* height: 100%; */
+    height: 100%;
   }
   .product-images ul.image-nav {
     /* flex-direction: column; */
