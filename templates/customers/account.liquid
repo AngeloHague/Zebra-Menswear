@@ -37,7 +37,7 @@
                             <h3>Total</h3>
                             <p>{{order.total_price | money_with_currency}}</p>
                         </div>
-                        <a class='button' href='{{order.customer_url}}'><div>View Order</div></a>
+                        <a class='button' href='{{order.customer_url}}'>View Order</a>
                     </div>
                 {% endfor %}
             {% render 'pages' with paginate %}
@@ -49,6 +49,3 @@
         {% endif %}
     </div>
 </div>
-
-{% style %}
-{% endstyle %}

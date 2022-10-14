@@ -2,7 +2,10 @@
 <script src="{{ 'customer.js' | asset_url }}" defer></script>
 
 <div class='account'>
-    <h1>My Account</h1>
+    <div class='header'>
+        <h1 class='header-cell'>My Account</h1>
+        <a href='/account/logout/'><h1 class='header-cell log-out'>Log Out {% render 'icon-log-out' %}</h1></a>
+    </div>
     <div class='tabs'>
         <div class='tab'>
             <a href="/account">Orders</a>
@@ -47,129 +50,63 @@
                 </div>
         </details>
         
-        {% for address in customer.addresses %}
-            <!-- address details -->
-            <details>
-                <summary>
-                        <div>
-                            {% if address == customer.default_address %}
-                                <h3 class='default'>Default Address</h3>
-                            {% endif %}
-                            {{address.name}}<br>
-                            {{address.address1}}<br>
-                            {% if address.address2 != blank %}{{order.shipping_address.address2}}<br>{% endif %}
-                            {{address.city}} {{order.shipping_address.zip}}<br>
-                            {{address.country}}
+        <div class='address-list'>
+            {% for address in customer.addresses %}
+                <details>
+                    <summary>
+                            <div>
+                                {% if address == customer.default_address %}
+                                    <h3 class='default'>Default Address</h3>
+                                {% endif %}
+                                {{address.name}}<br>
+                                {{address.address1}}<br>
+                                {% if address.address2 != blank %}{{order.shipping_address.address2}}<br>{% endif %}
+                                {{address.city}} {{order.shipping_address.zip}}<br>
+                                {{address.country}}
+                            </div>
+                            {% render 'icon-chevron-down' %}
+                    </summary>
+                    <div class='form-container'>
+                        {% form 'customer_address', address %}
+                            <label class='required' for='fname-{{forloop.index}}'>First name</label>
+                            <input type="text" name='address[first_name]' id='fname-{{forloop.index}}' value='{{address.first_name}}' required autocomplete='given-name'>
+                            <label class='required' for='sname-{{forloop.index}}'>Last Name</label>
+                            <input type="text" name='address[last_name]' id='sname-{{forloop.index}}' value='{{address.last_name}}' required autocomplete='family-name'>
+                            <label for='company-{{forloop.index}}'>Company </label>
+                            <input type="text" name='address[company]' id='company-{{forloop.index}}' value='{{address.company}}' autocomplete='company'>
+                            <label class='required' for='address-1-{{forloop.index}}'>Address 1</label>
+                            <input type="text" name='address[address1]' id='address-1-{{forloop.index}}' value='{{address.address1}}' required autocomplete='address-line1'>
+                            <label for='address-2-{{forloop.index}}'>Address 2</label>
+                            <input type="text" name='address[address2]' id='address-2-{{forloop.index}}' value='{{address.address2}}' autocomplete='address-line2'>
+                            <label class='required' for='city-{{forloop.index}}'>City</label>
+                            <input type="text" name='address[city]' id='address[city]-{{forloop.index}}' value='{{address.city}}' required autocomplete='address-level2'>
+                            <label class='required' for='region-{{forloop.index}}'>Country / Region</label>
+                            <select name='address[country]' id='region-{{forloop.index}}' value='{{address.country}}' required autocomplete='address-region'>
+                                <option value="{{address.country}}" data-provinces='[]' selected>{{address.country}}</option>
+                                {{ all_country_option_tags }}
+                            </select>
+                            <label class='required' for='zip-{{forloop.index}}'>Postal / ZIP Code</label>
+                            <input type="text" name='address[zip]' id='zip-{{forloop.index}}' value='{{address.zip}}' required autocomplete='postal-code'>
+                            <label class='required' for='phone-{{forloop.index}}'>Phone</label>
+                            <input type="tel" name='address[phone]' id='phone-{{forloop.index}}' value='{{address.phone}}' required autocomplete='tel'>
+                            <label for='default-address'>Set as default address</label>
+                            {{ form.set_as_default_checkbox }}
+                            <div class='buttons'>
+                                <button class='button white' type="reset">Cancel</button>
+                                <button>Update</button>
+                            </div>
+                        {% endform %}
+                        <form class="address-delete-form"
+                            method="post"
+                            action="/account/addresses/{{ address.id }}"
+                            onsubmit="return confirm('Are you sure you want to delete this address? \n This cannot be undone.');"
+                        >
+                          <input type="hidden" name="_method" value="delete">
+                          <button class='button delete' type="submit">Delete this address?</button>
+                        </form>
                         </div>
-                        {% render 'icon-chevron-down' %}
-                </summary>
-                <div class='form-container'>
-                    {% form 'customer_address', address %}
-                        <label class='required' for='fname-{{forloop.index}}'>First name</label>
-                        <input type="text" name='address[first_name]' id='fname-{{forloop.index}}' value='{{address.first_name}}' required autocomplete='given-name'>
-                        <label class='required' for='sname-{{forloop.index}}'>Last Name</label>
-                        <input type="text" name='address[last_name]' id='sname-{{forloop.index}}' value='{{address.last_name}}' required autocomplete='family-name'>
-                        <label for='company-{{forloop.index}}'>Company </label>
-                        <input type="text" name='address[company]' id='company-{{forloop.index}}' value='{{address.company}}' autocomplete='company'>
-                        <label class='required' for='address-1-{{forloop.index}}'>Address 1</label>
-                        <input type="text" name='address[address1]' id='address-1-{{forloop.index}}' value='{{address.address1}}' required autocomplete='address-line1'>
-                        <label for='address-2-{{forloop.index}}'>Address 2</label>
-                        <input type="text" name='address[address2]' id='address-2-{{forloop.index}}' value='{{address.address2}}' autocomplete='address-line2'>
-                        <label class='required' for='city-{{forloop.index}}'>City</label>
-                        <input type="text" name='address[city]' id='address[city]-{{forloop.index}}' value='{{address.city}}' required autocomplete='address-level2'>
-                        <label class='required' for='region-{{forloop.index}}'>Country / Region</label>
-                        <select name='address[country]' id='region-{{forloop.index}}' value='{{address.country}}' required autocomplete='address-region'>
-                            <option value="{{address.country}}" data-provinces='[]' selected>{{address.country}}</option>
-                            {{ all_country_option_tags }}
-                        </select>
-                        <label class='required' for='zip-{{forloop.index}}'>Postal / ZIP Code</label>
-                        <input type="text" name='address[zip]' id='zip-{{forloop.index}}' value='{{address.zip}}' required autocomplete='postal-code'>
-                        <label class='required' for='phone-{{forloop.index}}'>Phone</label>
-                        <input type="tel" name='address[phone]' id='phone-{{forloop.index}}' value='{{address.phone}}' required autocomplete='tel'>
-                        <label for='default-address'>Set as default address</label>
-                        {{ form.set_as_default_checkbox }}
-                        <div class='buttons'>
-                            <button class='button white' type="reset">Cancel</button>
-                            <button>Update</button>
-                        </div>
-                    {% endform %}
-                    <form class="address-delete-form"
-                        method="post"
-                        action="/account/addresses/{{ address.id }}"
-                    >
-                      <input type="hidden" name="_method" value="delete">
-                      <button class='button delete' type="submit">Delete this address?</button>
-                    </form>
-                    </div>
-            </details>
-        {% endfor %}
+                </details>
+            {% endfor %}
+        </div>
     </div>
 </div>
-
-{% style %}
-
-.addresses {
-    margin: 16px;
-}
-.addresses details {
-    border-top: solid 1px #ccc;
-    padding: 8px 0;
-}
-.addresses details:last-of-type { border-bottom: solid 1px #ccc; }
-.addresses summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    list-style: none;
-}
-.addresses details svg { stroke-width: 1; }
-.addresses details[open] svg { transform: rotate(180deg); }
-.addresses .form-container {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 16px;
-}
-.addresses .form-container form, .addresses .form-container .address-delete-form {
-    box-sizing: border-box;
-    width: 100%;
-}
-.addresses .default {
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    font-weight: 500;
-    padding-bottom: 8px;
-}
-.addresses .form-container input[type='text'], .addresses .form-container input[type='tel'], .addresses .form-container button, .addresses .form-container select {
-    box-sizing: border-box;
-    width: 100%;
-    font-size: 1.4rem;
-    padding: 8px;
-}
-.form-container label {
-    text-transform: uppercase;
-    font-size: 1.4rem;
-    font-weight: 500;
-}
-.form-container input { margin-bottom: 8px;}
-.form-container button { margin-top: 8px; }
-
-.form-container label.required:after {
-	content: ' *';
-	color: #c25757;
-  }
-.form-container .buttons {
-    display:flex;
-    justify-content: space-between;
-}
-.form-container .buttons button { margin-right: 8px; }
-.form-container .buttons button:last-of-type { margin-right: 0; }
-.form-container .button.delete {
-    box-sizing: border-box;
-    width: 100%;
-    margin-top: 8px;
-    padding: 0;
-    background-color: #c25757;
-    border-color: #c25757;
-}
-{% endstyle %}

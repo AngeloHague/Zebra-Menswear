@@ -113,6 +113,8 @@
     width: 1.8rem;
 }
 
+.orders { margin-top: 16px; }
+
 .order {
     border-bottom: solid 1px #ccc;
     margin: 0 16px;
@@ -123,7 +125,6 @@
 
 .order:first-of-type {
     border-top: solid 1px #ccc;
-    margin-top: 16px;
 }
 
 .account .order .button {
@@ -133,10 +134,12 @@
 
 .account .order h3, .account .order-item h3 { margin-top: 8px; }
 .account .order h3, .account .order-item h3, .account .order-item p, .account .return, .account .order-details .order-no, .account .order a div {
+    font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.2rem;
     font-weight: 500;
     text-transform: uppercase;
 }
+.account h3 { text-align: left; }
 .account .order-item p { font-weight: 400; }
 .account .order-details .order-no { font-size: 1.5rem; }
 
@@ -149,4 +152,87 @@
 .account .order-item p {
     font-size: 1.4rem;
     text-transform: capitalize;
+}
+
+.addresses {
+    margin: 16px;
+}
+.addresses details {
+    border-bottom: solid 1px #ccc;
+    padding: 8px 0;
+}
+.addresses summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    list-style: none;
+    cursor: pointer;
+}
+.addresses details svg { stroke-width: 1; }
+.addresses details[open] svg { transform: rotate(180deg); }
+.addresses .form-container {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+}
+.addresses .form-container form, .addresses .form-container .address-delete-form {
+    box-sizing: border-box;
+    width: 100%;
+}
+.addresses .default {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding-bottom: 8px;
+}
+.addresses .form-container input[type='text'], .addresses .form-container input[type='tel'], .addresses .form-container button, .addresses .form-container select {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 8px;
+}
+.form-container label {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.form-container input { margin-bottom: 8px;}
+.form-container button { margin-top: 8px; }
+
+.form-container label.required:after {
+	content: ' *';
+	color: #c25757;
+  }
+.form-container .buttons {
+    display:flex;
+    justify-content: space-between;
+}
+.form-container .buttons button { margin-right: 8px; }
+.form-container .buttons button:last-of-type { margin-right: 0; }
+.form-container .button.delete {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 8px;
+    padding: 0;
+    background-color: #c25757;
+    border-color: #c25757;
+}
+
+@media(min-width: 800px) {
+    .orders {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: solid 1px #ccc;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+    .addresses .form-container .address-delete-form {
+        width: 50%;
+        margin: auto;
+    }
+    .addresses .form-container .address-delete-form .button.delete{ padding: 8px; }
+    .orders .order:first-of-type {
+        border-top: none;
+    }
 }
