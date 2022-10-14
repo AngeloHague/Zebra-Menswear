@@ -25,10 +25,10 @@
             <img src="{{ image | img_url: '300x' }}" width='100%' height='100%' >
           </picture>
           <a class='control left' href='#image-{{prev}}'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            {% render 'icon-chevron-left' %}
           </a>
           <a class='control right' href='#image-{{next}}'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            {% render 'icon-chevron-right' %}
           </a>
         </section>
       {% endfor %}
@@ -396,6 +396,8 @@ ul.image-nav input {
 }
 .product-details details {
   border-top: solid 1px #ccc;
+}
+.product-details details:last-of-type {
   border-bottom: solid 1px #ccc;
 }
 .product-details details[open] .indicator {

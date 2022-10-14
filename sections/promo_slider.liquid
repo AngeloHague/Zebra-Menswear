@@ -30,7 +30,7 @@
                             </div>
                             <div class="content">
                                 <label for='slide-{{prev}}' class='previous desktop-only'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                    {% render 'icon-chevron-left' %}
                                 </label>
                                 <div class="card">
                                     <a href='{{block.settings.collection.url}}' class='image'>
@@ -43,7 +43,7 @@
                                     </a>
                                     <div class='caption'>
                                         <label for='slide-{{prev}}' class='previous mobile-only'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                            {% render 'icon-chevron-left' %}
                                         </label>
                                         {% if block.settings.caption != blank %}
                                             <a href='{{block.settings.collection.url}}'><p>{{ block.settings.caption }}</p></a>
@@ -51,12 +51,12 @@
                                             <a href='{{block.settings.collection.url}}'><p>Explore the {{ block.settings.collection.title }} collection</p></a>
                                         {% endif %}
                                         <label for='slide-{{next}}' class='next mobile-only'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                            {% render 'icon-chevron-right' %}
                                         </label>
                                     </div>
                                 </div>
                                 <label for='slide-{{next}}' class='next desktop-only'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    {% render 'icon-chevron-right' %}
                                 </label>
                             </div>
                         </li>
