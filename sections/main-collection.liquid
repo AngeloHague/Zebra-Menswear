@@ -1,8 +1,10 @@
 {{ 'products.css' | asset_url | stylesheet_tag }}
-<div class='collection'>
-  <div class='page-title'>
+<div class='collection' id='collection'>
+  {% if section.settings.show-title %}
+    <div class='page-title'>
       <p>{{collection.title}}</p>
   </div>
+  {% endif %}
   <div class='description'>
     {{collection.description}}
   </div>
@@ -71,9 +73,24 @@
   .collection .no-matches {
     text-align: center;
   }
-@media (min-width: 800px) {
-  .products {
-    grid-template-columns: 25% 25% 25% 25%;
+
+  @media (min-width: 800px) {
+    .products {
+      grid-template-columns: 25% 25% 25% 25%;
+    }
   }
-}
-  {% endstyle %}
+{% endstyle %}
+
+{% schema %}
+    {
+        "name": "Collection",
+        "settings": [
+          {
+              "type" : "checkbox",
+              "id" : "show-title",
+              "label" : "Show Collection Title",
+              "default": true
+          }
+        ]
+    }
+{% endschema %}
