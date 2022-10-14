@@ -18,7 +18,7 @@
               {% assign prev = forloop.index | minus: 1 %}
               {% assign next = forloop.index | plus: 1 %}
           {% endif %}
-        <li class='product-image' id='image-{{forloop.index}}' >
+        <section class='product-image' id='image-{{forloop.index}}' >
           <picture>
             <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
             <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
@@ -30,7 +30,7 @@
           <a class='control right' href='#image-{{next}}'>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
-        </li>
+        </section>
       {% endfor %}
     </ul>
     </div>
@@ -231,9 +231,13 @@
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  scroll-behavior: smooth;
   margin: auto;
   /* margin-top: 16px; */
+}
+.slider .images {
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
 }
 .slider .product-image {
   vertical-align: bottom;
@@ -243,6 +247,7 @@
   width: 100%;
   /* height: 375px; */
   padding: 16px 32px 8px;
+    scroll-snap-align: start;
 }
 .slider .control {
   position: absolute;
