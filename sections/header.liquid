@@ -20,37 +20,44 @@
     <ul id='nav'>
         {% for link in linklists.main-menu.links %}
             {% assign midpoint = forloop.length | divided_by: 2 %}
+            {% assign isOdd = forloop.length | modulo: 2 %}
+            {% if isOdd == 1 %}
+                {% assign midpoint = midpoint | plus: 1 %}
+            {% endif %}
             {% if forloop.index0 == midpoint %}
                 <a href='/' class='logo desktop'>zebra</a>
             {% endif %}
-        <li class="menu-link">
-            {% if link.links.size > 0 %}
-            <input type='checkbox' name='open-submenu-{{forloop.index}}' class='open-menu' id='open-submenu-{{forloop.index}}' />
-            <label href='/menu' class="menu-label" for='open-submenu-{{forloop.index}}'>{{ link.title }}
-                {% render 'icon-chevron-down' %}
-        </label>
-            <ul class="dropdown-menu">
-                {% for child_link in link.links %}
-                <li class="menu-link">
-                    <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-
-                    {% if child_link.links.size > 0 %}
-                    <ul class="dropdown grandchild">
-                        {% for grandchild_link in child_link.links %}
+            <li class="menu-link">
+                {% if link.links.size > 0 %}
+                <input type='checkbox' name='open-submenu-{{forloop.index}}' class='open-menu' id='open-submenu-{{forloop.index}}' />
+                <label href='/menu' class="menu-label" for='open-submenu-{{forloop.index}}'>{{ link.title }}
+                    {% render 'icon-chevron-down' %}
+                </label>
+                <ul class="dropdown-menu">
+                    {% for child_link in link.links %}
                         <li class="menu-link">
-                            <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                            <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+
+                            {% if child_link.links.size > 0 %}
+                            <ul class="dropdown grandchild">
+                                {% for grandchild_link in child_link.links %}
+                                <li class="menu-link">
+                                    <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
                         </li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <a href="{{ link.url }}">{{ link.title }}</a>
-            {% endif %}
-        </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+                {% endif %}
+            </li>
         {% endfor %}
+        {% if isOdd == 1 %}
+            <li class="menu-link">&nbsp;</li>
+        {% endif %}
     </ul>
     <div class='right'>
         <a href="/account" class="account">
@@ -383,6 +390,7 @@
         padding: 0;
         height: 100%;
     }
+    .nav_bar .menu-link { min-width: 7rem; }
 
     .nav_bar .left .search-container {
         left: 0;
