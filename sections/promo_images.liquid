@@ -8,9 +8,9 @@
                         <a href='{{block.settings.collection.url}}'>
                         <div class='image'>
                             <picture>
-                                <source media="{max-width:390px}" srcset="{{ block.settings.collection | image_url: '390x' }}, {{ block.settings.collection | image_url: '780x' }} 2x ">
-                                <source media="{max-width:512x}" srcset="{{ block.settings.collection | image_url: '512x' }}, {{ block.settings.collection | image_url: '1024x' }} 2x ">
-                                <source media="{max-width:768px}" srcset="{{ block.settings.collection | image_url: '768x' }}, {{ block.settings.collection | image_url: '1536x' }} 2x ">
+                                <source media="(max-width:390px)" srcset="{{ block.settings.collection | img_url: '390x' }}, {{ block.settings.collection | img_url: '780x' }} 2x ">
+                                <source media="(max-width:512x)" srcset="{{ block.settings.collection | img_url: '512x' }}, {{ block.settings.collection | img_url: '1024x' }} 2x ">
+                                <source media="(max-width:768px)" srcset="{{ block.settings.collection | img_url: '768x' }}, {{ block.settings.collection | img_url: '1536x' }} 2x ">
                                 <source srcset="{{ block.settings.collection | img_url: '1024x' }}, {{ block.settings.collection | img_url: '2048x' }} 2x">
                                 <img src="{{ block.settings.collection | img_url: '1024x' }}" width='100%' height='100%'>
                             </picture>

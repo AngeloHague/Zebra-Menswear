@@ -3,8 +3,8 @@
     <div class='slide'>
         <div class="bg_blur">
             <picture>
-                <source media="{max-width:390px}" srcset="{{ collection | image_url: '390x' }}, {{ collection | image_url: '780x' }} 2x ">
-                <source media="{max-width:768px}" srcset="{{ collection | image_url: '768x' }}, {{ collection | image_url: '1536x' }} 2x ">
+                <source media="(max-width:390px)" srcset="{{ collection | img_url: '390x' }}, {{ collection | image_url: '780x' }} 2x ">
+                <source media="(max-width:768px)" srcset="{{ collection | img_url: '768x' }}, {{ collection | image_url: '1536x' }} 2x ">
                 <source srcset="{{ collection | img_url: '1024x' }}, {{ collection | img_url: '2048x' }} 2x">
                 <img src="{{ collection | img_url: '1024x' }}" width='100%' height='100%'>
             </picture>
@@ -13,8 +13,8 @@
             <div class="card">
                 <div class='image'>
                     <picture>
-                        <source media="{max-width:390px}" srcset="{{ collection | image_url: '390x' }}, {{ collection | image_url: '780x' }} 2x ">
-                        <source media="{max-width:768px}" srcset="{{ collection | image_url: '768x' }}, {{ collection | image_url: '1536x' }} 2x ">
+                        <source media="(max-width:390px)" srcset="{{ collection | img_url: '390x' }}, {{ collection | img_url: '780x' }} 2x ">
+                        <source media="(max-width:768px)" srcset="{{ collection | img_url: '768x' }}, {{ collection | img_url: '1536x' }} 2x ">
                         <source srcset="{{ collection | img_url: '1024x' }}, {{ collection | img_url: '2048x' }} 2x">
                         <img src="{{ collection | img_url: '1024x' }}" width='100%' height='100%'>
                     </picture>
@@ -29,10 +29,9 @@
     <div class='slide'>
         <div class="bg_blur">
             <picture>
-                <source media="{max-width:390px}" srcset="{{ section.settings.fallback_image | image_url: '390x' }}, {{ section.settings.fallback_image | image_url: '780x' }} 2x ">
-                <source media="{max-width:768px}" srcset="{{ section.settings.fallback_image | image_url: '768x' }}, {{ section.settings.fallback_image | image_url: '1536x' }} 2x ">
-                <source media="{max-width:1024px}" srcset="{{ section.settings.fallback_image | image_url: '1024x' }}, {{ section.settings.fallback_image | image_url: '2048x' }} 2x ">
-                <source srcset="{{ section.settings.fallback_image | img_url: '1024x' }}, {{ section.settings.fallback_image | img_url: '2048x' }} 2x">
+                <source media="(max-width:390px)" srcset="{{ section.settings.fallback_image | img_url: '390x' }}, {{ collection | img_url: '780x' }} 2x ">
+                <source media="(max-width:768px)" srcset="{{ section.settings.fallback_image | img_url: '768x' }}, {{ collection | img_url: '1536x' }} 2x ">
+                <source srcset="{{ section.settings.fallback_image | img_url: '1024x' }}, {{ section.settings.fallback_image | img_url: '2048x' }} 2x ">
                 <img src="{{ section.settings.fallback_image | img_url: '1024x' }}" width='100%' height='100%'>
             </picture>
         </div>
@@ -40,10 +39,9 @@
             <div class="card">
                 <div class='image'>
                     <picture>
-                        <source media="{max-width:390px}" srcset="{{ section.settings.fallback_image | image_url: '390x' }}, {{ section.settings.fallback_image | image_url: '780x' }} 2x ">
-                        <source media="{max-width:768px}" srcset="{{ section.settings.fallback_image | image_url: '768x' }}, {{ section.settings.fallback_image | image_url: '1536x' }} 2x ">
-                        <source media="{max-width:1024px}" srcset="{{ section.settings.fallback_image | image_url: '1024x' }}, {{ section.settings.fallback_image | image_url: '2048x' }} 2x ">
-                        <source srcset="{{ section.settings.fallback_image | img_url: '1024x' }}, {{ section.settings.fallback_image | img_url: '2048x' }} 2x">
+                        <source media="(max-width:390px)" srcset="{{ section.settings.fallback_image | img_url: '390x' }}, {{ collection | img_url: '780x' }} 2x ">
+                        <source media="(max-width:768px)" srcset="{{ section.settings.fallback_image | img_url: '768x' }}, {{ collection | img_url: '1536x' }} 2x ">
+                        <source srcset="{{ section.settings.fallback_image | img_url: '1024x' }}, {{ section.settings.fallback_image | img_url: '2048x' }} 2x ">
                         <img src="{{ section.settings.fallback_image | img_url: '1024x' }}" width='100%' height='100%'>
                     </picture>
                 </div>

@@ -22,9 +22,9 @@
                         <li class='slide'>
                             <div class="bg_blur">
                                 <picture>
-                                    <source media="{max-width:390px}" srcset="{{ block.settings.collection | image_url: '390x' }}, {{ block.settings.collection | image_url: '780x' }} 2x ">
-                                    <source media="{max-width:768px}" srcset="{{ block.settings.collection | image_url: '768x' }}, {{ block.settings.collection | image_url: '1536x' }} 2x ">
-                                    <source media="{max-width:1024px}" srcset="{{ block.settings.collection | image_url: '1024x' }}, {{ block.settings.collection | image_url: '2048x' }} 2x ">
+                                    <source media="(max-width:390px)" srcset="{{ block.settings.collection | img_url: '390x' }}, {{ block.settings.collection | img_url: '780x' }} 2x ">
+                                    <source media="(max-width:768px)" srcset="{{ block.settings.collection | img_url: '768x' }}, {{ block.settings.collection | img_url: '1536x' }} 2x ">
+                                    <source media="(max-width:1024px)" srcset="{{ block.settings.collection | img_url: '1024x' }}, {{ block.settings.collection | img_url: '2048x' }} 2x ">
                                     <img src="{{ block.settings.collection | img_url: 'master' }}" width='100%' height='100%'>
                                 </picture>
                             </div>
@@ -35,9 +35,9 @@
                                 <div class="card">
                                     <a href='{{block.settings.collection.url}}' class='image'>
                                         <picture>
-                                            <source media="{max-width:390px}" srcset="{{ block.settings.collection | image_url: '390x' }}, {{ block.settings.collection | image_url: '780x' }} 2x ">
-                                            <source media="{max-width:768px}" srcset="{{ block.settings.collection | image_url: '768x' }}, {{ block.settings.collection | image_url: '1536x' }} 2x ">
-                                            <source srcset="{{ block.settings.collection | img_url: '1024x' }}, {{ block.settings.collection | img_url: '2048x' }} 2x">
+                                            <source media="(max-width:390px)" srcset="{{ block.settings.collection | img_url: '390x' }}, {{ block.settings.collection | img_url: '780x' }} 2x ">
+                                            <source media="(max-width:768px)" srcset="{{ block.settings.collection | img_url: '768x' }}, {{ block.settings.collection | img_url: '1536x' }} 2x ">
+                                            <source media="(max-width:1024px)" srcset="{{ block.settings.collection | img_url: '1024x' }}, {{ block.settings.collection | img_url: '2048x' }} 2x ">
                                             <img src="{{ block.settings.collection | img_url: '1024x' }}" width='100%' height='100%'>
                                         </picture>
                                     </a>
