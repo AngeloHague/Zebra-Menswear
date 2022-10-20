@@ -1,0 +1,108 @@
+{{ 'cart.js' | asset_url | script_tag }}
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+<div class='cart-overlay hidden' id='cart-overlay'>
+    <div class='modal' id='cart-modal'>
+        <div class='header'>
+            <h1>Your Cart</h1>
+            <div class='close' onclick='closeCart();'>
+                {% render 'icon-x' %}
+            </div>
+        </div>
+        <div class='cart-error' id='cartError'></div>
+        <div class='cart-contents'>
+            <div id='cart-item-count'></div>
+            <div class='cart-items' id='cartItems'></div>
+        </div>
+        <div class='cart-buttons'>
+            <a href="/cart" class='button white'>View Cart</a>
+            <a href="/cart" class='button'>Checkout</a>
+        </div>
+    </div>
+    <div class='modal-overlay' onclick="closeCart();"></div>
+</div>
+
+{% style %}
+    .modal-overlay {
+        position: fixed;
+        top: 0; left: 0;
+        bottom: 0; right: 0;
+        z-index: 500;
+        background-color: rgba(82, 82, 82, 0.5);
+        opacity: 1;
+      transition: 0.4s;
+    }
+    .modal {
+        width: 100%;
+        max-width: 300px;
+        height: 100%;
+        background-color: #fff;
+        position: fixed;
+        top: 0; right: 0;
+        z-index: 999;
+        transition: 0.4s;
+        display: flex;
+        flex-direction: column;
+    }
+    .modal .header {
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px #ccc;
+    }
+    .modal .header h1 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .modal .header .close {
+        height: 24px;
+        width: 24px;
+        cursor: pointer;
+    }
+    .hidden .modal {
+        right: -300px;
+    }
+    .hidden .modal-overlay {
+        opacity: 0;
+        display: none;
+    }
+    .cart-contents {
+        flex: 1;
+        box-sizing: border-box;
+        height: 100%;
+        /* padding-bottom: 62px; */
+        width: 100%;
+        overflow-y: auto;
+    }
+    .cart-error div {
+        padding: 8px;
+        margin: 8px;
+        background-color: #e37f91;
+    }
+    .cart-error p { font-size: 1.4rem; }
+    .cart-error h3 {
+        font-family: Roboto;
+        text-align: left;
+        font-weight: 500;
+        font-size: 1.2rem;
+    }
+    .cart-contents .cart-item .image {
+        height: 72px;
+    }
+    .cart-contents .cart-item .details .product-title {
+        font-size: 1.3rem;
+    }
+    .cart-contents .cart-item .remove-button { padding: 8px; }
+    .cart-contents .cart-item .remove-button svg { width: 16px; height: 16px; }
+    .cart-buttons {
+        display: flex;
+        padding: 8px;
+        gap: 8px;
+        /* position: absolute;
+        bottom: 0; */
+        width: 100%;
+        box-sizing: border-box;
+        border-top: solid 1px #ccc;
+    }
+{% endstyle %}

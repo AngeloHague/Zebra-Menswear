@@ -1,6 +1,8 @@
 document.documentElement.className = "js"
 var variantStock = {};
-
+var cartContents;
+var cartCount = 0;
+var gError;
 
 function enableSearchBtn() {
     searchBtn.disabled = false;

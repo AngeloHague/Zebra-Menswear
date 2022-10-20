@@ -122,7 +122,7 @@
           </select>
         </div>
       {% if product.available %}
-        <button class='button' type="submit" name="add" id="AddToCart">Add to cart</button>
+        <button class='button' type="submit" name="add" id="AddToCart" onclick="addToCart('AddToCartForm'); return false;">Add to cart</button>
       {% else %}
         <button class='button' type="submit" name="add" id="SoldOut" disabled>SOLD OUT</button>
       {% endif %}
@@ -355,26 +355,26 @@ ul.image-nav input {
   font-weight: 500;
   /* margin: 8px 0; */
 }
-.price {
+.main-product .price {
   float: left;
   font-weight: 500;
 }
-.price, .price span {
+.main-product .price, .price span {
   font-weight: 500;
 }
-.price .original {
+.main-product .price .original {
   text-decoration: line-through;
   font-weight: normal;
   font-size: 1.2rem;
 }
-.price .difference {
+.main-product .price .difference {
   /* float: right; */
   font-weight:500;
   color: #4F607B;
   font-size: 1.2rem;
 }
-.price.no-sale .original,
-.price.no-sale .difference {
+.main-product .price.no-sale .original,
+.main-product .price.no-sale .difference {
   display: none;
 }
 .vendor, .vendor a {
@@ -385,7 +385,7 @@ ul.image-nav input {
   text-decoration: none;
 }
 
-.title {
+.main-product .title {
   font-size: 1.6rem;
   font-weight: 400;
   padding: 4px 0;

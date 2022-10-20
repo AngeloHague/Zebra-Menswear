@@ -70,17 +70,18 @@
             </g>
         </svg>      
         </a>
-        <a href="/cart" class="cart">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="-467 269 24 24" style="enable-background:new -467 269 24 24;" xml:space="preserve">
-            <circle class="st0" cx="-458" cy="290" r="1"/>
-            <circle class="st0" cx="-447" cy="290" r="1"/>
-            <path class="st1" d="M-466,270h4l2.7,13.4c0.2,1,1,1.6,2,1.6h9.7c1,0,1.8-0.7,2-1.6l1.6-8.4h-17"/>
+        <a href="/cart" class="cart" onclick="openCart();return false;">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="-467 269 24 24" style="enable-background:new -467 269 24 24;" xml:space="preserve">
+                <circle class="st0" cx="-458" cy="290" r="1"/>
+                <circle class="st0" cx="-447" cy="290" r="1"/>
+                <path class="st1" d="M-466,270h4l2.7,13.4c0.2,1,1,1.6,2,1.6h9.7c1,0,1.8-0.7,2-1.6l1.6-8.4h-17"/>
             </svg>
-            <div class='item-count'>
-            <p>{{cart.item_count}}</p>
+            <div class='item-count' id='cartCounter'>
+                <p>{{cart.item_count}}</p>
             </div>
         </a>
+        {% render 'cart-overlay' %}
     </div>
 </div>
 
