@@ -13,6 +13,7 @@
             <div id='cart-item-count'></div>
             <div class='cart-items' id='cartItems'></div>
         </div>
+        <div class='subtotal' id='cartSubtotal'></div>
         <div class='cart-buttons'>
             <a href="/cart" class='button white'>View Cart</a>
             <a href="/cart" class='button'>Checkout</a>
@@ -105,4 +106,19 @@
         box-sizing: border-box;
         border-top: solid 1px #ccc;
     }
+@media(min-width: 1024px) {
+    .modal {
+        max-height: 768px;
+        max-width: 384px;
+        top: 46px;
+        border: solid 1px #ccc;
+    }
+    .modal-overlay {
+        background: none;
+    }
+    .hidden .modal {
+        right: -384px;
+    }
+    
+}
 {% endstyle %}
