@@ -20,9 +20,9 @@
   </ul>
   <div class='view-all'>
     {% if section.settings.button-text != blank %}
-      <a class="button" type="button" href='./collections/Clothing';> {{section.settings.button-text}} </a>
+      <a class="button" type="button" href='./collections/Clothing';> {{ section.settings.button-text }} </a>
     {% else %}
-      <a class="button" type="button" href='./collections/Clothing';> View All Categories </a>
+      <a class="button" type="button" href='{{ section.settings.button-collection.url }}';> View All {{ section.settings.button-collection.title }} </a>
     {% endif %}
   </div>
     
