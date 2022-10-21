@@ -1,13 +1,25 @@
 {{ 'products.css' | asset_url | stylesheet_tag }}
+{{ 'description.css' | asset_url | stylesheet_tag }}
 <div class='collection' id='collection'>
   {% if section.settings.show-title %}
     <div class='page-title'>
       <p>{{collection.title}}</p>
   </div>
   {% endif %}
-  <div class='description'>
-    {{collection.description}}
+  {% if collection.description != blank %}
+    <div class='collection-details'>
+      <details>
+        <summary>
+          <div>
+            {% render 'icon-align-justify' %}
+            <p>Description</p>
+          </div>
+          <div class='indicator'>{% render 'icon-chevron-down' %}</div>
+        </summary>
+        <div class='description'>{{ collection.description }}</div>
+      </details>
   </div>
+  {% endif %}
 
   {% render 'dot-separator' %}
 

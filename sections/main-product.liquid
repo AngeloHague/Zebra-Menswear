@@ -1,4 +1,5 @@
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+{{ 'description.css' | asset_url | stylesheet_tag }}
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 <div class='main-product'>
@@ -393,40 +394,6 @@ ul.image-nav input {
 
 .product-details {
   margin-top: 16px;
-}
-.product-details details {
-  border-top: solid 1px #ccc;
-}
-.product-details details:last-of-type {
-  border-bottom: solid 1px #ccc;
-}
-.product-details details[open] .indicator {
-  transform: rotate(180deg);
-}
-.product-details summary {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-}
-.product-details summary div {
-  display: flex;
-  align-content: center;
-}
-.product-details summary div p {
-  font-size: 1.3rem;
-  font-weight: 500;
-  line-height: 100%;
-  align-self: center;
-  text-transform: uppercase;
-}
-.product-details summary div svg {
-  height: 2rem;
-  margin-right: 16px;
-}
-.product-details details .indicator svg {margin: 0;}
-.product-details summary {
-  padding: 16px;
 }
 
 .description, .care-info {
