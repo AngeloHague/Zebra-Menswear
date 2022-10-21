@@ -35,6 +35,9 @@
                 </label>
                 <ul class="dropdown-menu">
                     {% for child_link in link.links %}
+                        {% if forloop.index0 == 0 %}
+                            <li class="menu-link"><a href="{{ link.url }}#collection">View All</a></li>
+                        {% endif %}
                         <li class="menu-link">
                             <a href="{{ child_link.url }}">{{ child_link.title }}</a>
 
