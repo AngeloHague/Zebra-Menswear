@@ -27,7 +27,7 @@
         <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
       </div>
     {% else %}
-      no results
+      <p>Unable to find any results matching this search query.</p>
     {% endfor %}
   {% endif %}
   </div>
