@@ -50,6 +50,16 @@ function removeFromCart(line_id) {
     });
 }
 
+function filterProductTitle(title) {
+    for (var i = 0; i < title.length; i++) {
+        let c = title[i]
+        if (c===' ' || c==='-') {
+            return title.slice(i+1, title.length);
+        }
+    }
+    return title;
+}
+
 function removeFromCartOk(line_id) {
     cartError('Removed item successfully')
     getCart()
@@ -83,6 +93,7 @@ function updateCart(items, currency) {
         const cartHtml = [];
         items.map((item, idx) => {
             let price = new Intl.NumberFormat('en-GB', {style: 'currency', currency: currency}).format(item.price / 100);
+            let title = filterProductTitle(item.product_title);
             cartHtml.unshift(`
             <div class='cart-item'>
                 <div class='image'>
@@ -95,7 +106,7 @@ function updateCart(items, currency) {
                     ${price}
                 </div>
                 <div class='product-title'>
-                    ${item.product_title}
+                    ${title}
                 </div> </a>
                 <div class='variant'>
                     ${item.variant_title}
