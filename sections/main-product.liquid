@@ -1,5 +1,8 @@
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+{{ 'product.css' | asset_url | stylesheet_tag }}
 {{ 'description.css' | asset_url | stylesheet_tag }}
+{{ 'image-zoom.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'image-zoom.js' | asset_url }}" async></script>
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 <div class='main-product'>
@@ -23,7 +26,7 @@
           <picture>
             <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
             <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
-            <img src="{{ image | img_url: '300x' }}" width='100%' height='100%' >
+            <img src="{{ image | img_url: '300x' }}" width='100%' height='100%' onclick="imageZoom(this,'{{ image | img_url: 'master' }}')" loading='lazy'>
           </picture>
           <a class='control left' href='#image-{{prev}}'>
             {% render 'icon-chevron-left' %}
@@ -34,6 +37,9 @@
         </section>
       {% endfor %}
     </ul>
+    <div class='zoom-info js-enabled'>
+      <p>Click image to view full-size </p>
+    </div>
     </div>
     <ul class='image-nav'>
       {% assign more-images = 0 %}
@@ -68,6 +74,19 @@
       </li>
     </ul>
   </div>
+  <div id='image-zoom' class='hidden'>
+    <div class='backdrop' onclick='imageZoomClose()'></div>
+    <div class='container'>
+      <div>
+        <p>Hover to zoom <a id='image-zoom-url'>Open image in new tab</a></p>
+        <div class='close' onclick='imageZoomClose()'>{% render 'icon-x.liquid' %}</div>
+      </div>
+      <div id='image-zoom-container'>
+        <div><img id='image-zoom-master' alt="Zoomed in image" loading='lazy'></div>
+        <div><img id='image-zoom-magnified' alt="Zoomed in image" loading='lazy'></div>
+      </div>
+    </div>
+  </div>
   
   <div class='product-info'>
     {% assign vendor = collections[product.vendor] %}
@@ -75,12 +94,6 @@
     <h4 class='title'>{% render 'filtered-product-title' with product.title %}</h4>
     <div>
       {% if current_variant.price < product.compare_at_price %}
-        {% comment %} <noscript>
-          <h4 class='price'>
-            <span class='original'>{{ product.compare_at_price| money }}</span>
-            <span class='difference'>SALE</span>
-          </h4>
-        </noscript> {% endcomment %}
         <h4 class='price'>
           <span class='current js-inline' id='price'>{{ current_variant.price| money }}</span>
           <span class='original' id='compare-at'>{{ product.compare_at_price| money }}</span>
@@ -221,317 +234,6 @@
       ]
     }
 {% endschema %}
-
-{% style %}
-.product-images {
-  max-width: 500px;
-  margin: auto;
-}
-.slider {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  margin: auto;
-  /* margin-top: 16px; */
-}
-.slider .images {
-    overflow-x: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-}
-.slider .product-image {
-  vertical-align: bottom;
-  position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  width: 100%;
-  /* height: 375px; */
-  padding: 16px 32px 8px;
-    scroll-snap-align: start;
-}
-.slider .control {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #000;
-}
-.slider .control.left {
-  left: 0;
-}
-.slider .control.right {
-  right: 0;
-}
-ul.image-nav input {
-  display: none;
-}
-.image-nav {
-  position: relative;
-  vertical-align: top;
-  width: calc(100% - 64px);
-  margin: auto;
-  overflow-x: scroll;
-  white-space: nowrap;
-  margin-bottom: 8px;
-}
-.image-nav .product-image {
-  width: calc(25% - 10px);
-  aspect-ratio: 1 / 1;
-  display: inline-block;
-  margin-right: 8px;
-}
-.image-nav .product-image:last-of-type {
-  margin: 0px;
-}
-.image-nav .product-image.more {
-  display: none;
-}
-.image-nav .more-images {
-  white-space: nowrap;
-  width: auto;
-  height: 100%;
-}
-.image-nav .show-more {
-  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  display: inline-block;
-  height: 100%;
-  width: calc(25% - 8px);
-}
-.image-nav .show-more label {
-  position: absolute;
-  top: 0;
-  display: flex;
-  aspect-ratio: 1 / 1;
-  width: calc(25% - 8px);
-  justify-content: center;
-  align-items: center;
-  background-color: #CBCBCB;
-  color: #4F607B;
-  font-weight: 600;
-}
-
-#show-more:checked ~ .product-image.more {
-  display: inline-block;
-}
-#show-more:checked ~ .show-more {
-  display: none;
-}
-
-.image-nav .product-image img, .slider .product-image img {
-  object-fit: contain;
-}
-
-.image-nav::-webkit-scrollbar {
-  height: 4px;
-}
-.image-nav::-webkit-scrollbar-track {
-  background: #fff;
-  border-radius: 8px;
-}
-.image-nav::-webkit-scrollbar-thumb {
-  background-color: #CBCBCB;
-  border-radius: 8px;
-}
-.image-nav::-webkit-scrollbar-thumb:hover {
-  background: #B5B5B5;
-  border-radius: 8px;
-}
-.product-info {
-  position: relative;
-  width: calc(100% - 64px);
-  margin: auto;
-  font-size: 1.6rem;
-  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-.product-info .button {
-  width: 100%;
-  max-width: 100%;
-  text-transform: capitalize;
-  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 500;
-  /* margin: 8px 0; */
-}
-.main-product .price {
-  float: left;
-  font-weight: 500;
-}
-.main-product .price, .price span {
-  font-weight: 500;
-}
-.main-product .price .original {
-  text-decoration: line-through;
-  font-weight: normal;
-  font-size: 1.2rem;
-}
-.main-product .price .difference {
-  /* float: right; */
-  font-weight:500;
-  color: #4F607B;
-  font-size: 1.2rem;
-}
-.main-product .price.no-sale .original,
-.main-product .price.no-sale .difference {
-  display: none;
-}
-.vendor, .vendor a {
-  /* float: right; */
-  font-weight: 500;
-  font-size: 1.4rem;
-  color: #4F607B;
-  text-decoration: none;
-}
-
-.main-product .title {
-  font-size: 1.6rem;
-  font-weight: 400;
-  padding: 4px 0;
-}
-
-.product-details {
-  margin-top: 16px;
-}
-
-.description, .care-info {
-  padding: 8px 0;
-  padding-left: 32px;
-  font-size: 1.4rem;
-}
-
-.description strong {
-  font-weight: 500;
-}
-
-.description ul li {
-  font-size: 1.4rem;
-  list-style: none;
-  padding-left: 8px;
-}
-/* .js .price .difference {
-  font-weight: normal;
-  color: #4F607B;
-} */
-
-.variants {
-  padding: 16px 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-  /* display: grid;
-  grid-templat-columns: 1fr 1fr; */
-}
-
-#product-select {
-  width: 100%;
-}
-
-.variants label {
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 1.3rem;
-  padding-bottom: 8px;
-}
-
-.variants select {
-  height: 32px;
-  font-size: 1.2rem;
-  border: solid 1px black;
-  border-radius: 0;
-  color: black;
-  background-color: white;
-  padding-left: 8px;
-}
-
-#remaining {
-  float: right;
-  font-size: inherit;
-  font-weight: 500;
-  font-size: 1.4rem;
-  text-transform: uppercase;
-  /* text-align: center; */
-  color: #4F607B;
-  /* padding: 8px 0; */
-}
-
-.selector-wrapper {
-  display: inline-block;
-  width: calc(50% - 8px);
-}
-
-.selector-wrapper label {
-  display: block;
-}
-
-.selector-wrapper label, .selector-wrapper select {
-  width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .main-product {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
-  .slider {
-    margin: 0;
-  }
-  .slider .product-image {
-    padding-top: 32px;
-  }
-  .product-images {
-    display: flex;
-    flex-direction: row-reverse;
-    height: 100%;
-  }
-  .product-images ul.image-nav {
-    /* flex-direction: column; */
-    /* display: flex;
-    flex-direction: column; */
-    width: 116px;
-    /* min-height: 100%; */
-    height: auto;
-    overflow-x: none;
-    overflow-y: auto;
-    white-space: normal;
-    margin: 0;
-    margin-top: 32px;
-    padding: 0;
-  }
-  .product-images .image-nav .product-image {
-    width: 100%;
-    padding: 0 0 8px 0;
-    margin: 0;
-  }
-  .product-images .image-nav .show-more, .product-images .image-nav .show-more label {
-    display: flex;
-    width: 100%;
-  }
-  .product-images .image-nav .show-more {
-    width: 116px;
-    height: 116px;
-    /* display: flex; */
-    width: 100%;
-    position: relative;
-    
-  }
-  /* .product-images, .product-info {
-    display: inline-block;
-    width: 50%;
-  } */
-  .product-info {
-    margin: auto;
-    margin-top: 32px;
-    min-height: 400px;
-    max-width: 320px;
-  }
-}
-  
-{% endstyle %}
 
 {% javascript %}
 {% endjavascript %}
