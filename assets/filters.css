@@ -1,4 +1,3 @@
-
 .sort-and-filter {
     display: flex;
     justify-content: space-around;
@@ -19,18 +18,6 @@
   
   .sort-and-filter .show-control {
       display: none;
-  }
-  
-  .closeDrawer {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(82, 82, 82, 0.5);
-    z-index: 2;
-    display: none;
-    opacity: 0;
-    pointer-events: none;
   }
   
   input#show-sort-options:checked ~ .saf-form.filter, input#show-filter-options:checked ~ .saf-form.filter {

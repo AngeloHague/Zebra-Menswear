@@ -1,5 +1,6 @@
 <div class='nav_bar'>
     <input type='checkbox' name='open-menu' id='open-menu' />
+    <label for='open-menu' class='closeDrawer menu-drawer'>&nbsp;</label>
     <div class='left'>
         <label href='/menu' class="menu" id='menu' for='open-menu'>
             <div class="menu_burger"></div>
@@ -123,6 +124,10 @@
 	-moz-transition-duration: 0.4s;
 	-webkit-transition-duration: 0.4s;
 	-o-transition-duration: 0.4s;
+    z-index: 3;
+}
+.closeDrawer.menu-drawer {
+  background: rgba(192, 192, 192, 0.5);
 }
 
 .nav_bar ul {
@@ -313,6 +318,11 @@
 
 #open-menu:checked ~ .left .menu_burger::after {
     transform: rotate(-45deg) translate(11px, 11px);
+}
+#open-menu:checked ~ .closeDrawer.menu-drawer {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 #nav a:hover,
