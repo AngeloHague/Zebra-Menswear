@@ -87,6 +87,7 @@
   width: 100%;
   object-fit: contain;
 }
+.recently-viewed-wrapper { margin-bottom: 16px; }
 .recently-viewed-grid a,  .recently-viewed-grid img {
     width: 100%;
     object-fit: contain;
