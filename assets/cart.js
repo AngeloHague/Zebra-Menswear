@@ -81,6 +81,7 @@ function getCartFail(data) {
 function updateCart(items, currency) {
     if (cartContents != items) {
         document.getElementById('cart-item-count').innerHTML = items.length + ' items'
+        document.getElementById('cartCounter').innerHTML = '<p>' + items.length + '</p>'
         const cartHtml = [];
         items.map((item, idx) => {
             let price = new Intl.NumberFormat('en-GB', {style: 'currency', currency: currency}).format(item.price / 100);
