@@ -1,0 +1,60 @@
+{{ 'page-content.css' | asset_url | stylesheet_tag }}
+<div class='page-content'>
+    {% if page.metafields.brands.list %}
+        {% assign last_header = blank %}
+        <ul class='brands'>
+            {% for brand in page.metafields.brands.list.value %}
+                {% assign header = brand.title | slice: 0 %}
+                {% if header != last_header or last_header == blank %}
+                    {% assign last_header = header %}
+                    <h2>{{ header }}</h2>
+                {% endif %}
+                <li>
+                    <h3>{{ brand.title | link_to: brand.url }}</h3>
+                    {% comment %} <a href='{{brand.url}}' class='brand-logo'><img src="{{ brand.metafields.brand.logo.value.url }}" alt="{{ brand.title }} Logo" width='100%' height='100%'></a> {% endcomment %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+{% style %}
+.brands {
+    margin: 16px 24px;
+}
+.brands h2 {
+    text-align: left;
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 8px;
+}
+.brands li {
+    /* margin: 0 16px; */
+    /* list-style: none; */
+    list-style: square;
+    margin-left: 24px;
+    padding: 8px;
+    border-bottom: solid 1px #ccc;
+}
+.brands h3 {
+    text-align: left;
+}
+.brands .brand-logo, .brands .brand-logo img {
+    width: 128px;
+    height: 54px;
+    object-fit: contain;
+}
+.brands .brand-logo img {
+    /* object-position: left; */
+}
+
+@media(min-width: 800px) {
+    .brands { columns: 2; }
+}
+{% endstyle %}
+
+{% schema %}
+{
+    "name": "Brands List",
+    "settings": []
+}
+{% endschema %}
