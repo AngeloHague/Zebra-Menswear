@@ -1,0 +1,54 @@
+{{ 'products.css' | asset_url | stylesheet_tag }}
+{% for collection in collections %}
+  <div class='listed-collection'>
+    {% unless collection.handle == 'frontpage' %}
+      <h1>{{collection.title}}</h1>
+      {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+      <a href="{{ collection.url }}">More {{ collection_title }} &rsaquo;</a>
+      <div class='products'>
+        {% for product in collection.products limit:4 %}
+          <div class='product'>
+            <a href="{{ product.url | within: collection }}">
+              <div class='product-image'>
+                <picture>
+                    <source srcset="{{ product.featured_image.src | img_url: '160x' }}, {{ product.featured_image.src | img_url: '320x' }} 2x">
+                    <img src="{{ product.featured_image.src | img_url: '160x' }}" width='100%' height='100%' loading='lazy'>
+                </picture>
+              </div>
+              <p class='vendor'>{{product.vendor}}</p>
+              <p class='title'>{% render 'filtered-product-title' with product.title %}</p>
+                {% if product.price < product.compare_at_price %}
+                  <p class='price'><span class='original'>{{ product.compare_at_price | money }}</span> {{ product.price | money }}</p> 
+                  <div class='badge sale'>
+                    {% assign og_price = product.compare_at_price | money_without_currency %}
+                    {% assign percentage = product.price | money_without_currency | divided_by: og_price %}
+                    {% assign diff = 1 | minus: percentage | times: 100 %}
+                    -{{ diff | round: 0 }}%
+                  </div>
+                  {%else%}<p>{{ product.price | money }}</p>
+                {% endif %}
+                {% unless product.available %}
+                  <div class='badge out-of-stock'>
+                    OUT OF STOCK
+                  </div>
+                {% endunless %}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% endunless %}
+  </div>
+{% endfor %}
+
+{% style %}
+  .listed-collection {
+    padding: 16px 16px 0;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+    "name": "List Collections",
+    "settings": []
+}
+{% endschema %}
