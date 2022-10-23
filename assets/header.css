@@ -26,10 +26,11 @@
 	-moz-transition-duration: 0.4s;
 	-webkit-transition-duration: 0.4s;
 	-o-transition-duration: 0.4s;
-    z-index: 3;
+    z-index: 5;
 }
 .closeDrawer.menu-drawer {
   background: rgba(192, 192, 192, 0.5);
+  z-index: 4;
 }
 
 .nav_bar ul {
@@ -54,7 +55,7 @@
     position: fixed;
     top: 10px;
     left: 5px;
-    z-index: 4;
+    z-index: 6;
 }
 
 .nav_bar .left .search-container {
@@ -260,7 +261,7 @@
     position: fixed;
     top: 10px;
     right: 0;
-    z-index: 4;
+    z-index: 3;
 }
 
 .nav_bar .right .account {
@@ -287,7 +288,7 @@
 .nav_bar .right .cart .item-count {
     position: absolute;
     right: 8px;
-    top: 10px;
+    top: 16px;
     width: 16px;
     height: 16px;
     background-color: #4F607B;
