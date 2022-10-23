@@ -38,9 +38,6 @@
                 </label>
                 <ul class="dropdown-menu">
                     {% for child_link in link.links %}
-                        {% if forloop.index0 == 0 %}
-                            <li class="menu-link"><a href="{{ link.url }}#collection">View All</a></li>
-                        {% endif %}
                         <li class="menu-link">
                             {% if child_link.links.size > 0 %}
                                 <input type='checkbox' name='open-subsubmenu-{{forloop.index}}' class='open-menu' id='open-subsubmenu-{{forloop.index}}' />
