@@ -54,7 +54,7 @@ function getRecentlyViewedProducts() {
     <li class="product">
       <a class='product image' href="${item.productUrl}"> 
 		<img class="recently-viewed-img" src='${item.productImg}' loading="lazy" alt="${item.productImageAltText}" width='160px' height='196'/>
-       <p>${item.productTitle}</p>
+       <p>${filterProductTitle(item.productTitle)}</p>
        <p>${item.productPrice}</p></a>
     </li>
    `);

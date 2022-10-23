@@ -50,16 +50,6 @@ function removeFromCart(line_id) {
     });
 }
 
-function filterProductTitle(title) {
-    for (var i = 0; i < title.length; i++) {
-        let c = title[i]
-        if (c===' ' || c==='-') {
-            return title.slice(i+1, title.length);
-        }
-    }
-    return title;
-}
-
 function removeFromCartOk(line_id) {
     cartError('Removed item successfully')
     getCart()
