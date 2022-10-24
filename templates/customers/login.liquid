@@ -1,1 +1,26 @@
-<!-- /templates/customers/login.liquid -->
+{{ 'accounts.css' | asset_url | stylesheet_tag }}
+
+<div class='account-form'>
+    <h1>Log in to your account</h1>
+    {% form 'customer_login' %}
+        {{ form.errors | default_errors }}
+
+        <div class="email">
+            <label for="email">Email</label>
+            <input type="email" name="customer[email]">
+        </div>
+
+        <div class="password">
+            <label for="password">Password</label>
+            <input type="password" name="customer[password]">
+        </div>
+
+        <div class="submit">
+            <input class='button black' type="submit" value="Sign in">
+        </div>
+    {% endform %}
+
+    <a href='register' class='alternative'>
+        Don't have an account? Sign up here
+    </a>
+</div>

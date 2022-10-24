@@ -1,0 +1,113 @@
+
+<div class='categories'>
+    {% if collection.metafields.category.parent %}
+        <a href='{{collection.metafields.category.parent.value.url}}' class='category back'>
+            {% render 'icon-corner-left-up' %}
+            <p>{{ collection.metafields.category.parent.value.title }}</p>
+        </a>
+    {% endif %}
+    <div class='category header'>
+        <div class='thumb'>
+            {% if collection.image %}
+                <img src="{{collection.image | img_url: '128x'}}" width="100%" height="100%"  alt="Zebra Menswear {{collection.title}} Image" loading='lazy'>
+            {% else %}
+                <img src="{{section.settings.fallback_image | img_url: '128x'}}" width="100%" height="100%" alt="Zebra Menswear {{collection.title}} Image" loading='lazy'>
+            {% endif %}
+        </div>
+        <h2>{{collection.title}}</h2>
+    </div>
+    {% if collection.metafields.category.children %}
+        <ul>
+            <a href="#collection">
+                <li>
+                    <div class='category view-all'>
+                        <h2>View All {{collection.title}}</h2>
+                        {% render 'icon-chevron-down' %}
+                    </div>
+                </li>
+            </a>
+            {% for subcategory in collection.metafields.category.children.value %}
+                <a href="{{subcategory.url}}">
+                    <li>
+                        <div class='category sub'>
+                            <div class='thumb'>
+                                {% if subcategory.image %}
+                                    <img src="{{subcategory.image | img_url: '128x'}}" width="100%" height="100%"  alt="Zebra Menswear {{subcategory.title}} Image" loading='lazy'>
+                                {% else %}
+                                    <img src="{{section.settings.fallback_image | img_url: '128x'}}" width="100%" height="100%" alt="Zebra Menswear {{subcategory.title}} Image" loading='lazy'>
+                                {% endif %}
+                            </div>
+                            <h2>{{subcategory.title}}</h2>
+                            {% render 'icon-chevron-right' %}
+                        </div>
+                    </li>
+                </a>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+{% schema %}
+{
+    "name": "Category Section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "fallback_image",
+            "label": "Fallback Image"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+.categories {
+    padding: 0 16px;
+    /* margin-bottom: -16px; */
+    margin: auto;
+}
+.categories .category.back, .categories .header, .categories ul li {
+    border-bottom: solid 1px #ccc;
+    padding: 16px;
+}
+.categories .category.back {
+    padding: 8px 0;
+    text-transform: uppercase;
+}
+.categories .category.back p {
+    font-size: 1.4rem;
+}
+.categories ul a:last-of-type li { border-bottom: none; }
+.categories .category.header .thumb {width: 72px; height: 72px;}
+.categories .category .thumb {width: 48px; height: 48px;}
+.categories .category {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0 16px;
+}
+.categories .category h2 {
+    font-size: 1.3rem;
+    padding: 0;
+}
+.categories .category img {
+    object-fit: cover;
+    border-radius: 50%;
+}
+.categories .category.view-all h2 { line-height: 48px; }
+.categories .category.header h2 { font-size: 1.6rem; }
+.categories .category.sub h2 {
+    text-transform: capitalize;
+    flex-grow: 1;
+    text-align: left;
+}
+.categories .category.view-all, .categories .category.sub { justify-content: space-between; }
+.categories ul {
+    list-style: none;
+    padding-left: 32px;
+}
+.categories a {
+    text-decoration: none;
+    color: #000;
+}
+{% endstyle %}

@@ -7,7 +7,7 @@
       }
     },
     "main": {
-      "type": "collection",
+      "type": "main-collection",
       "settings": {
       }
     }

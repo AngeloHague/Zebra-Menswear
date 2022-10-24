@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "page_image": "shopify:\/\/shop_images\/Zebra-Menswear_x2048_0e9d5eaa-fe76-4567-8d87-21dd6b37a940.png"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

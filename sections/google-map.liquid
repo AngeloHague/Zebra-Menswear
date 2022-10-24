@@ -1,0 +1,26 @@
+<div class='google-map'><iframe src="{{ section.settings.map_link }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+
+{% schema %}
+{
+    "name": "Google Map",
+    "settings": [
+        {
+            "type": "text",
+            "id": "map_link",
+            "label": "Google map link",
+            "default": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2387.913784364594!2d-1.4264518841656335!3d53.23732177995623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487985315a4dcf57%3A0x21b2e231a03e1814!2sZebra%20Menswear!5e0!3m2!1sen!2suk!4v1666626991646!5m2!1sen!2suk"
+        }
+    ]
+}
+{% endschema %}
+
+{% style %}
+    .google-map {
+        width: 100%;
+        padding: 16px 32px;
+        box-sizing: border-box;
+    }
+    .google-map iframe {
+        width: 100%;
+    }
+{% endstyle %}

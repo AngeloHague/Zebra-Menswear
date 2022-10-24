@@ -1,9 +1,6 @@
-<div class='dot-separator'>
-    <svg height="10" width="54">
-      <circle cx="9" cy="5" r="2" fill="black" />
-      <circle cx="27" cy="5" r="2" fill="black" />
-      <circle cx="45" cy="5" r="2" fill="black" />
-    </svg>
+{% assign mobile-only = dot-separator %}
+<div class='dot-separator{% if mobile-only == true %} mobile-only{% endif %}'>
+    &nbsp;
 </div>
 
 
@@ -11,6 +8,7 @@
     .dot-separator {
         display: flex;
         justify-content: center;
-        padding: 16px;
+        height: 16px;
+        margin: 8px 0;
     }
 {% endstyle %}

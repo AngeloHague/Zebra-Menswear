@@ -1,1 +1,51 @@
-<!-- /templates/customers/account.liquid -->
+{{ 'accounts.css' | asset_url | stylesheet_tag }}
+<div class='account'>
+    <div class='header'>
+        <h1 class='header-cell'>My Account</h1>
+        <a href='/account/logout/'><h1 class='header-cell log-out'>Log Out {% render 'icon-log-out' %}</h1></a>
+    </div>
+    <div class='tabs'>
+        <div class='tab current'>
+            <p>Orders</p>
+        </div>
+        <div class='tab'>
+            <a href="/account/addresses">Addresses</a>
+        </div>
+    </div>
+    <div class='orders'>
+        {% if customer.orders.size > 0 %}
+            {% paginate customer.orders by 4 %}
+                {% for order in customer.orders %}
+                    <div class='order' id='order-{{order.id}}'>
+                        <div>
+                            <h3>Order</h3>
+                            <p>#{{order.order_number}}</p>
+                        </div>
+                        <div>
+                            <h3>Date</h3>
+                            <p>{{order.created_at | date: '%B %d, %Y'}}</p>
+                        </div>
+                        <div>
+                            <h3>Payment Status</h3>
+                            <p>{{order.financial_status}}</p>
+                        </div>
+                        <div>
+                            <h3>Fulfillment Status</h3>
+                            <p>{{order.fulfillment_status}}</p>
+                        </div>
+                        <div>
+                            <h3>Total</h3>
+                            <p>{{order.total_price | money_with_currency}}</p>
+                        </div>
+                        <a class='button' href='{{order.customer_url}}'>View Order</a>
+                    </div>
+                {% endfor %}
+            {% render 'pages' with paginate %}
+            {% endpaginate %}
+        {% else %}
+            <div class='order'>
+                You currently have no orders.
+            </div>
+        {% endif %}
+    </div>
+</div>

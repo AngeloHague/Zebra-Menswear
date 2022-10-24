@@ -1,0 +1,238 @@
+.account-form, .account-form input, .account {
+    font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.account-form {
+    width: 100%;
+    max-width: 448px;
+    box-sizing: border-box;
+    padding: 32px 32px 0 32px;
+    margin: auto;
+}
+
+.account-form h1, .account h1 {
+    font-family: 'Comfortaa', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    /* text-align: center; */
+}
+.account h1 {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    border-bottom: none;
+}
+.tabs {
+    display: flex;
+    width: 100%;
+    background-color: #1e1e1e;
+    text-align: center;
+    border-top: solid 4px #1e1e1e;
+}
+.tabs a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    border-top: solid 2px #ccc;
+}
+.tabs p, .tabs a {
+    text-transform: uppercase;
+    padding: 16px 0;
+    margin: 0 4px;
+    font-size: 1.2rem;
+    font-weight:500;
+}
+.tabs .tab {
+    width: 50%;
+    box-sizing: border-box;
+}
+.tabs .tab.current {
+    background-color: #fff;
+    color: #000;
+}
+
+.account-form div { padding: 8px 0; }
+
+.account-form label {
+    display: block;
+    width: 100%;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    /* padding-left: 4px; */
+    margin-bottom: 2px;
+}
+
+.account-form input {
+    font-size: 1.3rem;
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 1px black;
+    padding: 8px 0 8px 8px;
+}
+
+.account-form button { padding: 8px 0 ; }
+.account-form .alternative {
+    display: block;
+    padding: 8px 0;
+    margin-top: 8px;
+    margin-bottom: -8px;
+    border-top: solid 1px #ccc;
+    /* border-bottom: solid 1px #ccc; */
+    font-size: 1.3rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.account .header-cell {
+    padding: 16px 0 16px 16px;
+    text-align: left;
+    float: left;
+    box-sizing: border-box;
+    color: black;
+}
+.account .header-cell.log-out {
+    display: flex;
+    align-items: center;
+    /* border-left: solid 1px #ccc; */
+    padding: 16px;
+    text-align: right;
+    float: right;
+    box-sizing: border-box;
+    color: black;
+    font-size: 1.2rem;
+    font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.account .header-cell.log-out svg {
+    padding-left: 4px;
+    width: 1.8rem;
+}
+
+.orders { margin-top: 16px; }
+
+.order {
+    border-bottom: solid 1px #ccc;
+    margin: 0 16px;
+    padding: 8px 0 16px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.order:first-of-type {
+    border-top: solid 1px #ccc;
+}
+
+.account .order .button {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.account .order h3, .account .order-item h3 { margin-top: 8px; }
+.account .order h3, .account .order-item h3, .account .order-item p, .account .return, .account .order-details .order-no, .account .order a div {
+    font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.account h3 { text-align: left; }
+.account .order-item p { font-weight: 400; }
+.account .order-details .order-no { font-size: 1.5rem; }
+
+.account .order p, .account .order-details .date {
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    margin-bottom: 8px;
+}
+
+.account .order-item p {
+    font-size: 1.4rem;
+    text-transform: capitalize;
+}
+
+.addresses {
+    margin: 16px;
+}
+.addresses details {
+    border-bottom: solid 1px #ccc;
+    padding: 8px 0;
+}
+.addresses summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    list-style: none;
+    cursor: pointer;
+}
+.addresses details svg { stroke-width: 1; }
+.addresses details[open] svg { transform: rotate(180deg); }
+.addresses .form-container {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+}
+.addresses .form-container form, .addresses .form-container .address-delete-form {
+    box-sizing: border-box;
+    width: 100%;
+}
+.addresses .default {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding-bottom: 8px;
+}
+.addresses .form-container input[type='text'], .addresses .form-container input[type='tel'], .addresses .form-container button, .addresses .form-container select {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 8px;
+}
+.form-container label {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.form-container input { margin-bottom: 8px;}
+.form-container button { margin-top: 8px; }
+
+.form-container label.required:after {
+	content: ' *';
+	color: #c25757;
+  }
+.form-container .buttons {
+    display:flex;
+    justify-content: space-between;
+}
+.form-container .buttons button { margin-right: 8px; }
+.form-container .buttons button:last-of-type { margin-right: 0; }
+.form-container .button.delete {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 8px;
+    padding: 0;
+    background-color: #c25757;
+    border-color: #c25757;
+}
+
+@media(min-width: 800px) {
+    .orders {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: solid 1px #ccc;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+    .addresses .form-container .address-delete-form {
+        width: 50%;
+        margin: auto;
+    }
+    .addresses .form-container .address-delete-form .button.delete{ padding: 8px; }
+    .orders .order:first-of-type {
+        border-top: none;
+    }
+}

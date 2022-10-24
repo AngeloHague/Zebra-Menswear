@@ -1,0 +1,43 @@
+{{ 'cart.js' | asset_url | script_tag }}
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+{{ 'cart-overlay.css' | asset_url | stylesheet_tag }}
+<div class='cart-overlay hidden' id='cart-overlay'>
+    <div class='modal' id='cart-modal'>
+        <div class='header'>
+            <h1>Your Cart</h1>
+            <div class='close' onclick='closeCart();'>
+                {% render 'icon-x' %}
+            </div>
+        </div>
+        <div class='cart-error' id='cartError'></div>
+        <div class='cart-contents'>
+            <h3 id='cart-item-count'></h2>
+            <div class='cart-items' id='cartItems'></div>
+            <div id='loadingCart' class='hidden'>
+                <svg width='60' height='60'>
+                    <circle cx='25' cy='25' r='25'></circle>
+                </svg>
+            </div>
+        </div>
+        <div class='subtotal' id='cartSubtotal'></div>
+        <div class='cart-buttons'>
+            <a href="/cart" class='button white'>View Cart</a>
+            <a href="/cart" class='button'>Checkout</a>
+        </div>
+    </div>
+    <div class='modal-overlay' onclick="closeCart();"></div>
+</div>
+
+<script>
+    var loading = document.getElementById('loadingCart');
+
+    function toggleLoading(is_loading) {
+        if (is_loading) {
+            loading.classList.remove('hidden');
+            loading.classList.add('active');
+        } else {
+            loading.classList.remove('active');
+            loading.classList.add('hidden');
+        }
+    }
+</script>

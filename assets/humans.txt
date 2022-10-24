@@ -1,0 +1,19 @@
+/* TEAM */    
+    Developer: Angelo Hague.                     
+    Site: www.angelohague.co.uk                 
+    Twitter: @AngeloHague                        
+    Location: Lincoln, England
+
+    Business Owner: Stuart Smith
+    Site: www.zebramenswear.co.uk
+    Twitter: @zebramenswear
+    Instagram: @_zebramenswear
+    Location: Chesterfield, England
+
+/* THANKS */
+    Name: Feather Icons
+    Site: https://feathericons.com/
+    For: Most icons used on the site
+    
+/* SITE */
+    Language: English

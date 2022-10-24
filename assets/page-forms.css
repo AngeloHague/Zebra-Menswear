@@ -1,0 +1,41 @@
+  .page-form {
+    padding: 0 16px;
+      max-width: 800px;
+      margin: auto;
+  }
+  .page-form h2 {
+    text-align: left;
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 8px;
+    margin: 32px 0 16px 0;
+  }
+  .page-form .success {
+    padding-bottom: 16px;
+  } 
+  .page-form form {
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+  .page-form form label, .page-form form input, .page-form form textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+  .page-form form label {display: block; padding: 0; margin: 0;}
+  .page-form form textarea { font-family: inherit; }
+  .page-form form input[type=submit] { margin: 0; }
+  .page-form form label {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+  }
+  .page-form .or {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 8px 0;
+  }
+  @media(min-width: 816px) {
+    .page-form form { padding: 0; }
+  }

@@ -20,9 +20,9 @@
   </ul>
   <div class='view-all'>
     {% if section.settings.button-text != blank %}
-      <input class="button" type="button" onclick="location.href='./collections/Clothing';" value="{{section.settings.button-text}}" />
+      <a class="button" type="button" href='./collections/Clothing';> {{ section.settings.button-text }} </a>
     {% else %}
-      <input class="button" type="button" onclick="location.href='./collections/Clothing';" value="View All Categories" />
+      <a class="button" type="button" href='{{ section.settings.button-collection.url }}';> View All {{ section.settings.button-collection.title }} </a>
     {% endif %}
   </div>
     
@@ -68,23 +68,36 @@
 
 {% style %}
   .categories-section {
-    width: calc(100% - 32px);
-    margin: 0 16px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     /* background-color: aqua; */
   }
 
   .categories-section .view-all {
+    box-sizing: border-box;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
+  .categories-section .button {
+    font-weight: 400;
+    /* width: 100%; */
+  }
+
   .categories-section ul {
+    margin: 0 10%;
     width: 100%;
     list-style: none;
-    overflow-x: scroll;
+    overflow-x: auto;
     height: auto;
     white-space: nowrap;
+    margin: auto;
     margin-bottom: 4px;
   }
 
@@ -135,11 +148,11 @@
     border-radius: 8px;
   }
 
-.categories-section .button {
-  width: 100%;
-  background-color: #1E1E1E;
-  color: #fff;
-}
+  @media (min-width: 896px) {
+    .categories-section ul {
+      max-width: 896px;
+    }
+  }
 
 {% endstyle %}
 
