@@ -3,12 +3,16 @@
       "main" : {
           "type": "main-page"
       },
+      "map" : {
+          "type": "google-map"
+      },
       "contact" : {
           "type": "contact-form"
       }
   },
   "order": [
       "main",
+      "map",
       "contact"
   ]
 }
