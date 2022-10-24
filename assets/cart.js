@@ -26,13 +26,17 @@ function addToCart(form_id) {
 function addToCartOk() { 
     $('#cartCounter').html("<p>" + cartCount + "</p>");
     getCart();
-    openCart();
+    cartSuccess('Added item successfully')
 }
 function addToCartFailure() {
     cartError('Failed to add to cart. This product may no longer be available in the desired quantity.')
 }
 function cartError(error) {
-    $('#cartError').html("<div><h3>Error</h3><p>" + error + "</p></div>");
+    $('#cartError').html("<div class='error'><h3>Error</h3><p>" + error + "</p></div>");
+    openCart();
+}
+function cartSuccess(error) {
+    $('#cartError').html("<div class='success'><h3>Success</h3><p>" + error + "</p></div>");
     openCart();
 }
 
@@ -51,7 +55,7 @@ function removeFromCart(line_id) {
 }
 
 function removeFromCartOk(line_id) {
-    cartError('Removed item successfully')
+    cartSuccess('Removed item successfully')
     getCart()
 }
 

@@ -51,10 +51,15 @@
     width: 100%;
     overflow-y: auto;
 }
-.cart-error div {
+.cart-error .error {
     padding: 8px;
     margin: 8px;
     background-color: #e37f91;
+}
+.cart-error .success {
+    padding: 8px;
+    margin: 8px;
+    background-color: #90e37f;
 }
 .cart-error p { font-size: 1.4rem; }
 .cart-error h3 {
