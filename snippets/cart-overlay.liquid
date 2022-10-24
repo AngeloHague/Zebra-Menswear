@@ -13,6 +13,11 @@
         <div class='cart-contents'>
             <h3 id='cart-item-count'></h2>
             <div class='cart-items' id='cartItems'></div>
+            <div id='loadingCart' class='hidden'>
+                <svg width='60' height='60'>
+                    <circle cx='25' cy='25' r='25'></circle>
+                </svg>
+            </div>
         </div>
         <div class='subtotal' id='cartSubtotal'></div>
         <div class='cart-buttons'>
@@ -22,3 +27,17 @@
     </div>
     <div class='modal-overlay' onclick="closeCart();"></div>
 </div>
+
+<script>
+    var loading = document.getElementById('loadingCart');
+
+    function toggleLoading(is_loading) {
+        if (is_loading) {
+            loading.classList.remove('hidden');
+            loading.classList.add('active');
+        } else {
+            loading.classList.remove('active');
+            loading.classList.add('hidden');
+        }
+    }
+</script>
