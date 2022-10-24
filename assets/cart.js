@@ -91,10 +91,10 @@ function getCartFail(data) {
 }
 function updateCart(items, currency) {
     if (cartContents != items) {
-        document.getElementById('cart-item-count').innerHTML = items.length + ' items'
-        document.getElementById('cartCounter').innerHTML = '<p>' + items.length + '</p>'
+        let counter = 0;
         const cartHtml = [];
         items.map((item, idx) => {
+            counter += item.quantity;
             let price = new Intl.NumberFormat('en-GB', {style: 'currency', currency: currency}).format(item.price / 100);
             let title = filterProductTitle(item.product_title);
             cartHtml.unshift(`
@@ -124,6 +124,8 @@ function updateCart(items, currency) {
                 </a>
             </div>
             `)
+        document.getElementById('cart-item-count').innerHTML = counter + ' items'
+        document.getElementById('cartCounter').innerHTML ='<p>' + counter + '</p>'
         });
         const newProductData = `${cartHtml.join("")}`;
         const fullContent = $('#cartItems');
