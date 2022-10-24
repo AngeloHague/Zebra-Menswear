@@ -28,10 +28,10 @@
             <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
             <img src="{{ image | img_url: '300x' }}" width='100%' height='100%' onclick="imageZoom(this,'{{ image | img_url: 'master' }}')" loading='lazy'>
           </picture>
-          <a class='control left' href='#image-{{prev}}'>
+          <a class='control left' href='#image-{{ prev }}' onclick="event.preventDefault(); scrollToAnchor('#image-{{ prev }}')">
             {% render 'icon-chevron-left' %}
           </a>
-          <a class='control right' href='#image-{{next}}'>
+          <a class='control right' href='#image-{{ next }}' onclick="event.preventDefault(); scrollToAnchor('#image-{{ next }}')">
             {% render 'icon-chevron-right' %}
           </a>
         </section>
@@ -48,7 +48,7 @@
       {% for image in product.images %}
         {% if forloop.index < 4 %}
           <li class='product-image'>
-            <a href='#image-{{forloop.index}}'>
+            <a href='#image-{{ forloop.index }}' onclick="event.preventDefault(); scrollToAnchor('#image-{{ forloop.index }}')">
               <picture>
                 <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
                 <img src="{{ image | img_url: '300x' }}" width='100%' height='100%'>
@@ -58,7 +58,7 @@
         {% else %}
         {% assign more-images = more-images | plus: 1 %}
           <li class='product-image more'>
-            <a href='#image-{{forloop.index}}'>
+            <a href='#image-{{ forloop.index }}' onclick="event.preventDefault(); scrollToAnchor('#image-{{ forloop.index }}')">
               <picture>
                 <source srcset="{{ image | img_url: '300x' }}, {{ image | img_url: '600x' }} 2x">
                 <img src="{{ image | img_url: '300x' }}" width='100%' height='100%'>
@@ -247,6 +247,3 @@
       ]
     }
 {% endschema %}
-
-{% javascript %}
-{% endjavascript %}

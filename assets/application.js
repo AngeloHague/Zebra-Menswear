@@ -7,6 +7,11 @@ var gError;
 function enableSearchBtn() {
     searchBtn.disabled = false;
 }
+function scrollToAnchor(selectedAnchor) {
+    document.querySelector(selectedAnchor).scrollIntoView({
+        behavior: 'smooth'
+    });
+}
 
 function filterProductTitle(title) {
     for (var i = 0; i < title.length; i++) {
