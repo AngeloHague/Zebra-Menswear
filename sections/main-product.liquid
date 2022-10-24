@@ -129,8 +129,9 @@
             {% for variant in product.variants %}
               <option value="{{ variant.id }}" data-variant-quantity="{{ variant.inventory_quantity }}"
                 {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                {% if variant.inventory_quantity == 0 %}disabled="true"{% endif %}
               >
-                {{ variant.title }} - {{ variant.price | money }}
+                {{ variant.title }} - {% if variant.inventory_quantity == 0 %}SOLD OUT - {% endif %}{{ variant.price | money }}
               </option>
             {% endfor %}
           </select>
@@ -178,7 +179,13 @@
     minimumFractionDigits: 2
   })
 
-  function onVariantChange(variant) {
+  function toggleAddButton(enabled) {
+    const btn = document.getElementById('AddToCart');
+    btn.disabled = !enabled;
+    btn.innerHTML = (enabled) ? 'Add To Cart' : 'Sold Out';
+  }
+
+  function onVariantChange(variant, available) {
     let price = document.getElementById('price');
     let compare_at = document.getElementById('compare-at');
     let difference = document.getElementById('difference');
@@ -189,15 +196,21 @@
     if (difference) difference.innerHTML = '(-' + Math.round((1 - (variant.price / variant.compare_at_price)) * 100) + '%)';
     if ((variant.compare_at_price || variant.compare_at_price == 0)&&(this.price < this.compare_at_price)) price.classList.remove('no-sale')
     else price.classList.add('no-sale');
+    if (variantStock[variant.id] == 0) {
+      remaining.innerHTML = 'Out of stock!';
+    }
     {% if section.settings.stock-warning %}
       if (variantStock[variant.id] < {{ section.settings.stock-warning }} && variantStock[variant.id] > 0 && variant.inventory_management == 'shopify') {
         if (variantStock[variant.id] == 1) {
           remaining.innerHTML = 'Last 1 in stock!';
-        } else {
+        } else if (variantStock[variant.id] > 1) {
           remaining.innerHTML = 'Low in stock!';
         }
-      };
+      } else if (!available) {
+        remaining.innerHTML = 'Out of stock!';
+      }
     {% endif %}
+    toggleAddButton(available);
   };
 
   var selectCallback = function(variant, selector) {
@@ -211,8 +224,8 @@
       
       // Replace current querystring with the new one.
       history.replaceState(null, null, "?"+queryParams.toString());
-      onVariantChange(variant)
-    }
+      onVariantChange(variant, true)
+    } else onVariantChange(variant, false);
   };
   new Shopify.OptionSelectors('product-select', {
     product: {{ product | json }},
