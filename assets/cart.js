@@ -14,6 +14,7 @@ function showCart(e) {
 }
 
 function addToCart(form_id) {
+    toggleLoading(true);
     $.ajax({
         type: 'POST', 
         url: '/cart/add.js',
@@ -26,10 +27,11 @@ function addToCart(form_id) {
 function addToCartOk() { 
     $('#cartCounter').html("<p>" + cartCount + "</p>");
     getCart();
-    cartSuccess('Added item successfully')
+    cartSuccess('Added item successfully');
 }
 function addToCartFailure() {
-    cartError('Failed to add to cart. This product may no longer be available in the desired quantity.')
+    cartError('Failed to add to cart. This product may no longer be available in the desired quantity.');
+    toggleLoading(false);
 }
 function cartError(error) {
     $('#cartError').html("<div class='error'><h3>Error</h3><p>" + error + "</p></div>");
@@ -41,6 +43,7 @@ function cartSuccess(error) {
 }
 
 function removeFromCart(line_id) {
+    toggleLoading(true);
     $.ajax({
         type: 'POST', 
         url: '/cart/change.js',
@@ -55,15 +58,17 @@ function removeFromCart(line_id) {
 }
 
 function removeFromCartOk(line_id) {
-    cartSuccess('Removed item successfully')
-    getCart()
+    cartSuccess('Removed item successfully');
+    getCart();
 }
 
 function removeFromCartFailure() {
-    cartError('Failed to remove item from cart. Click View Cart and try removing from there instead.')
+    cartError('Failed to remove item from cart. Click View Cart and try removing from there instead.');
+    toggleLoading(false);
 }
 
 function getCart() {
+    toggleLoading(true);
     $.ajax({
         type: 'GET', 
         url: '/cart.js',
@@ -76,11 +81,13 @@ function getCartOk(data) {
     cartCount = data.item_count;
     // cartContents = data.items;
     updateCart(data.items, data.currency);
+    toggleLoading(false);
     // openCart();
 } 
 function getCartFail(data) {
     $('#cartError').replaceWith("<p>" + "Failed to get cart. This item may no longer be in stock" + "</p>");
     openCart();
+    toggleLoading(false);
 }
 function updateCart(items, currency) {
     if (cartContents != items) {
