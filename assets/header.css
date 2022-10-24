@@ -338,6 +338,10 @@
     .nav_bar .left .search-container {
         left: 0;
     }
+
+    .nav_bar .right {
+        z-index: 6;
+    }
     .nav_bar ul#nav {
         padding: 0;
         position: relative;
