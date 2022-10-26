@@ -1,6 +1,6 @@
 {{ 'collection_banner.css' | asset_url | stylesheet_tag }}
 <div class='collection-banner'>
-    {% if collection.image %}
+    {% if collection.metafields.brand.image %}
     <div class='slide'>
         <div class="bg_blur">
             <picture>
