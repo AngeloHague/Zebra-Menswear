@@ -56,7 +56,6 @@
     right: 0;
     z-index: 2;
     color: white;
-    background-color: #4F607B;
     width: 52px;
     height: 52px;
     border-radius: 50%;
@@ -68,9 +67,14 @@
     text-align: center;
   }
 
+.product .badge.sale {
+  font-size: 1.2rem;
+}
+
 .product .badge.out-of-stock {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
+    background-color: #474747;
 }
 
 .recommendations ul, .recently-viewed-grid {

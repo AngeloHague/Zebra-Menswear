@@ -25,6 +25,7 @@
               {% if item.price < item.compare_at_price %}
                 <p class='price'><span class='original'>{{ item.compare_at_price | money }}</span> {{ item.price | money }}</p> 
                 <div class='badge sale'>
+                    SALE<br>
                   {% assign og_price = item.compare_at_price | money_without_currency %}
                   {% assign percentage = item.price | money_without_currency | divided_by: og_price %}
                   {% assign diff = 1 | minus: percentage | times: 100 %}
@@ -42,7 +43,6 @@
               {{ item.title | link_to: item.url }}
             {% endif %}
           </h5>
-          <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
         </div>
       {% else %}
         <p>Unable to find any results matching this search query.</p>

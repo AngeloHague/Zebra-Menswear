@@ -111,6 +111,10 @@ details summary {
   cursor: pointer;
 }
 
+.sale {
+  background-color: #c94747;
+}
+
 main {
   overflow-y: hidden;
 }

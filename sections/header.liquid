@@ -59,7 +59,8 @@
                     {% endfor %}
                 </ul>
                 {% else %}
-                <a href="{{ link.url }}">{{ link.title }}</a>
+                {% assign l_title = link.title | downcase %}
+                <a {% if l_title == 'clearance' or l_title == 'sale' %} class='sale' {% endif %} href="{{ link.url }}">{{ link.title }}</a>
                 {% endif %}
             </li>
         {% endfor %}

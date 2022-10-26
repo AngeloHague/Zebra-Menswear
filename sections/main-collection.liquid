@@ -40,6 +40,7 @@
               {% if product.price < product.compare_at_price %}
                 <p class='price'><span class='original'>{{ product.compare_at_price | money }}</span> {{ product.price | money }}</p> 
                 <div class='badge sale'>
+                  SALE<br>
                   {% assign og_price = product.compare_at_price | money_without_currency %}
                   {% assign percentage = product.price | money_without_currency | divided_by: og_price %}
                   {% assign diff = 1 | minus: percentage | times: 100 %}
