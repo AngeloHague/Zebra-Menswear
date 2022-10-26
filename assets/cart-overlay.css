@@ -152,6 +152,7 @@
     width: 100%;
     box-sizing: border-box;
     border-top: solid 1px #ccc;
+    z-index: 3;
 }
 #cart-item-count {
     padding: 8px 16px 0;
@@ -160,9 +161,10 @@
 }
 @media(min-width: 1024px) {
 .modal {
+    height: 80%;
     max-height: 768px;
     max-width: 384px;
-    top: 56px;
+    margin-top: 56px;
     border: solid 1px #ccc;
 }
 .modal-overlay {
