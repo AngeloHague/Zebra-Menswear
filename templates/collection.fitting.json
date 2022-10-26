@@ -1,21 +1,19 @@
 {
-    "sections": {
-      "collection_banner": {
-        "type": "collection_banner",
-        "settings": {
-          "fallback_image": "shopify:\/\/shop_images\/Zebra-Menswear_263d12bc-a61a-41f8-a632-7737933a072b.jpg"
-        }
-      },
-      "main": {
-        "type": "main-collection",
-        "settings": {
-        }
-      },
-      "map": "google-map"
+  "sections": {
+    "collection_banner": {
+      "type": "collection_banner",
+      "settings": {
+        "fallback_image": "shopify:\/\/shop_images\/Zebra-Menswear_263d12bc-a61a-41f8-a632-7737933a072b.jpg"
+      }
     },
-    "order": [
-      "collection_banner",
-      "map",
-      "main"
-    ]
-  }
+    "main": {
+      "type": "main-collection",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "collection_banner",
+    "main"
+  ]
+}
