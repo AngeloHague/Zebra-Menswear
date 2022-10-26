@@ -37,8 +37,8 @@
         "type": "text",
         "id": "social_facebook_link",
         "label": "Facebook Link",
-        "info": "e.g. fb.com/MyFacebookPage",
-        "default": "fb.com/zebramenswear"
+        "info": "e.g. fb.com\/MyFacebookPage",
+        "default": "fb.com\/zebramenswear"
       },
       {
         "type": "text",
