@@ -128,12 +128,13 @@ input:not(:checked) + .slide {
 
 .slider-dots .dot {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: #fff;
     opacity: 0.5;
     margin: 6px 8px;
+    cursor: pointer;
 }
 
 input:checked + .slide {
