@@ -256,6 +256,10 @@
     background-color: #5a5a5ae0;
     cursor: pointer;
 }
+#nav a.sale:hover {
+    background-color: #e46262;
+    cursor: pointer;
+}
 
 .nav_bar .right {
     position: fixed;

@@ -107,6 +107,10 @@ input[type=submit], button, .button {
     object-position: top;
 }
 
+.sale {
+  background-color: #c94747;
+}
+
 main {
   overflow-y: hidden;
 }
