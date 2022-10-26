@@ -9,6 +9,8 @@
     "main": {
       "type": "main-collection",
       "settings": {
+        "show-title": true,
+        "open-description": true
       }
     }
   },
