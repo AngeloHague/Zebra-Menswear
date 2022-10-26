@@ -1,3 +1,4 @@
+{{ 'search.css' | asset_url | stylesheet_tag }}
 {{ 'products.css' | asset_url | stylesheet_tag }}
 <div class='search-results'>
     <h2>Search</h2>
@@ -53,79 +54,3 @@
   
     {% render 'pages' with paginate %}
   {% endpaginate %}
-  
-  {% style %}
-  .search-results h2 {
-    text-align: left;
-    padding: 0 0 8px 0;
-    margin: 32px 16px 16px;
-    border-bottom: solid 1px #ccc;
-  }
-  .search-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-  .search-form {
-    padding: 0 32px;
-  }
-  .search-form input {
-    width: 100%;
-    padding: 8px;
-  }
-  .search-form button {
-    width: 100%;
-    max-width: 100%;
-    margin: auto;
-    margin: 16px 0;
-  }
-  .results {
-    padding: 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px 8px;
-    justify-content: space-around;
-  }
-  .results .item {
-    width: 160px;
-    margin: auto;
-    margin-top: 0;
-  }
-  .results .item a {
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: #4F607B;
-    font-weight: 500;
-  }
-  .results .item p {
-    padding-top: 4px;
-    font-size: 1.3rem;
-    text-decoration: none;
-  }
-  .results .item img {
-    width: 100%;
-  }
-  @media(min-width: 600px) {
-    .results {
-      grid-template-columns: 1fr 1fr 1fr;
-  }
-  @media(min-width: 800px) {
-    .search-form {
-      flex-direction: row;
-      justify-content: space-around;
-    }
-    .search-form input {
-      width: 75%;
-      margin-right: 16px;
-    }
-    .search-form button {
-      margin: 0;
-      width: 30%;
-    }
-    .results {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  }
-  {% endstyle %}
