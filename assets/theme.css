@@ -107,6 +107,10 @@ input[type=submit], button, .button {
     object-position: top;
 }
 
+details summary {
+  cursor: pointer;
+}
+
 main {
   overflow-y: hidden;
 }
