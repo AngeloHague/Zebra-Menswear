@@ -3,6 +3,13 @@
     "slider": {
       "type": "promo_slider",
       "blocks": {
+        "64159e8c-34ac-4573-b6ef-7c54e0a0222c": {
+          "type": "slide",
+          "settings": {
+            "caption": "Made to measure service",
+            "collection": "suit-fitting"
+          }
+        },
         "3f782b2b-3b1e-4a93-b8c5-2673f68ab5a8": {
           "type": "slide",
           "settings": {
@@ -14,21 +21,14 @@
           "type": "slide",
           "settings": {
             "caption": "",
-            "collection": "pantofola-doro"
-          }
-        },
-        "64159e8c-34ac-4573-b6ef-7c54e0a0222c": {
-          "type": "slide",
-          "settings": {
-            "caption": "",
-            "collection": "barbour"
+            "collection": "armor-lux"
           }
         }
       },
       "block_order": [
+        "64159e8c-34ac-4573-b6ef-7c54e0a0222c",
         "3f782b2b-3b1e-4a93-b8c5-2673f68ab5a8",
-        "08d7755f-3615-4298-b80b-2a3a65308ac2",
-        "64159e8c-34ac-4573-b6ef-7c54e0a0222c"
+        "08d7755f-3615-4298-b80b-2a3a65308ac2"
       ],
       "settings": {
       }
@@ -137,7 +137,7 @@
           "type": "slide",
           "settings": {
             "show_slide": false,
-            "collection": "parajumpers"
+            "collection": "armor-lux"
           }
         },
         "9f99def3-0e05-4233-b85d-d9b9eda59d07": {
@@ -195,7 +195,7 @@
           "settings": {
             "show_slide": false,
             "caption": "View the collection",
-            "collection": "barbour"
+            "collection": "armor-lux"
           }
         },
         "301bb7fd-07bf-47a2-9b82-e3a06b21d736": {
