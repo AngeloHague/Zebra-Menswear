@@ -1,23 +1,23 @@
 {{ 'collection_banner.css' | asset_url | stylesheet_tag }}
 <div class='collection-banner'>
-    {% if collection.image %}
+    {% if collection.metafields.brand.image %}
     <div class='slide'>
         <div class="bg_blur">
             <picture>
-                <source media="(max-width:390px)" srcset="{{ collection | img_url: '390x' }}, {{ collection | img_url: '780x' }} 2x ">
-                <source media="(max-width:768px)" srcset="{{ collection | img_url: '768x' }}, {{ collection | img_url: '1536x' }} 2x ">
-                <source srcset="{{ collection | img_url: '1024x' }}, {{ collection | img_url: '2048x' }} 2x">
-                <img src="{{ collection | img_url: '1024x' }}" width='100%' height='100%'>
+                <source media="(max-width:390px)" srcset="{{ collection.metafields.brand.image | img_url: '390x' }}, {{ collection.metafields.brand.image | img_url: '780x' }} 2x ">
+                <source media="(max-width:768px)" srcset="{{ collection.metafields.brand.image | img_url: '768x' }}, {{ collection.metafields.brand.image | img_url: '1536x' }} 2x ">
+                <source srcset="{{ collection.metafields.brand.image | img_url: '1024x' }}, {{ collection.metafields.brand.image | img_url: '2048x' }} 2x">
+                <img src="{{ collection.metafields.brand.image | img_url: '1024x' }}" width='100%' height='100%'>
             </picture>
         </div>
         <div class="content">
             <div class="card">
                 <div class='image'>
                     <picture>
-                        <source media="(max-width:390px)" srcset="{{ collection | img_url: '390x' }}, {{ collection | img_url: '780x' }} 2x ">
-                        <source media="(max-width:768px)" srcset="{{ collection | img_url: '768x' }}, {{ collection | img_url: '1536x' }} 2x ">
-                        <source srcset="{{ collection | img_url: '1024x' }}, {{ collection | img_url: '2048x' }} 2x">
-                        <img src="{{ collection | img_url: '1024x' }}" width='100%' height='100%'>
+                        <source media="(max-width:390px)" srcset="{{ collection.metafields.brand.image | img_url: '390x' }}, {{ collection.metafields.brand.image | img_url: '780x' }} 2x ">
+                        <source media="(max-width:768px)" srcset="{{ collection.metafields.brand.image | img_url: '768x' }}, {{ collection.metafields.brand.image | img_url: '1536x' }} 2x ">
+                        <source srcset="{{ collection.metafields.brand.image | img_url: '1024x' }}, {{ collection.metafields.brand.image | img_url: '2048x' }} 2x">
+                        <img src="{{ collection.metafields.brand.image | img_url: '1024x' }}" width='100%' height='100%'>
                     </picture>
                 </div>
                 <div class='caption'>
@@ -30,8 +30,8 @@
     <div class='slide'>
         <div class="bg_blur">
             <picture>
-                <source media="(max-width:390px)" srcset="{{ section.settings.fallback_image | img_url: '390x' }}, {{ collection | img_url: '780x' }} 2x ">
-                <source media="(max-width:768px)" srcset="{{ section.settings.fallback_image | img_url: '768x' }}, {{ collection | img_url: '1536x' }} 2x ">
+                <source media="(max-width:390px)" srcset="{{ section.settings.fallback_image | img_url: '390x' }}, {{ section.settings.fallback_image | img_url: '780x' }} 2x ">
+                <source media="(max-width:768px)" srcset="{{ section.settings.fallback_image | img_url: '768x' }}, {{ section.settings.fallback_image | img_url: '1536x' }} 2x ">
                 <source srcset="{{ section.settings.fallback_image | img_url: '1024x' }}, {{ section.settings.fallback_image | img_url: '2048x' }} 2x ">
                 <img src="{{ section.settings.fallback_image | img_url: '1024x' }}" width='100%' height='100%'>
             </picture>
@@ -40,8 +40,8 @@
             <div class="card">
                 <div class='image'>
                     <picture>
-                        <source media="(max-width:390px)" srcset="{{ section.settings.fallback_image | img_url: '390x' }}, {{ collection | img_url: '780x' }} 2x ">
-                        <source media="(max-width:768px)" srcset="{{ section.settings.fallback_image | img_url: '768x' }}, {{ collection | img_url: '1536x' }} 2x ">
+                        <source media="(max-width:390px)" srcset="{{ section.settings.fallback_image | img_url: '390x' }}, {{ collection.metafields.brand.image | img_url: '780x' }} 2x ">
+                        <source media="(max-width:768px)" srcset="{{ section.settings.fallback_image | img_url: '768x' }}, {{ collection.metafields.brand.image | img_url: '1536x' }} 2x ">
                         <source srcset="{{ section.settings.fallback_image | img_url: '1024x' }}, {{ section.settings.fallback_image | img_url: '2048x' }} 2x ">
                         <img src="{{ section.settings.fallback_image | img_url: '1024x' }}" width='100%' height='100%'>
                     </picture>
