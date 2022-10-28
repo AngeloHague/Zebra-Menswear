@@ -42,7 +42,7 @@
   }
   
   .newsletter .email::placeholder {
-    text-align: center;
+    padding-left: 8px;
   }
   
   .newsletter .button {
