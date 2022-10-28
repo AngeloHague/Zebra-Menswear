@@ -147,6 +147,9 @@
   .footer .shop-with-us ul {
     display: flex;
     justify-content: center;
+    width: 100%;
+    margin: auto;
+    flex-wrap: wrap;
   }
   
   .footer .shop-with-us li {
@@ -175,7 +178,7 @@
     .footer {
       display: grid;
       padding-bottom: 48px;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 33% 33% 33%;
       grid-template-areas: 'info contact shop';
     }
     .information { grid-area: info; }
