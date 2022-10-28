@@ -94,6 +94,9 @@
   }
   
   .saf-form .filter-group-display ul {
+    max-height: 40rem;
+    box-sizing: border-box;
+    overflow: auto;
       list-style: none;
   }
   
