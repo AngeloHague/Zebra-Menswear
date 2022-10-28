@@ -308,7 +308,8 @@
     font-size: 10px;
     color: #fff;
 }
-.nav_bar .left label:hover, .nav_bar .right a:hover {
+.nav_bar .left > label:hover, .nav_bar .left .search-container label:hover, .nav_bar .right > a:hover {
+    cursor: pointer;
     transform: scale(1.1);
 }
 
