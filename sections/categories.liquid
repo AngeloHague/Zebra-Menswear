@@ -7,7 +7,7 @@
           <div class='image'>
             <picture>
               <source srcset="{{ block.settings.collection | img_url: '80x' }}, {{ block.settings.collection | img_url: '160x' }} 2x">
-              <img src="{{ block.settings.collection | img_url: '80x' }}" width='100%' height='100%'>
+              <img src="{{ block.settings.collection | img_url: '80x' }}" width='100%' height='100%' alt="{{block.settings.collection.title}} Category Image">
           </picture>
           </div>
           {% if block.settings.caption != blank %}
