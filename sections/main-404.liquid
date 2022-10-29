@@ -1,5 +1,7 @@
-<h1>{{ 'general.404.title' | t }}</h1>
-<p>{{ 'general.404.subtext_html' | t }}</p>
+<div class='e404'>
+    <h1>{{ 'general.404.title' | t }}</h1>
+    <p>{{ 'general.404.subtext_html' | t }}</p>
+</div>
 
 {% schema %}
     {
@@ -9,6 +11,14 @@
 {% endschema %}
 
 {% style %}
+.e404 {
+    padding: 32px;
+    margin: auto;
+    text-align: center;
+}
+.e404 h1 {
+    padding-bottom: 16px;
+}
 {% endstyle %}
 
 {% javascript %}

@@ -1,6 +1,14 @@
 <!doctype html>
 <head>
-  <title>{{ page_title }}</title>
+  <title>
+    {% if template.name == "index" %} 
+      {{ page_title }}
+    {% elsif template.name == "product" %}
+      {% render 'filtered-product-title' with product.title%} | {{ shop.name }}
+    {% else %}
+    {{ page_title }} | {{ shop.name }}
+    {% endif %}
+  </title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="description" content="{{ page_description | escape }}">

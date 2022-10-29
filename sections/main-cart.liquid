@@ -47,7 +47,7 @@
         <p class='subtotal'>Subtotal : {{ cart.total_price | money }}</p>
         <button class='button black' type="submit" name="checkout">Checkout</button>
         {% if additional_checkout_buttons %}
-          <div class="additional-checkout-buttons">
+          <div class="additional-checkout-buttons additional-checkout-buttons--vertical">
             {{ content_for_additional_checkout_buttons }}
           </div>
         {% endif %}

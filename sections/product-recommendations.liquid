@@ -1,3 +1,4 @@
+{{ 'products.css' | asset_url | stylesheet_tag }}
 <div class="product-recommendations js-enabled" data-product-id="{{ product.id }}" data-limit="4">
     <div class='recommendations'>
       {%- if recommendations.products_count > 0 -%}

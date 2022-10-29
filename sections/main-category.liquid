@@ -8,11 +8,7 @@
     {% endif %}
     <div class='category header'>
         <div class='thumb'>
-            {% if collection.image %}
-                <img src="{{collection.image | img_url: '128x'}}" width="100%" height="100%"  alt="Zebra Menswear {{collection.title}} Image" loading='lazy'>
-            {% else %}
-                <img src="{{section.settings.fallback_image | img_url: '128x'}}" width="100%" height="100%" alt="Zebra Menswear {{collection.title}} Image" loading='lazy'>
-            {% endif %}
+            <img src="{{collection | img_url: '128x'}}" width="100%" height="100%"  alt="Zebra Menswear {{collection.title}} Image" loading='lazy'>
         </div>
         <h2>{{collection.title}}</h2>
     </div>
@@ -31,11 +27,7 @@
                     <li>
                         <div class='category sub'>
                             <div class='thumb'>
-                                {% if subcategory.image %}
-                                    <img src="{{subcategory.image | img_url: '128x'}}" width="100%" height="100%"  alt="Zebra Menswear {{subcategory.title}} Image" loading='lazy'>
-                                {% else %}
-                                    <img src="{{section.settings.fallback_image | img_url: '128x'}}" width="100%" height="100%" alt="Zebra Menswear {{subcategory.title}} Image" loading='lazy'>
-                                {% endif %}
+                                <img src="{{subcategory | img_url: '128x'}}" width="100%" height="100%"  alt="Zebra Menswear {{subcategory.title}} Image" loading='lazy'>
                             </div>
                             <h2>{{subcategory.title}}</h2>
                             {% render 'icon-chevron-right' %}
