@@ -14,7 +14,8 @@
 
 .collection-banner .card {
     top: 20px;
-    width: 350px;
+    /* width: 350px; */
+    width: 90%;
     height: 140px;
     overflow: hidden;
 }
@@ -29,7 +30,8 @@
 }
 @media(min-width: 800px) {
     .collection-banner {
-        height: 400px;
+        height: auto;
+        aspect-ratio: 8/3;
     }
     .collection-banner .card {
         top: 0;
