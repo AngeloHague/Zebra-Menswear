@@ -1,4 +1,4 @@
-{% render 'dot-separator' %}
+{{ 'homepage.css' | asset_url | stylesheet_tag }}
 <section id="shopify-section-[id]" class="shopify-section">
     <div class='promo_images'>
         {% for block in section.blocks %}

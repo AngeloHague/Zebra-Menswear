@@ -30,7 +30,8 @@
   flex-direction: column;
   position: relative;
   top: 32px;
-  width: 340px;
+  width: 80%;
+  min-width: 340px;
   height: 240px;
   margin: auto;
   background-color: #fff;
@@ -153,6 +154,7 @@ input#slide-3:checked ~ .slider-dots label#slide-dot-3 {
     box-sizing: border-box;
     width: 100%;
     padding: 0 16px;
+    margin: 16px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -185,7 +187,7 @@ input#slide-3:checked ~ .slider-dots label#slide-dot-3 {
     white-space: nowrap;
     margin: auto;
     margin-bottom: 4px;
-    max-width: 896px;
+    /* max-width: 896px; */
   }
 
   .categories-section ul li {
@@ -246,6 +248,7 @@ input#slide-3:checked ~ .slider-dots label#slide-dot-3 {
 
   .promo_images {
     width: 100%;
+    margin: 16px 0 0 0;
 }
 
 .promo_images div[class^="card"], .promo_images .image {
@@ -327,11 +330,13 @@ input#slide-3:checked ~ .slider-dots label#slide-dot-3 {
 
 @media (min-width: 800px) {
     .promo_slider {
-        height: 368px;
+        /* height: 468px; */
+        height: auto;
+        aspect-ratio: 6/2;
     }
     .promo_slider .card {
         top: 0;
-        width: 768px;
+        width: 100%;
         height: 100%;
     }
     .promo_slider .card .image {
@@ -378,7 +383,32 @@ input#slide-3:checked ~ .slider-dots label#slide-dot-3 {
             ". ."
             "card-final card-final"; 
     }
-    .card.final {
+
+    .promo_images div.card, .promo_images div.card .image {
+      height: auto;
+      aspect-ratio: 4/2;
+    }
+
+    .promo_images div.card.final, .promo_images div.card.final .image {
+      height: auto;
+      aspect-ratio: 4/1;
+    }
+
+    .promo_images .card.final {
         grid-area: card-final;
+    }
+      
+    .categories-section ul li, .categories-section ul li img {
+      min-width: 80px;
+      width: 7.5%;
+      margin-right: 2%;
+      height: auto;
+      aspect-ratio: 1/1;
+    }
+      
+    .categories-section ul li img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
     }
 }
