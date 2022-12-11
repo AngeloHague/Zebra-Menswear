@@ -41,6 +41,7 @@
     },
     "categories": {
       "type": "categories",
+      "disabled": true,
       "blocks": {
         "c876f529-0f59-4032-8f98-02c6fbe17284": {
           "type": "slide",
