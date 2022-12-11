@@ -9,7 +9,7 @@
         {%- for product in recommendations.products -%}
         <li class="product">
           <a href="{{ product.url }}">
-            <div class='product image'>
+            <div class='product-image'>
               <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.featured_image.alt }}" />
             </div>
             <p class="title">{% render 'filtered-product-title' with product.title %}</p>
