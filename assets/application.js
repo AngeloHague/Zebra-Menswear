@@ -14,14 +14,20 @@ function scrollToAnchor(selectedAnchor) {
 }
 
 function filterProductTitle(title) {
-    for (var i = 0; i < title.length; i++) {
-        let c = title[i]
-        if (c===' ' || c==='-') {
-            return title.slice(i+1, title.length);
+    let product_id = null;
+    if (title[0] == "I" && title[1] == "D") {
+        for (var i = 0; i < title.length; i++) {
+            let c = title[i]
+            if (c===' ' || c==='-') {
+                let product_id = title.slice(0, i)
+                let product_title = title.slice(i+1, title.length)
+                return {product_id, product_title};
+            }
         }
     }
-    return title;
+    return {product_id, title};
 }
+
 // let navOpen = false;
 
 // function toggleNav(element) {

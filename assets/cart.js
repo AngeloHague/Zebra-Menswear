@@ -96,7 +96,7 @@ function updateCart(items, currency) {
         items.map((item, idx) => {
             counter += item.quantity;
             let price = new Intl.NumberFormat('en-GB', {style: 'currency', currency: currency}).format(item.price / 100);
-            let title = filterProductTitle(item.product_title);
+            var {product_id, product_title} = filterProductTitle(item.product_title);
             cartHtml.unshift(`
             <div class='cart-item'>
                 <div class='image'>
@@ -109,7 +109,8 @@ function updateCart(items, currency) {
                     ${price}
                 </div>
                 <div class='product-title'>
-                    ${title}
+                    <span class='product-id'>${product_id}</span><br>
+                    ${product_title}
                 </div> </a>
                 <div class='variant'>
                     ${item.variant_title}

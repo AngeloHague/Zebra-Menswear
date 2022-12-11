@@ -1,6 +1,5 @@
 {% assign title = filtered-product-title | split: '' %}
 
-{% assign checkForId = title | split: 'ID' %}
 {% if title[0] == 'I' and title[1] == 'D' %}
   {% for char in title %}
     {% if char == '-' or char == ' '%}
