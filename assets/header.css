@@ -341,7 +341,10 @@
         padding: 0;
         height: 100%;
     }
-    .nav_bar .menu-link { min-width: 7rem; }
+    .nav_bar .menu-link {
+        min-width: 7rem;
+        width: clamp(7rem, 9.5vw, 13.75rem);
+    }
 
     .nav_bar .left .search-container {
         left: 0;

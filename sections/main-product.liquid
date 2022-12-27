@@ -89,7 +89,8 @@
   </div>
   
   <div class='product-info'>
-    {% assign vendor = collections[product.vendor] %}
+    {% assign hyphenated-vendor = product.vendor | replace: ' ', '-' %}
+    {% assign vendor = collections[hyphenated-vendor] %}
     <h4 class='vendor'>{{ product.vendor | link_to: vendor.url}}</h4>
     <h4 class='title'>{% render 'filtered-product-title' with product.title %}</h4>
     <div>

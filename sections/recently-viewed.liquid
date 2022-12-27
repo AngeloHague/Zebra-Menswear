@@ -50,12 +50,13 @@ function getRecentlyViewedProducts() {
   const productData = JSON.parse(localStorage.getItem("recentlyViewedProduct"));
   const recentlyViewedHtml = [];
   productData.map(async (item) => {
+    var {product_id, product_title} = filterProductTitle(item.productTitle);
     await recentlyViewedHtml.unshift(`
     <li class="product">
       <a class='product image' href="${item.productUrl}"> 
 		<img class="recently-viewed-img" src='${item.productImg}' loading="lazy" alt="${item.productImageAltText}" width='160px' height='196'/>
-       <p>${filterProductTitle(item.productTitle)}</p>
-       <p>${item.productPrice}</p></a>
+       <p><span class='product-id'>${product_id}</span><br>${product_title}</p></a>
+       <p>${item.productPrice}</p>
     </li>
    `);
   });

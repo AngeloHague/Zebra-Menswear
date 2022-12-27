@@ -1,8 +1,13 @@
 {% assign title = filtered-product-title | split: '' %}
+
+{% if title[0] == 'I' and title[1] == 'D' %}
   {% for char in title %}
     {% if char == '-' or char == ' '%}
+      {% assign product_id = title | slice: 0, forloop.index0 %}
       {% assign title = title | slice: forloop.index, title.size %}
       {% break %}
     {% endif %}
   {% endfor %}
-  {{ title }}
+{% endif %}
+{% if product_id %} <span class='product-id'>{{product_id}}</span><br> {% endif %}{{ title }}
+  

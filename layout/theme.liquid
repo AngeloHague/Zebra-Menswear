@@ -4,7 +4,7 @@
     {% if template.name == "index" %} 
       {{ page_title }}
     {% elsif template.name == "product" %}
-      {% render 'filtered-product-title' with product.title%} | {{ shop.name }}
+      {{ product.title }} | {{ shop.name }}
     {% else %}
     {{ page_title }} | {{ shop.name }}
     {% endif %}

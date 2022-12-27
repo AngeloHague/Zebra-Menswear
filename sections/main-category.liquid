@@ -13,15 +13,20 @@
         <h2>{{collection.title}}</h2>
     </div>
     {% if collection.metafields.category.children %}
+        <details>
+        <summary class='category view-all'>
+            Subcategories 
+            {% render 'icon-chevron-down' %}
+        </summary>
         <ul>
-            <a href="#collection">
+            {% comment %} <a href="#collection">
                 <li>
                     <div class='category view-all'>
                         <h2>View All {{collection.title}}</h2>
                         {% render 'icon-chevron-down' %}
                     </div>
                 </li>
-            </a>
+            </a> {% endcomment %}
             {% for subcategory in collection.metafields.category.children.value %}
                 <a href="{{subcategory.url}}">
                     <li>
@@ -36,6 +41,7 @@
                 </a>
             {% endfor %}
         </ul>
+    </details>
     {% endif %}
 </div>
 
@@ -62,6 +68,22 @@
     border-bottom: solid 1px #ccc;
     padding: 16px;
 }
+.categories details {
+    border-bottom: solid 1px #ccc;
+    padding: 16px;
+}
+.categories summary {
+    text-transform: uppercase;
+    padding-left: 1.6rem;
+    font-size: 1.2rem;
+}
+.categories details[open] summary {
+    padding-bottom: 16px;
+    /* border-bottom: solid 1px #ccc; */
+}
+.categories details[open] summary svg {
+    transform: rotate(180deg);
+}
 .categories .category.back {
     padding: 8px 0;
     text-transform: uppercase;
@@ -69,6 +91,7 @@
 .categories .category.back p {
     font-size: 1.4rem;
 }
+.categories ul a:first-of-type li { border-top: solid 1px #ccc; }
 .categories ul a:last-of-type li { border-bottom: none; }
 .categories .category.header .thumb {width: 72px; height: 72px;}
 .categories .category .thumb {width: 48px; height: 48px;}
