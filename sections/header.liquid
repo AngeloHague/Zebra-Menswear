@@ -1,9 +1,9 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
 <div class='nav_bar'>
     <input type='checkbox' name='open-menu' id='open-menu' />
-    <label for='open-menu' class='closeDrawer menu-drawer'>&nbsp;</label>
+    {% comment %} <label for='open-menu' tabIndex='0' class='closeDrawer menu-drawer'>&nbsp;</label> {% endcomment %}
     <div class='left'>
-        <label href='/menu' class="menu" id='menu' for='open-menu'>
+        <label href='/menu' tabIndex='0' class="menu" id='menu' for='open-menu'>
             <div class="menu_burger"></div>
         </label>
         <div class='search-container'>
@@ -108,17 +108,30 @@
 {% javascript %}
     document.getElementById("menu").removeAttribute("href");
 
+    const burgerLabel = document.querySelector('label[for="open-menu"]');
+    const associatedCheckbox = document.getElementById('open-menu');
+
+    burgerLabel.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+        associatedCheckbox.checked = !associatedCheckbox.checked;
+        }
+    });
+
     const submenuLabels = document.querySelectorAll('[for^="open-submenu-"]');
 
     submenuLabels.forEach(label => {
     label.addEventListener('keydown', event => {
       if (event.key === 'Enter') {
+        const associatedId = label.getAttribute('for');
+        const associatedElement = document.getElementById(associatedId);
+        
+        label.classList.toggle('hover-effect');
+        associatedElement.checked = !associatedElement.checked;
         submenuLabels.forEach(otherLabel => {
           if (otherLabel !== label) {
             otherLabel.classList.remove('hover-effect');
           }
         });
-        label.classList.toggle('hover-effect');
       }
     });
   });

@@ -319,7 +319,7 @@
 
 @media(max-width: 1179px) {
     [id^=open-sub]:checked ~ ul.dropdown-menu {
-    display: block;
+        display: block;
     }
     [id^=open-sub]:checked + label svg {
         /* transform: rotate(-540deg); */
@@ -332,6 +332,9 @@
 }
 
 @media(min-width: 1180px) {
+    [id^=open-sub]:checked ~ ul.dropdown-menu {
+        display: none;
+    }
     .nav_bar .menu, .nav_bar .logo.mobile { display: none; }
     .nav_bar .logo.desktop {
         display: flex;
