@@ -422,7 +422,8 @@
     .menu-link  .dropdown-menu label svg {
         transform: rotate(-90deg);
     }
-    .menu-link label:hover ~ ul.dropdown-menu, ul.dropdown-menu:hover  {
+    .menu-link label:hover ~ ul.dropdown-menu, ul.dropdown-menu:hover,
+    .menu-link label.hover-effect ~ ul.dropdown-menu {
         background-color: #363636;
         display: flex;
     }
