@@ -41,7 +41,6 @@
     },
     "categories": {
       "type": "categories",
-      "disabled": true,
       "blocks": {
         "c876f529-0f59-4032-8f98-02c6fbe17284": {
           "type": "slide",
@@ -166,6 +165,7 @@
         "4b6483ec-46bb-4066-9d13-175d7b314266",
         "b5b74630-ebcc-4ddc-9e92-9ac7e7462701"
       ],
+      "disabled": true,
       "settings": {
         "button-text": "",
         "button-collection": "clothing"
@@ -252,7 +252,7 @@
           "settings": {
             "show_slide": false,
             "caption": "View the collection",
-            "collection": "north-sails"
+            "collection": "ma-strum"
           }
         },
         "adc3f8df-b565-4a54-9ee8-239a49bd4cda": {
