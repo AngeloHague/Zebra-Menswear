@@ -27,12 +27,12 @@
                 {% assign midpoint = midpoint | plus: 1 %}
             {% endif %}
             {% if forloop.index0 == midpoint %}
-                <a href='/' class='logo desktop'>zebra</a>
+                <a href='/' tabIndex=0 class='logo desktop'>zebra</a>
             {% endif %}
             <li class="menu-link">
                 {% if link.links.size > 0 %}
                 <input type='checkbox' name='open-submenu-{{forloop.index}}' class='open-menu' id='open-submenu-{{forloop.index}}' />
-                <label href='/menu' class="menu-label" for='open-submenu-{{forloop.index}}'>
+                <label href='/menu' tabIndex=0 class="menu-label" for='open-submenu-{{forloop.index}}'>
                     {{ link.title }}
                     {% render 'icon-chevron-down' %}
                 </label>
@@ -48,12 +48,12 @@
                                 <ul class="dropdown-menu child-menu">
                                     {% for grandchild_link in child_link.links %}
                                         <li class="menu-link">
-                                            <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                                            <a tabIndex=0 href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
                                         </li>
                                     {% endfor %}
                                 </ul>
                                 {% else %}
-                                <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                                <a tabIndex=0 href="{{ child_link.url }}">{{ child_link.title }}</a>
                                 {% endif %}
                         </li>
                     {% endfor %}
@@ -107,4 +107,19 @@
 
 {% javascript %}
     document.getElementById("menu").removeAttribute("href");
+
+    const submenuLabels = document.querySelectorAll('[for^="open-submenu-"]');
+
+    submenuLabels.forEach(label => {
+    label.addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        submenuLabels.forEach(otherLabel => {
+          if (otherLabel !== label) {
+            otherLabel.classList.remove('hover-effect');
+          }
+        });
+        label.classList.toggle('hover-effect');
+      }
+    });
+  });
 {% endjavascript %}
