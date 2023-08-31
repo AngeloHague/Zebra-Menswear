@@ -37,6 +37,13 @@
             "caption": "EXPLORE THE PARAJUMPERS COLLECTION",
             "collection": "parajumpers"
           }
+        },
+        "823fabb2-89ff-489e-9a5f-b88aae1de315": {
+          "type": "slide",
+          "settings": {
+            "caption": "EXPLORE THE SAUCONY ORIGINALS COLLECTION",
+            "collection": "saucony-originals"
+          }
         }
       },
       "block_order": [
@@ -44,7 +51,8 @@
         "3f782b2b-3b1e-4a93-b8c5-2673f68ab5a8",
         "08d7755f-3615-4298-b80b-2a3a65308ac2",
         "5e731840-ffbf-497a-b117-0a3236570aef",
-        "d177f737-57ab-432f-95be-f28f6a0a35db"
+        "d177f737-57ab-432f-95be-f28f6a0a35db",
+        "823fabb2-89ff-489e-9a5f-b88aae1de315"
       ],
       "settings": {
       }
