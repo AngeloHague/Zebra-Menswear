@@ -1,24 +1,30 @@
 {{ 'page-content.css' | asset_url | stylesheet_tag }}
 <div class='page-content'>
-    {% if page.metafields.brands.list %}
-        {% assign last_header = blank %}
-        <ul class='brands'>
-            {% for brand in page.metafields.brands.list.value %}
-                {% assign header = brand.title | slice: 0 %}
-                {% if header != last_header or last_header == blank %}
-                    {% assign last_header = header %}
-                    <h2>{{ header }}</h2>
-                {% endif %}
-                <li>
-                    <h3>{{ brand.title | link_to: brand.url }}</h3>
-                    {% comment %} <a href='{{brand.url}}' class='brand-logo'><img src="{{ brand.metafields.brand.logo.value.url }}" alt="{{ brand.title }} Logo" width='100%' height='100%'></a> {% endcomment %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    {% assign last_header = blank %}
+    <ul class='brands'>
+        {% for link in linklists.main-menu.links %}
+            {% if link.links.size > 0 and link.title == 'Brands' or link.title == 'Brands A-N' or link.title == 'Brands P-Z' %}
+                {% for brand in link.links %}
+                    {% assign brand = link %}
+                    {% assign header = brand.title | slice: 0 %}
+                    {% if header != last_header or last_header == blank %}
+                        {% assign last_header = header %}
+                        <h2>{{ header }}</h2>
+                    {% endif %}
+                    <li>
+                        <h3>{{ brand.title | link_to: brand.url }}</h3>
+                        {% comment %} <a href='{{brand.url}}' class='brand-logo'><img src="{{ brand.metafields.brand.logo.value.url }}" alt="{{ brand.title }} Logo" width='100%' height='100%'></a> {% endcomment %}
+                    </li>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </ul>
 </div>
 
 {% style %}
+.page-content {
+    margin: 48px 32px;
+}
 .brands {
     margin: 16px 24px;
 }
@@ -47,8 +53,20 @@
     /* object-position: left; */
 }
 
+.brands a {
+    color: #4F607B;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
 @media(min-width: 800px) {
-    .brands { columns: 2; }
+    .brands {
+        columns: 2;
+        margin: 32px 48px;
+    }
+}
+@media(min-width: 1200px) {
+    .brands { columns: 3; }
 }
 {% endstyle %}
 
