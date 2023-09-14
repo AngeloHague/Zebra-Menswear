@@ -198,13 +198,6 @@
     "trending_brands": {
       "type": "trending_brands",
       "blocks": {
-        "daa81d11-8fe0-472d-adb1-779dceb6f651": {
-          "type": "slide",
-          "settings": {
-            "show_slide": false,
-            "collection": "nudie-jeans"
-          }
-        },
         "3d6e00bc-c432-4ff2-a2c2-616953622a1f": {
           "type": "slide",
           "settings": {
@@ -239,15 +232,22 @@
             "show_slide": false,
             "collection": "xacus-shirts-1"
           }
+        },
+        "3df2b46c-9f5a-4922-8890-a61ad87b4de1": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "collection": "tramarossa"
+          }
         }
       },
       "block_order": [
-        "daa81d11-8fe0-472d-adb1-779dceb6f651",
         "3d6e00bc-c432-4ff2-a2c2-616953622a1f",
         "9d4fd667-53ef-42c9-9eb2-335271d3bcc4",
         "50b2fdf7-0d60-41c0-82a5-a2f85723dcfc",
         "e39902c7-2a7e-45d6-912b-48bb3f864f64",
-        "4cc1396b-f8ac-468f-a816-bce51d0ee3e5"
+        "4cc1396b-f8ac-468f-a816-bce51d0ee3e5",
+        "3df2b46c-9f5a-4922-8890-a61ad87b4de1"
       ],
       "settings": {
       }
