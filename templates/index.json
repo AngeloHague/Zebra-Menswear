@@ -24,13 +24,6 @@
             "collection": "barbour"
           }
         },
-        "5e731840-ffbf-497a-b117-0a3236570aef": {
-          "type": "slide",
-          "settings": {
-            "caption": "EXPLORE THE NUDIE JEANS COLLECTION",
-            "collection": "nudie-jeans"
-          }
-        },
         "d177f737-57ab-432f-95be-f28f6a0a35db": {
           "type": "slide",
           "settings": {
@@ -44,15 +37,22 @@
             "caption": "EXPLORE THE SAUCONY ORIGINALS COLLECTION",
             "collection": "saucony-originals"
           }
+        },
+        "9ecce06a-f605-4289-8a3d-a92e2019715c": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "remus-uomo"
+          }
         }
       },
       "block_order": [
         "64159e8c-34ac-4573-b6ef-7c54e0a0222c",
         "3f782b2b-3b1e-4a93-b8c5-2673f68ab5a8",
         "08d7755f-3615-4298-b80b-2a3a65308ac2",
-        "5e731840-ffbf-497a-b117-0a3236570aef",
         "d177f737-57ab-432f-95be-f28f6a0a35db",
-        "823fabb2-89ff-489e-9a5f-b88aae1de315"
+        "823fabb2-89ff-489e-9a5f-b88aae1de315",
+        "9ecce06a-f605-4289-8a3d-a92e2019715c"
       ],
       "settings": {
       }
