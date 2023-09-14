@@ -212,13 +212,6 @@
             "collection": "remus-uomo"
           }
         },
-        "8140872a-2825-4204-96b6-fc4654fd7a79": {
-          "type": "slide",
-          "settings": {
-            "show_slide": false,
-            "collection": "psycho-bunny"
-          }
-        },
         "3d6e00bc-c432-4ff2-a2c2-616953622a1f": {
           "type": "slide",
           "settings": {
@@ -239,15 +232,22 @@
             "show_slide": false,
             "collection": "replay-jeans"
           }
+        },
+        "e39902c7-2a7e-45d6-912b-48bb3f864f64": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "collection": "diadora"
+          }
         }
       },
       "block_order": [
         "daa81d11-8fe0-472d-adb1-779dceb6f651",
         "9f99def3-0e05-4233-b85d-d9b9eda59d07",
-        "8140872a-2825-4204-96b6-fc4654fd7a79",
         "3d6e00bc-c432-4ff2-a2c2-616953622a1f",
         "9d4fd667-53ef-42c9-9eb2-335271d3bcc4",
-        "50b2fdf7-0d60-41c0-82a5-a2f85723dcfc"
+        "50b2fdf7-0d60-41c0-82a5-a2f85723dcfc",
+        "e39902c7-2a7e-45d6-912b-48bb3f864f64"
       ],
       "settings": {
       }
