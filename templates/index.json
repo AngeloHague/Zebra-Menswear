@@ -170,6 +170,13 @@
             "caption": "",
             "collection": "trousers"
           }
+        },
+        "fd654844-1bfb-4de5-acb6-04b0a962c98e": {
+          "type": "slide",
+          "settings": {
+            "caption": "Casual Trousers",
+            "collection": "casual-trousers"
+          }
         }
       },
       "block_order": [
@@ -187,7 +194,8 @@
         "876b53e9-c3bc-46b5-b52b-d41fa26d308f",
         "8e455c6c-507c-4a93-a086-311e2f83052d",
         "4b6483ec-46bb-4066-9d13-175d7b314266",
-        "b5b74630-ebcc-4ddc-9e92-9ac7e7462701"
+        "b5b74630-ebcc-4ddc-9e92-9ac7e7462701",
+        "fd654844-1bfb-4de5-acb6-04b0a962c98e"
       ],
       "disabled": true,
       "settings": {
