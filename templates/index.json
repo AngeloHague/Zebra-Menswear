@@ -80,6 +80,13 @@
             "collection": "casual-shirts"
           }
         },
+        "fd654844-1bfb-4de5-acb6-04b0a962c98e": {
+          "type": "slide",
+          "settings": {
+            "caption": "Casual Trousers",
+            "collection": "casual-trousers"
+          }
+        },
         "3f3ecae9-bc51-49a9-b5ac-3c1715995987": {
           "type": "slide",
           "settings": {
@@ -171,17 +178,18 @@
             "collection": "trousers"
           }
         },
-        "fd654844-1bfb-4de5-acb6-04b0a962c98e": {
+        "f751f2dc-d213-47d8-9a20-2d83a7062990": {
           "type": "slide",
           "settings": {
-            "caption": "Casual Trousers",
-            "collection": "casual-trousers"
+            "caption": "Casual Jackets",
+            "collection": "casual-jackets"
           }
         }
       },
       "block_order": [
         "c876f529-0f59-4032-8f98-02c6fbe17284",
         "f1abb9df-44f2-4517-91b7-1a8bc8a31cd5",
+        "fd654844-1bfb-4de5-acb6-04b0a962c98e",
         "3f3ecae9-bc51-49a9-b5ac-3c1715995987",
         "5a019104-f48a-4cc5-af44-33c57afd1f2b",
         "1b351c97-c9e9-4ece-8409-e0de1c2681c0",
@@ -195,7 +203,7 @@
         "8e455c6c-507c-4a93-a086-311e2f83052d",
         "4b6483ec-46bb-4066-9d13-175d7b314266",
         "b5b74630-ebcc-4ddc-9e92-9ac7e7462701",
-        "fd654844-1bfb-4de5-acb6-04b0a962c98e"
+        "f751f2dc-d213-47d8-9a20-2d83a7062990"
       ],
       "disabled": true,
       "settings": {
