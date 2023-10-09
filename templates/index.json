@@ -37,6 +37,13 @@
             "caption": "",
             "collection": "remus-uomo"
           }
+        },
+        "82ff8b18-a99c-443a-813e-a845d2deb23f": {
+          "type": "slide",
+          "settings": {
+            "caption": "Roy Robson",
+            "collection": "roy-robson"
+          }
         }
       },
       "block_order": [
@@ -44,7 +51,8 @@
         "08d7755f-3615-4298-b80b-2a3a65308ac2",
         "d177f737-57ab-432f-95be-f28f6a0a35db",
         "823fabb2-89ff-489e-9a5f-b88aae1de315",
-        "9ecce06a-f605-4289-8a3d-a92e2019715c"
+        "9ecce06a-f605-4289-8a3d-a92e2019715c",
+        "82ff8b18-a99c-443a-813e-a845d2deb23f"
       ],
       "settings": {
       }
