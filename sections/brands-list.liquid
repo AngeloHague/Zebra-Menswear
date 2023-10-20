@@ -3,7 +3,7 @@
     {% assign last_header = blank %}
     <ul class='brands'>
         {% for link in linklists.main-menu.links %}
-            {% if link.links.size > 0 and link.title == 'Brands' or link.title == 'Brands A-N' or link.title == 'Brands P-Z' %}
+            {% if link.links.size > 0 and link.title == 'Brands' or link.title == 'Brands A-N' or link.title == 'Brands O-Z' %}
                 {% for brand in link.links %}
                     {% assign brand = link %}
                     {% assign header = brand.title | slice: 0 %}
