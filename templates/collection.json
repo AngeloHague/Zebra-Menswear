@@ -10,7 +10,7 @@
       "type": "main-collection",
       "settings": {
         "show-title": true,
-        "open-description": false
+        "open-description": true
       }
     }
   },
