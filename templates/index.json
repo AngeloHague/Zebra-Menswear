@@ -17,13 +17,6 @@
             "collection": "barbour"
           }
         },
-        "d177f737-57ab-432f-95be-f28f6a0a35db": {
-          "type": "slide",
-          "settings": {
-            "caption": "",
-            "collection": "parajumpers"
-          }
-        },
         "823fabb2-89ff-489e-9a5f-b88aae1de315": {
           "type": "slide",
           "settings": {
@@ -44,15 +37,22 @@
             "caption": "Zebra Est. 1986",
             "collection": "zebra"
           }
+        },
+        "slide_pAyV4A": {
+          "type": "slide",
+          "settings": {
+            "caption": "",
+            "collection": "nudie-jeans"
+          }
         }
       },
       "block_order": [
         "3f782b2b-3b1e-4a93-b8c5-2673f68ab5a8",
         "08d7755f-3615-4298-b80b-2a3a65308ac2",
-        "d177f737-57ab-432f-95be-f28f6a0a35db",
         "823fabb2-89ff-489e-9a5f-b88aae1de315",
         "9ecce06a-f605-4289-8a3d-a92e2019715c",
-        "8f99faca-8a3d-471f-a917-4fcc8d2f198f"
+        "8f99faca-8a3d-471f-a917-4fcc8d2f198f",
+        "slide_pAyV4A"
       ],
       "settings": {
       }
