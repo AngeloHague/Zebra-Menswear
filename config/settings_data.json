@@ -92,6 +92,16 @@
         ],
         "settings": {
         }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+        }
       }
     },
     "content_for_index": [
@@ -108,6 +118,13 @@
           "button_horizontal_position": "bottom_right",
           "button_vertical_position": "lowest",
           "greeting_message": "👋 Hi, message us with any questions. We're happy to help!"
+        }
+      },
+      "18200565304124502559": {
+        "type": "shopify:\/\/apps\/alpha-sale\/blocks\/bar-block\/45a35b3f-4683-44a8-afc3-1d6788fea377",
+        "disabled": false,
+        "settings": {
+          "demo": true
         }
       }
     }
