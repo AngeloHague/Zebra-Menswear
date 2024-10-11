@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "slider": {
@@ -292,7 +301,7 @@
           "settings": {
             "show_slide": false,
             "caption": "View the collection",
-            "collection": "ma-strum"
+            "collection": "duno"
           }
         },
         "adc3f8df-b565-4a54-9ee8-239a49bd4cda": {
