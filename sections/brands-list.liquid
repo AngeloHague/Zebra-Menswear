@@ -3,26 +3,29 @@
     {% assign last_header = blank %}
     <ul class='brands'>
         {% for link in linklists.main-menu.links %}
-            {% if link.links.size > 0 and (link.title == 'Brands' or link.title == 'Brands A-N' or link.title == 'Brands O-Z') %}
-                {% for brand in link.links %}
-                    {% assign header = brand.title | slice: 0, 1 %}
-                    {% if header != last_header or last_header == blank %}
-                        {% assign last_header = header %}
-                        <h2>{{ header }}</h2>
-                    {% endif %}
-                    <li>
-                        <h3><a href='{{ brand.url }}'>{{ brand.title }}</a></h3>
-                        {% comment %} 
-                        <a href='{{ brand.url }}' class='brand-logo'>
-                            <img src="{{ brand.metafields.brand.logo.value.url }}" alt="{{ brand.title }} Logo" width='100%' height='100%'>
-                        </a> 
-                        {% endcomment %}
-                    </li>
-                {% endfor %}
+            {% if link.links.size > 0 %}
+                {% if link.title == 'Brands' or link.title == 'Brands A-N' or link.title == 'Brands O-Z' %}
+                    {% for brand in link.links %}
+                        {% assign header = brand.title | slice: 0, 1 %}
+                        {% if header != last_header or last_header == blank %}
+                            {% assign last_header = header %}
+                            <h2>{{ header }}</h2>
+                        {% endif %}
+                        <li>
+                            <h3><a href='{{ brand.url }}'>{{ brand.title }}</a></h3>
+                            {% comment %} 
+                            <a href='{{ brand.url }}' class='brand-logo'>
+                                <img src="{{ brand.metafields.brand.logo.value.url }}" alt="{{ brand.title }} Logo" width='100%' height='100%'>
+                            </a> 
+                            {% endcomment %}
+                        </li>
+                    {% endfor %}
+                {% endif %}
             {% endif %}
         {% endfor %}
     </ul>
 </div>
+
 
 
 {% style %}
