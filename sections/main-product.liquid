@@ -203,9 +203,9 @@
     {% if section.settings.stock-warning %}
       if (variantStock[variant.id] < {{ section.settings.stock-warning }} && variantStock[variant.id] > 0 && variant.inventory_management == 'shopify') {
         if (variantStock[variant.id] == 1) {
-          remaining.innerHTML = 'Last 1 in stock!';
+          remaining.innerHTML = 'Last in this size!';
         } else if (variantStock[variant.id] > 1) {
-          remaining.innerHTML = 'Low in stock!';
+          remaining.innerHTML = 'Last few in this size!';
         }
       } else if (!available) {
         remaining.innerHTML = 'Out of stock!';
