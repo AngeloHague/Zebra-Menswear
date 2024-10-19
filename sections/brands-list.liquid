@@ -1,6 +1,7 @@
 {{ 'page-content.css' | asset_url | stylesheet_tag }}
 <div class='page-content'>
     {% assign last_header = blank %}
+    <p>Test</p>
     <ul class='brands'>
         {% for link in linklists.main-menu.links %}
             {% if link.links.size > 0 %}
