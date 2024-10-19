@@ -1,11 +1,10 @@
 {{ 'page-content.css' | asset_url | stylesheet_tag }}
 <div class='page-content'>
     {% assign last_header = blank %}
-    <p>Test</p>
     <ul class='brands'>
         {% for link in linklists.main-menu.links %}
             {% if link.links.size > 0 %}
-                {% if link.title == 'Brands' or link.title == 'Brands A-N' or link.title == 'Brands O-Z' %}
+                {% if link.title contains 'Brands' %}
                     {% for brand in link.links %}
                         {% assign header = brand.title | slice: 0, 1 %}
                         {% if header != last_header or last_header == blank %}
