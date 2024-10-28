@@ -223,13 +223,6 @@
     "trending_brands": {
       "type": "trending_brands",
       "blocks": {
-        "3d6e00bc-c432-4ff2-a2c2-616953622a1f": {
-          "type": "slide",
-          "settings": {
-            "show_slide": false,
-            "collection": "hom"
-          }
-        },
         "9d4fd667-53ef-42c9-9eb2-335271d3bcc4": {
           "type": "slide",
           "settings": {
@@ -264,15 +257,22 @@
             "show_slide": false,
             "collection": "pantofola"
           }
+        },
+        "slide_NAk7Pn": {
+          "type": "slide",
+          "settings": {
+            "show_slide": false,
+            "collection": "stenstroms"
+          }
         }
       },
       "block_order": [
-        "3d6e00bc-c432-4ff2-a2c2-616953622a1f",
         "9d4fd667-53ef-42c9-9eb2-335271d3bcc4",
         "50b2fdf7-0d60-41c0-82a5-a2f85723dcfc",
         "4cc1396b-f8ac-468f-a816-bce51d0ee3e5",
         "998ba6cc-e334-408a-8949-16fa42d59d45",
-        "slide_JiDUHm"
+        "slide_JiDUHm",
+        "slide_NAk7Pn"
       ],
       "settings": {
       }
