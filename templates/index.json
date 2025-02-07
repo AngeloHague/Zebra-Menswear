@@ -12,6 +12,13 @@
     "slider": {
       "type": "promo_slider",
       "blocks": {
+        "slide_NWCnWk": {
+          "type": "slide",
+          "settings": {
+            "caption": "The Wedding Collection",
+            "collection": "the-wedding-collection"
+          }
+        },
         "3f782b2b-3b1e-4a93-b8c5-2673f68ab5a8": {
           "type": "slide",
           "settings": {
@@ -40,13 +47,6 @@
             "collection": "remus-uomo"
           }
         },
-        "8f99faca-8a3d-471f-a917-4fcc8d2f198f": {
-          "type": "slide",
-          "settings": {
-            "caption": "Explore the Clearance Collection",
-            "collection": "outlet"
-          }
-        },
         "slide_pAyV4A": {
           "type": "slide",
           "settings": {
@@ -56,15 +56,14 @@
         }
       },
       "block_order": [
+        "slide_NWCnWk",
         "3f782b2b-3b1e-4a93-b8c5-2673f68ab5a8",
         "08d7755f-3615-4298-b80b-2a3a65308ac2",
         "823fabb2-89ff-489e-9a5f-b88aae1de315",
         "9ecce06a-f605-4289-8a3d-a92e2019715c",
-        "8f99faca-8a3d-471f-a917-4fcc8d2f198f",
         "slide_pAyV4A"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "slogan": {
       "type": "slogan",
@@ -274,8 +273,7 @@
         "slide_JiDUHm",
         "slide_NAk7Pn"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "promo_images": {
       "type": "promo_images",
@@ -328,8 +326,7 @@
         "adc3f8df-b565-4a54-9ee8-239a49bd4cda",
         "989e2100-74e5-4419-8fc8-d4a62dcc0f1a"
       ],
-      "settings": {
-      }
+      "settings": {}
     }
   },
   "order": [
